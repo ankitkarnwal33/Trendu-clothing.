@@ -8,6 +8,14 @@
   grid-template-columns: min-content 0.7fr 1fr 0.1fr;
   grid-template-rows: 1fr;
 
+  img {
+    width: 16rem;
+    height: min-content;
+    @media only screen and (max-width: 900px) {
+      width: 12rem;
+    }
+  }
+
   ul {
     list-style: none;
     grid-template-columns: repeat(4, max-content);
@@ -19,6 +27,9 @@
       text-decoration: none;
       color: $color-black;
       font-size: 1.3rem;
+      @media only screen and (max-width: 900px) {
+        font-size: 1rem;
+      }
     }
   }
   .search {
@@ -30,8 +41,12 @@
     &__icon {
       position: absolute;
       font-size: 1.8rem;
-      width: 5vw;
+      width: 7vw;
       color: $color-primary-ultra-light;
+      @media only screen and (max-width: 900px) {
+        width: 13vw;
+        font-size: 1.5rem;
+      }
     }
     &__box {
       padding: 1.1vw 4vw;
@@ -40,7 +55,12 @@
       color: $color-primary-ultra-light;
       border: none;
       outline: none;
+      margin: 0 auto;
       width: 95%;
+      @media only screen and (max-width: 900px) {
+        width: 80%;
+        font-size: 1.3rem;
+      }
     }
   }
   .icons {
@@ -52,17 +72,6 @@
     &__cart {
       font-size: 2rem;
       position: relative;
-      &::after {
-        content: "";
-        position: absolute;
-        width: 4vw;
-        height: 4vw;
-        left: 0;
-        top: 0;
-        background: $color-red-light;
-        border-radius: 100px;
-        z-index: 2;
-      }
     }
     &__user {
       font-size: 1.7rem;

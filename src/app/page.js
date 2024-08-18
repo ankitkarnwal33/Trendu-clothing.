@@ -7,12 +7,14 @@ import HeaderImg from "./components/HeaderImg";
 import Newslater from "./components/Newslater";
 import Testimonials from "./components/Testimonials";
 import TopSelling from "./components/TopSelling";
-import styles from "./page.module.css";
+import styles from "./page.module.scss";
 
 export default function Home() {
   return <>
-    <Header />
-    <HeaderImg />
+    <div className={styles.header__container}>
+      <Header />
+      <HeaderImg />
+    </div>
     <Brands />
     <Arrivals />
     <TopSelling />

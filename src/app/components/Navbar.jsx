@@ -9,7 +9,7 @@ import { IoMdCart } from "react-icons/io";
 function Navbar() {
   return (
     <nav className={styles.navbar}>
-      <Image priority width={160} src={logo} alt="TrendU" quality={90} />
+      <Image priority src={logo} alt="TrendU" quality={90} />
       <ul>
         <li>
           <Link href={"#"}>Shop</Link>

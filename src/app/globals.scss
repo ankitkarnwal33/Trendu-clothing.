@@ -31,12 +31,12 @@ body {
 
 .container {
   display: grid;
-  grid-template-rows: min-content 90vh repeat(8, min-content);
+  grid-template-rows: min-content max-content repeat(8, min-content);
   grid-template-columns:
-    [full-start] minmax(4rem, 1fr) [center-start] repeat(
+    [full-start] minmax(2rem, 1fr) [center-start] repeat(
       8,
       [col-start] minmax(min-content, 14rem) [col-end]
     )
     [center-end]
-    minmax(3rem, 1fr) [full-end];
+    minmax(2rem, 1fr) [full-end];
 }

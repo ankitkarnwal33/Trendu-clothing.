@@ -34,7 +34,11 @@ function Browse() {
         {browseData.map((card, index) => (
           <div className={card.className}>
             <h4>{card.heading}</h4>
-            <Image src={card.image} alt={card.heading}></Image>
+            <Image
+              src={card.image}
+              placeholder="blur"
+              alt={card.heading}
+            ></Image>
           </div>
         ))}
       </div>

@@ -1,6 +1,21 @@
 import styles from "./Header.module.scss";
+import MainImage from "./../../../public/img/MainImg.png";
+import link from "next/link";
+import Image from "next/image";
 function HeaderImg() {
-  return <div className={styles.header__picture}>Header Img</div>;
+  return (
+    <div className={styles.container__header__picture}>
+      <div>
+        <Image
+          src={MainImage}
+          placeholder="blur"
+          priority={true}
+          alt="Boy With Girl"
+          style={{ objectFit: "cover" }}
+        />
+      </div>
+    </div>
+  );
 }
 
 export default HeaderImg;
