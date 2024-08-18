@@ -13,17 +13,17 @@ function Browse() {
     },
     {
       heading: "Formal",
-      image: Casual,
+      image: Formal,
       className: styles.browse__cards__card2,
     },
     {
       heading: "Party",
-      image: Casual,
+      image: Party,
       className: styles.browse__cards__card3,
     },
     {
       heading: "Gym",
-      image: Casual,
+      image: Gym,
       className: styles.browse__cards__card4,
     },
   ];
@@ -34,7 +34,7 @@ function Browse() {
         {browseData.map((card, index) => (
           <div className={card.className}>
             <h4>{card.heading}</h4>
-            <Image src={card.image} width={300} alt={card.heading}></Image>
+            <Image src={card.image} alt={card.heading}></Image>
           </div>
         ))}
       </div>

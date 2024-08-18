@@ -1,9 +1,32 @@
 @import "./SASS/__variables";
 @import "./SASS/__mixins";
+%card_base {
+  padding: 3rem;
+  color: $color-black;
+  width: 100%;
+  height: 25rem;
+  position: relative;
+  h4 {
+    position: absolute;
+    z-index: 3;
+    font-size: 2.5rem;
+  }
+  img {
+    border-radius: 1.3rem;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
 .browse {
   background-color: $color-grey-light;
   grid-column: center-start / center-end;
   border-radius: 7rem;
+  padding: 5rem;
   h2 {
     font-size: 4.5rem;
     text-align: center;
@@ -12,35 +35,49 @@
     color: $color-black;
     margin-bottom: 4rem;
   }
-
   &__cards {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 1fr;
-    grid-template-columns: [grid-start] 20vw [grid-end full-start] 1fr [full-end full-2-start] 1fr [full-2-end last-start] 20vw [last-end];
-    gap: 3rem;
-    padding: 5rem;
+    grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
     align-items: center;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 2rem;
-    }
-
+    justify-content: center;
+    gap: 4rem;
+    // div {
+    // }
     &__card1 {
-      grid-column: grid-start / grid-end;
+      @extend %card_base;
     }
     &__card2 {
-      grid-column: full-start / full-end;
+      @extend %card_base;
+      img {
+        transform: rotateY(180deg);
+      }
     }
     &__card3 {
-      grid-row: 2 / 3;
-      grid-column: full-2-start / full-2-end;
+      @extend %card_base;
     }
     &__card4 {
-      grid-row: 2 / 3;
-      grid-column: last-start / last-end;
+      padding: 3rem;
+      color: $color-black;
+      width: 100%;
+      height: 25rem;
+      position: relative;
+      background-color: $color-white;
+      overflow: hidden;
+      border-radius: 1.3rem;
+      h4 {
+        position: absolute;
+        z-index: 3;
+        font-size: 2.5rem;
+      }
+      img {
+        border-radius: 1.3rem;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 10rem;
+      }
     }
   }
 }
