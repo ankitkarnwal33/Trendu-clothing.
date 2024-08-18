@@ -1,0 +1,11 @@
+@import "./SASS/_variables";
+.header {
+  &__content {
+    background: $color-grey-lightest;
+    grid-column: center-start / 6;
+  }
+  &__picture {
+    background: orange;
+    grid-column: 6 / center-end;
+  }
+}

@@ -1,0 +1,42 @@
+@import "./components/SASS/_mixins";
+@import "./components/SASS/_variables";
+@import url("https://fonts.cdnfonts.com/css/satoshi?styles=135009,135004,135005,135006,135007,135008,135002,135003,135000,135001");
+*,
+*::before,
+*::after {
+  padding: 0;
+  margin: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+body {
+  line-height: 1.6;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-family: "Satoshi", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.light_mode {
+  background: $color-white;
+}
+.dark_mode {
+  background-color: rgb(33, 33, 33);
+}
+
+.container {
+  display: grid;
+  grid-template-rows: min-content 90vh repeat(8, min-content);
+  grid-template-columns:
+    [full-start] minmax(4rem, 1fr) [center-start] repeat(
+      8,
+      [col-start] minmax(min-content, 14rem) [col-end]
+    )
+    [center-end]
+    minmax(3rem, 1fr) [full-end];
+}

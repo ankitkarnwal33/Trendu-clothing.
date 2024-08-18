@@ -1,0 +1,71 @@
+@import "./SASS/_variables";
+@import "./SASS/_mixins";
+.navbar {
+  background: #fff;
+  grid-column: center-start / center-end;
+
+  display: grid;
+  grid-template-columns: min-content 0.7fr 1fr 0.1fr;
+  grid-template-rows: 1fr;
+
+  ul {
+    list-style: none;
+    grid-template-columns: repeat(4, max-content);
+    grid-template-rows: 1fr;
+    gap: 2.5vw;
+    @include gridCenter;
+
+    a {
+      text-decoration: none;
+      color: $color-black;
+      font-size: 1.3rem;
+    }
+  }
+  .search {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    justify-content: center;
+    &__icon {
+      position: absolute;
+      font-size: 1.8rem;
+      width: 5vw;
+      color: $color-primary-ultra-light;
+    }
+    &__box {
+      padding: 1.1vw 4vw;
+      border-radius: 100px;
+      background: $color-grey-light;
+      color: $color-primary-ultra-light;
+      border: none;
+      outline: none;
+      width: 95%;
+    }
+  }
+  .icons {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+    gap: 2rem;
+    &__cart {
+      font-size: 2rem;
+      position: relative;
+      &::after {
+        content: "";
+        position: absolute;
+        width: 4vw;
+        height: 4vw;
+        left: 0;
+        top: 0;
+        background: $color-red-light;
+        border-radius: 100px;
+        z-index: 2;
+      }
+    }
+    &__user {
+      font-size: 1.7rem;
+    }
+  }
+}
