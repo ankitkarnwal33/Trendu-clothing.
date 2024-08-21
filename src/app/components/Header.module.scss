@@ -7,6 +7,7 @@
   src: url("./../../font/integralExtrabold.otf");
 }
 @import "./SASS/__variables";
+@import "./SASS/__mixins";
 .container {
   &__header__content {
     background: $color-grey-lightest;
@@ -19,12 +20,7 @@
     padding: 3rem 0;
     h1 {
       grid-column: center-start / col-start 9;
-      font-size: 4.7vw;
-      font-family: IntegralBold;
-      color: $color-black;
-      text-transform: uppercase;
-      font-weight: 800;
-      line-height: 1.35;
+      @include heading(4.7vw, $color-black, 800);
       @media only screen and (max-width: 900px) {
         grid-column: full-start / col-start 9;
         margin: 0 auto;
@@ -44,21 +40,24 @@
       }
     }
     a {
+      @include linkButton($color-white, 1.6rem);
       grid-column: center-start / col-start 9;
       max-width: 20rem;
       width: 100%;
-      text-decoration: none;
-      font-size: 1.6rem;
-      color: $color-white;
       padding: 1.2rem 0;
       background: $color-black;
       text-align: center;
       border-radius: 50px;
+
       @media only screen and (max-width: 900px) {
         max-width: 20rem;
         min-width: 10rem;
       }
+      @media (max-width: 620px) {
+        min-width: 92%;
+      }
     }
+
     .stats {
       grid-column: center-start / col-start 9;
       display: flex;
@@ -104,7 +103,7 @@
   &__header__picture {
     div {
       width: 100%;
-      height: 130%;
+      height: 100%;
       z-index: -1;
       position: relative;
       img {
@@ -121,9 +120,20 @@
         height: 100%;
         img {
           position: sticky;
-          margin-top: -3rem;
+          // margin-top: -3rem;
         }
       }
     }
   }
+}
+
+.formSmall {
+  height: 100%;
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  background-color: aqua;
+}
+
+.inputSmall {
 }

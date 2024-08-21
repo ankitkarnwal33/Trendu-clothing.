@@ -1,14 +1,44 @@
 import styles from "./Brands.module.scss";
-import Prada from "./../../../public/Vectors/Prada.svg";
-import Versace from "./../../../public/Vectors/Versace.svg";
-import Gucci from "./../../../public/Vectors/Gucci.svg";
-import Calvin from "./../../../public/Vectors/Calvin.svg";
-import Zara from "./../../../public/Vectors/Zara.svg";
+import Prada from "./../../../public/Vectors/Prada.png";
+import Versace from "./../../../public/Vectors/Versace.png";
+import Gucci from "./../../../public/Vectors/Gucci.png";
+import Calvin from "./../../../public/Vectors/Calvin.png";
+import Zara from "./../../../public/Vectors/Zara.png";
+import Image from "next/image";
+
+const brands = [
+  {
+    image: Calvin,
+    alt: "Calvin Klein",
+  },
+  {
+    image: Gucci,
+    alt: "Gucci",
+  },
+  {
+    image: Prada,
+    alt: "Prada",
+  },
+  {
+    image: Versace,
+    alt: "Versace",
+  },
+  {
+    image: Zara,
+    alt: "Zara",
+  },
+];
+
 function Brands() {
-  return;
-  // <div className={styles.brands}>
-  //   <img src={Prada} alt="Versace" />
-  // </div>
+  return (
+    <div className={styles.brands}>
+      {brands.map((brand) => (
+        <div>
+          <Image src={brand.image} alt={brand.alt} quality={80} width={100} />
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default Brands;

@@ -1,5 +1,6 @@
 @import "./SASS/_variables";
 .footer {
+  height: 100vh;
   background-color: $color-grey-light;
   grid-column: full-start / full-end;
 }

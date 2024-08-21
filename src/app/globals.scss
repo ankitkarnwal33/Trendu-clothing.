@@ -1,5 +1,5 @@
-@import "./components/SASS/_mixins";
-@import "./components/SASS/_variables";
+@import "./components/SASS/__mixins";
+@import "./components/SASS/__variables";
 @import url("https://fonts.cdnfonts.com/css/satoshi?styles=135009,135004,135005,135006,135007,135008,135002,135003,135000,135001");
 *,
 *::before,
@@ -16,7 +16,7 @@ html {
 
 body {
   line-height: 1.6;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
   font-family: "Satoshi", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -26,6 +26,7 @@ body {
   background: $color-white;
 }
 .dark_mode {
+  //To be implemented
   background-color: rgb(33, 33, 33);
 }
 

@@ -1,4 +1,99 @@
+@font-face {
+  font-family: IntegralBold;
+  src: url("./../../font/integralcfBold.otf");
+}
+@font-face {
+  font-family: IntegralExtraBold;
+  src: url("./../../font/integralExtrabold.otf");
+}
+
+@import "./SASS/__variables";
+@import "./SASS/__mixins";
+
 .testimonials {
-  background: orangered;
-  grid-column: center-start / center-end;
+  // background: orange;
+  grid-column: full-start / full-end;
+  padding: 2rem;
+
+  .container {
+    display: flex;
+    // align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    justify-content: space-between;
+    &__header {
+      display: flex;
+      justify-content: space-between;
+      padding: 5rem 4rem 2rem 3rem;
+      &__heading {
+        @include heading(4rem, $color-black, 800);
+        letter-spacing: -0.3px;
+      }
+      &__buttons {
+        display: flex;
+        align-items: flex-end;
+        gap: 2rem;
+        font-weight: 600;
+        span {
+          font-size: 2rem;
+          color: $color-black;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          user-select: none;
+          padding: 1rem 2rem;
+          border: $border-light-1;
+          border-radius: 1.2rem;
+        }
+      }
+    }
+  }
+}
+
+.sliderContainer {
+  overflow-x: auto;
+  display: flex;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  &__reviews {
+    display: flex;
+    padding: 2rem 0rem;
+    justify-content: center;
+    gap: 3rem;
+
+    &__review {
+      display: flex;
+      scroll-snap-align: center;
+      flex-direction: column;
+      background-color: $color-white;
+      padding: 1rem 2rem;
+      border: $border-light-1;
+      border-radius: 1rem;
+      width: 30rem;
+      height: auto;
+      gap: 0.5rem;
+      &__rating > span {
+        color: $color-yellow;
+        font-size: 1.7rem;
+        font-weight: bold;
+      }
+      &__user {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        h2 {
+          font-size: 1.7rem;
+          color: $color-black;
+          font-weight: 700;
+        }
+        svg {
+          width: 1.7rem;
+        }
+      }
+      &__comment {
+        font-size: 1.3rem;
+        font-weight: 400;
+        color: $color-primary-light;
+      }
+    }
+  }
 }

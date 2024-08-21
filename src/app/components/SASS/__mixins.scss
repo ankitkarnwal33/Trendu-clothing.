@@ -3,3 +3,34 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin heading($size, $col, $weight) {
+  font-size: $size;
+  font-family: IntegralBold;
+  color: $col;
+  text-transform: uppercase;
+  font-weight: $weight;
+  line-height: 1.35;
+}
+
+@mixin linkButton($col, $size) {
+  text-decoration: none;
+  font-size: $size;
+  color: $col;
+}
+
+@mixin imageCover($wid, $heig, $pos, $t, $l) {
+  width: $wid;
+  height: $heig;
+  object-fit: cover;
+  position: $pos;
+  top: $t;
+  left: $l;
+}
+@mixin card1($pad, $col, $wid, $hei, $pos) {
+  padding: $pad;
+  color: $col;
+  width: $wid;
+  height: $hei;
+  position: $pos;
+}
