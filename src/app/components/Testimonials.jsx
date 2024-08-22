@@ -1,12 +1,11 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import Star from "./smallComponents/Star";
 import styles from "./Testimonials.module.scss";
 function Testimonials() {
   const parentRef = useRef(null);
   const cardRef = useRef(null);
-  const scrollRef = useRef(null);
-  const [cards, setCards] = useState({});
+  const [tracker, setTracker] = useState(0);
   const [transformCard, setTransformCard] = useState(0);
   //Mock data
   const reviews = [
@@ -158,38 +157,27 @@ function Testimonials() {
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
   ];
+  const { length } = reviews;
 
-  useEffect(() => {
-    if (parentRef.current) {
-      const cards = document.querySelectorAll(".card");
-
-      setCards(cards);
-    }
-  }, []);
-  const allCards = Object.values(cards);
-
-  let currSlide = 0;
   function handleScrollPrev(event) {
-    currSlide++;
-    setTransformCard((value) => value + 100);
-    if (currSlide === allCards.length - 5) {
-      setTransformCard(0);
-
-      currSlide = 0;
+    if (tracker > 0) {
+      setTransformCard((value) => value + 110);
+      setTracker((v) => v - 1);
+    } else {
+      console.log("done");
+      setTransformCard((value) => value * 0);
     }
   }
   function handleScrollNext(event) {
-    currSlide++;
-    setTransformCard((value) => value - 100);
-    if (currSlide === allCards.length - 5) {
-      setTransformCard(0);
-      currSlide = 0;
+    if (tracker < length - 2) {
+      setTransformCard((v) => v - 110);
+      setTracker((v) => v + 1);
+    } else {
+      setTracker(0);
+      setTransformCard((v) => v * 0);
     }
   }
 
-  const transformStyle = {
-    transition: "transform 0.5s ease", // Optional: adds a smooth transition effect
-  };
   return (
     <section className={styles.testimonials}>
       <div className={styles.container}>
@@ -203,7 +191,7 @@ function Testimonials() {
           </div>
         </div>
 
-        <div className={styles.sliderContainer} ref={scrollRef}>
+        <div className={styles.sliderContainer}>
           <div className={styles.sliderContainer__reviews} ref={parentRef}>
             {reviews.map((review) => (
               <div

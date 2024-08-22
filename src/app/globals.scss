@@ -41,3 +41,9 @@ body {
     [center-end]
     minmax(2rem, 1fr) [full-end];
 }
+
+.footer {
+  position: relative;
+  grid-column: full-start / full-end;
+  margin-top: 15rem;
+}

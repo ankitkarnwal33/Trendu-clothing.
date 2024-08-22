@@ -25,9 +25,26 @@
       display: flex;
       justify-content: space-between;
       padding: 5rem 4rem 2rem 3rem;
+      @media (max-width: 600px) {
+        flex-direction: column;
+        align-items: center;
+        gap: 3rem;
+        padding-bottom: 0.5rem;
+      }
       &__heading {
         @include heading(4rem, $color-black, 800);
         letter-spacing: -0.3px;
+        @media (max-width: 900px) {
+          font-size: 3rem;
+        }
+        @media (max-width: 760px) {
+          font-size: 2.5rem;
+          letter-spacing: 0px;
+        }
+        @media (max-width: 600px) {
+          font-size: 2.5rem;
+          letter-spacing: 0.3px;
+        }
       }
       &__buttons {
         display: flex;
@@ -35,7 +52,7 @@
         gap: 2rem;
         font-weight: 600;
         span {
-          font-size: 2rem;
+          font-size: 1.4rem;
           color: $color-black;
           -webkit-user-select: none;
           -moz-user-select: none;
@@ -44,13 +61,35 @@
           border: $border-light-1;
           border-radius: 1.2rem;
         }
+        @media (max-width: 900px) {
+          gap: 1rem;
+          span {
+            font-size: 1.3rem;
+            padding: 0.7rem 1.5rem;
+          }
+        }
+        @media (max-width: 760px) {
+          font-size: 1;
+          span {
+            font-size: 1rem;
+            padding: 0.7rem 1.5rem;
+          }
+        }
+        @media (max-width: 600px) {
+          justify-content: space-between;
+          width: 92%;
+          span {
+            font-size: 1.3rem;
+            padding: 1rem 2rem;
+          }
+        }
       }
     }
   }
 }
 
 .sliderContainer {
-  overflow-x: auto;
+  overflow-x: hidden;
   display: flex;
   scroll-snap-type: x mandatory;
   scrollbar-width: none;
@@ -71,6 +110,7 @@
       width: 30rem;
       height: auto;
       gap: 0.5rem;
+
       &__rating > span {
         color: $color-yellow;
         font-size: 1.7rem;
@@ -93,6 +133,23 @@
         font-size: 1.3rem;
         font-weight: 400;
         color: $color-primary-light;
+      }
+      @media (max-width: 760px) {
+        &__rating > span {
+          font-size: 1.4rem;
+        }
+        &__user {
+          h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+          }
+          svg {
+            width: 1.4rem;
+          }
+        }
+        &__comment {
+          font-size: 1.2rem;
+        }
       }
     }
   }

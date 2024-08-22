@@ -13,9 +13,10 @@ export default function RootLayout({ children }) {
       <body className="light_mode container">
         <Navbar />
         {children}
-        <Newslater />
-        <Footer />
-
+        <div className="footer">
+          <Newslater />
+          <Footer />
+        </div>
       </body>
     </html>
   );

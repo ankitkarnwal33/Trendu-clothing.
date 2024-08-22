@@ -1,5 +1,75 @@
+@import "./SASS/__mixins";
+@import "./SASS/__variables";
 .newslater {
   background: #000;
   color: white;
-  grid-column: center-start / center-end;
+  padding: 3rem;
+  position: absolute;
+  width: 90%;
+  top: -10rem;
+  transform: translate(5%);
+  border-radius: 2rem;
+  .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 6rem;
+    h1 {
+      @include heading(3.5rem, $color-white, 800);
+      width: 47%;
+      @media (max-width: 900px) {
+        font-size: 3rem;
+      }
+      @media (max-width: 767px) {
+        font-size: 2.6rem;
+        letter-spacing: 0.1px;
+      }
+      @media (max-width: 714px) {
+        font-size: 2.2rem;
+      }
+    }
+    &__input {
+      display: flex;
+      flex-direction: column;
+      gap: 1.6rem;
+      min-width: 30rem;
+      max-width: 90%;
+
+      @media (max-width: 900px) {
+        min-width: 27rem;
+      }
+      @media (max-width: 767px) {
+        gap: 1.3rem;
+        min-width: 25rem;
+      }
+      @media (max-width: 714px) {
+        font-size: 2rem;
+      }
+      button,
+      input {
+        border-radius: 3rem;
+        font-size: 1.3rem;
+        padding: 1.3rem 2.5rem;
+        background-color: $color-white;
+        border: none;
+        outline: none;
+      }
+      input {
+        color: $color-primary-ultra-light;
+      }
+      button {
+        color: $color-black;
+        text-align: center;
+        text-transform: capitalize;
+      }
+      @media (max-width: 767px) {
+        min-width: 23rem;
+        input,
+        button {
+          font-size: 1.2rem;
+          padding: 1.1rem 2.5rem;
+        }
+      }
+    }
+  }
 }
