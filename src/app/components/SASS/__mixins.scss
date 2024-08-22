@@ -41,3 +41,11 @@
   font-size: $size;
   font-weight: $weight;
 }
+
+@mixin flexbox($align, $just, $dir, $gutter) {
+  display: flex;
+  align-items: $align;
+  justify-content: $just;
+  flex-direction: $dir;
+  gap: $gutter;
+}
