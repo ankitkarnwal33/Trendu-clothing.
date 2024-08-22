@@ -34,3 +34,10 @@
   height: $hei;
   position: $pos;
 }
+
+@mixin linkAnchor($size, $col, $weight) {
+  text-decoration: none;
+  color: $col;
+  font-size: $size;
+  font-weight: $weight;
+}

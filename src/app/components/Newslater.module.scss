@@ -9,11 +9,18 @@
   top: -10rem;
   transform: translate(5%);
   border-radius: 2rem;
+  @media (max-width: 572px) {
+    top: -16rem;
+  }
   .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     gap: 6rem;
+    @media (max-width: 572px) {
+      flex-direction: column;
+      gap: 3rem;
+    }
     h1 {
       @include heading(3.5rem, $color-white, 800);
       width: 47%;
@@ -26,6 +33,13 @@
       }
       @media (max-width: 714px) {
         font-size: 2.2rem;
+      }
+      @media (max-width: 625px) {
+        font-size: 2rem;
+      }
+      @media (max-width: 572px) {
+        font-size: 3.4rem;
+        width: 100%;
       }
     }
     &__input {
@@ -42,8 +56,12 @@
         gap: 1.3rem;
         min-width: 25rem;
       }
-      @media (max-width: 714px) {
-        font-size: 2rem;
+      @media (max-width: 625px) {
+        min-width: 20rem;
+      }
+      @media (max-width: 572px) {
+        gap: 2rem;
+        min-width: 80%;
       }
       button,
       input {
@@ -62,12 +80,21 @@
         text-align: center;
         text-transform: capitalize;
       }
+
       @media (max-width: 767px) {
-        min-width: 23rem;
+        min-width: 20rem;
         input,
         button {
-          font-size: 1.2rem;
+          font-size: 1.1rem;
           padding: 1.1rem 2.5rem;
+        }
+      }
+      @media (max-width: 572px) {
+        min-width: 35rem;
+        input,
+        button {
+          font-size: 1.5rem;
+          padding: 1.3rem 2.5rem;
         }
       }
     }

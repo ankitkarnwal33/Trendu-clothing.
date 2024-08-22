@@ -38,6 +38,7 @@ function Browse() {
               src={card.image}
               placeholder="blur"
               alt={card.heading}
+              quality={1}
             ></Image>
           </div>
         ))}

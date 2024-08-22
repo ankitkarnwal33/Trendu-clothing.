@@ -11,6 +11,7 @@ function HeaderImg() {
           placeholder="blur"
           priority={true}
           alt="Boy With Girl"
+          quality={1}
           style={{ objectFit: "cover" }}
         />
       </div>

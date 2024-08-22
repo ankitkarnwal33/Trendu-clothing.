@@ -46,4 +46,7 @@ body {
   position: relative;
   grid-column: full-start / full-end;
   margin-top: 15rem;
+  @media (max-width: 572px) {
+    margin-top: 18rem;
+  }
 }

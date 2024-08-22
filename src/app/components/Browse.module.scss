@@ -38,6 +38,9 @@
   @media (max-width: 900px) {
     border-radius: 2rem;
   }
+  @media (max-width: 700px) {
+    grid-column: full-start / full-end;
+  }
   h2 {
     @include heading(4.5rem, $color-black, 800);
     text-align: center;
