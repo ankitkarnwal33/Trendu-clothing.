@@ -1,5 +1,8 @@
 @import "./SASS/__variables";
 @import "./SASS/__mixins";
+.center {
+  grid-template-columns: center-start / center-end;
+}
 .navbar {
   background: #fff;
   grid-column: center-start / center-end;
@@ -8,12 +11,16 @@
   grid-template-columns: min-content 0.7fr 1fr 0.1fr;
   grid-template-rows: 1fr;
   position: relative;
+  align-items: center;
   @media (max-width: 901px) {
     grid-template-columns: min-content 1fr 0.1fr;
   }
   @media (max-width: 620px) {
     grid-template-columns: min-content 1fr;
     justify-items: end;
+    align-items: center;
+    height: 6rem;
+    justify-content: center;
   }
   img {
     width: 16rem;

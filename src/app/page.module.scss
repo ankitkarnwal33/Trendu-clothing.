@@ -1,11 +1,5 @@
 @import "./components/SASS/__mixins";
 @import "./components/SASS/__variables";
-.header__container {
-  grid-column: full-start / full-end;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(45.01rem, 1fr));
-  grid-template-rows: auto;
-}
 
 .NotFound {
   margin: 10rem auto;

@@ -2,11 +2,10 @@
 import Image from "next/image";
 import styles from "./Navbar.module.scss";
 import logo from "./../../../public/img/Logo.png";
-import Link from "next/link";
 import { IoSearch } from "react-icons/io5";
 import { FaUserLarge } from "react-icons/fa6";
 import { IoMdCart } from "react-icons/io";
-import { act, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import List from "./smallComponents/List";
@@ -44,8 +43,9 @@ function Navbar() {
     setIsOpen(!isOpen);
   }
   return (
-    <nav className={styles.navbar}>
-      <Image priority src={logo} alt="TrendU" quality={100} />
+    <nav className={`${active ? styles.center : styles.navbar}`}>
+      {!active && <Image priority src={logo} alt="TrendU" quality={100} />}
+
       {width >= 900 ? <List className={"styles.open"} /> : ""}
       {width > 620 && !active && (
         <form className={styles.search}>
