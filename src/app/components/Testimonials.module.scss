@@ -11,13 +11,11 @@
 @import "./SASS/__mixins";
 
 .testimonials {
-  // background: orange;
   grid-column: full-start / full-end;
   padding: 2rem;
 
   .container {
     display: flex;
-    // align-items: center;
     justify-content: flex-start;
     flex-direction: column;
     justify-content: space-between;

@@ -7,7 +7,7 @@ function FooterLink() {
       <div className={styles.footer__container__main__links__text}>
         <h2>Company</h2>
         <div className={styles.link}>
-          <Link href={"/About"}>About</Link>
+          <Link href={"/dashboard"}>About</Link>
           <Link href={"/features"}>Features</Link>
           <Link href={"/works"}>Works</Link>
           <Link href={"/career"}>Career</Link>

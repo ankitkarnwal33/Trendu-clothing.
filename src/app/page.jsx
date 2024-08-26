@@ -1,4 +1,3 @@
-
 import Arrivals from "./components/Arrivals";
 import Brands from "./components/Brands";
 import Browse from "./components/Browse";
@@ -10,15 +9,17 @@ import TopSelling from "./components/TopSelling";
 import styles from "./page.module.scss";
 
 export default function Home() {
-  return <>
-    <div className={styles.header__container}>
-      <Header />
-      <HeaderImg />
-    </div>
-    <Brands />
-    <Arrivals />
-    <TopSelling />
-    <Browse />
-    <Testimonials />
-  </>
+  return (
+    <>
+      <div className={styles.header__container}>
+        <Header />
+        <HeaderImg />
+      </div>
+      <Brands />
+      <Arrivals />
+      <TopSelling />
+      <Browse />
+      <Testimonials />
+    </>
+  );
 }

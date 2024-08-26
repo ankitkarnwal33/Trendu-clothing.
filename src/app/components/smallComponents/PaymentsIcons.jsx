@@ -1,22 +1,12 @@
 import styles from "./../Footer.module.scss";
 import Link from "next/link";
 
-import ApplePay from "./../../../../public/img/Payments/ApplePay.svg";
-
-import GPay from "./../../../../public/img/Payments/GPay.svg";
-
-import Mastercard from "./../../../../public/img/Payments/Mastercard.svg";
-
-import Paypal from "./../../../../public/img/Payments/Paypal.svg";
-
-import Visa from "./../../../../public/img/Payments/Visa.svg";
-
 function PaymentsIcons() {
   return (
     <div className={styles.footer__container__sub__payments}>
       <Link href={"https://www.apple.com/apple-pay/"} target="_blank">
         <div className={styles.footer__container__sub__payments__box}>
-          <ApplePay />
+          <img src="/img/Payments/ApplePay.svg" alt="ApplePay" />
         </div>
       </Link>
       <Link
@@ -27,7 +17,7 @@ function PaymentsIcons() {
         rel="noopener noreferrer"
       >
         <div className={styles.footer__container__sub__payments__box}>
-          <GPay />
+          <img src="/img/Payments/GPay.svg" alt="Gpay" />
         </div>
       </Link>
       <Link
@@ -36,7 +26,7 @@ function PaymentsIcons() {
         rel="noopener noreferrer"
       >
         <div className={styles.footer__container__sub__payments__box}>
-          <Mastercard />
+          <img src="/img/Payments/Mastercard.svg" alt="Mastercard" />
         </div>
       </Link>
       <Link
@@ -45,7 +35,7 @@ function PaymentsIcons() {
         rel="noopener noreferrer"
       >
         <div className={styles.footer__container__sub__payments__box}>
-          <Paypal />
+          <img src="/img/Payments/Paypal.svg" alt="Paypal" />
         </div>
       </Link>
       <Link
@@ -54,7 +44,7 @@ function PaymentsIcons() {
         rel="noopener noreferrer"
       >
         <div className={styles.footer__container__sub__payments__box}>
-          <Visa />
+          <img src="/img/Payments/Visa.svg" alt="Visa" />
         </div>
       </Link>
     </div>

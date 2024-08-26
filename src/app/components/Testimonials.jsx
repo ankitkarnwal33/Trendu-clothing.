@@ -1,10 +1,8 @@
 "use client";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Star from "./smallComponents/Star";
 import styles from "./Testimonials.module.scss";
 function Testimonials() {
-  const parentRef = useRef(null);
-  const cardRef = useRef(null);
   const [tracker, setTracker] = useState(0);
   const [transformCard, setTransformCard] = useState(0);
   //Mock data
@@ -164,7 +162,6 @@ function Testimonials() {
       setTransformCard((value) => value + 110);
       setTracker((v) => v - 1);
     } else {
-      console.log("done");
       setTransformCard((value) => value * 0);
     }
   }
@@ -192,17 +189,15 @@ function Testimonials() {
         </div>
 
         <div className={styles.sliderContainer}>
-          <div className={styles.sliderContainer__reviews} ref={parentRef}>
+          <div className={styles.sliderContainer__reviews}>
             {reviews.map((review) => (
               <div
                 className={`${styles.sliderContainer__reviews__review} card`}
-                ref={cardRef}
                 key={review.owner}
                 style={{
                   transform: `translateX(${transformCard}%)`,
                   transition: "transform 0.5s ease",
                 }}
-                // style={{ transform: `translateX(-400%)` }}
               >
                 <div
                   className={styles.sliderContainer__reviews__review__rating}

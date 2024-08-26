@@ -1,3 +1,7 @@
+@font-face {
+  font-family: IntegralBold;
+  src: url("./../../../font/integralcfBold.otf");
+}
 @mixin gridCenter {
   display: grid;
   align-items: center;

@@ -1,0 +1,76 @@
+@import "./../SASS/__mixins";
+@import "./../SASS/__variables";
+
+.arrivals__container {
+  @include flexbox(center, unset, column, 4rem);
+  width: inherit;
+  .heading {
+    @include heading(3rem, $color-black, 700);
+  }
+  .arrivals__slider {
+    width: 100%;
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+
+    &__child {
+      scroll-snap-align: center;
+      display: flex;
+      gap: 2rem;
+      > div {
+        display: flex;
+        flex-direction: column;
+        > img {
+          border-radius: 2rem;
+        }
+        > h3 {
+          font-size: 2rem;
+          color: $color-black;
+          font-weight: 600;
+          padding-top: 1.3rem;
+        }
+        > .rating {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          font-size: 1.2rem;
+          > .rating__stars {
+            display: flex;
+            gap: 0.1rem;
+            > span {
+              font-size: 1.9rem;
+              font-weight: 800;
+              color: $color-yellow;
+            }
+          }
+        }
+        > .price {
+          display: flex;
+          align-items: center;
+          gap: 1rem;
+          > span {
+            color: $color-red-dark;
+            padding: 0.5rem 1.5rem;
+            background: $color-red-light;
+            border-radius: 2rem;
+            font-size: 1.1rem;
+          }
+          > .price__net {
+            font-size: 2.2rem;
+            color: $color-black;
+            font-weight: 800;
+          }
+          > .price__all {
+            font-size: 2.2rem;
+            color: $color-primary-ultra-light;
+            font-weight: 800;
+            text-decoration: line-through;
+            text-decoration-color: $color-primary-ultra-light;
+            text-decoration-thickness: 1px;
+          }
+        }
+      }
+    }
+  }
+}
