@@ -6,7 +6,7 @@ import Link from "next/link";
 import { IoSearch } from "react-icons/io5";
 import { FaUserLarge } from "react-icons/fa6";
 import { IoMdCart } from "react-icons/io";
-import { useEffect, useState } from "react";
+import { act, useEffect, useLayoutEffect, useRef, useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import List from "./smallComponents/List";
@@ -14,7 +14,7 @@ import SearchSmall from "./smallComponents/SearchSmall";
 function Navbar() {
   const [active, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [width, setWidthView] = useState(0);
+  const [width, setWidthView] = useState(window.innerWidth);
 
   //Function start to fetch current width of viewport
 
@@ -23,6 +23,7 @@ function Navbar() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
+
   //Function end to fetch current width of viewport
 
   function handlesubmit(e) {

@@ -1,6 +1,23 @@
+@import "./components/SASS/__mixins";
+@import "./components/SASS/__variables";
 .header__container {
   grid-column: full-start / full-end;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(45.01rem, 1fr));
   grid-template-rows: auto;
+}
+
+.NotFound {
+  margin: 10rem auto;
+  padding: 2rem;
+  height: 10vh;
+  h1 {
+    @include heading(2.5rem, $color-black, 800);
+    code {
+      font-size: 2rem;
+      color: $color-yellow;
+      font-weight: 500;
+    }
+  }
+  grid-column: center-start / center-end;
 }

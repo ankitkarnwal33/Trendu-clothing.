@@ -21,7 +21,38 @@
     h4 {
       position: absolute;
       z-index: 3;
-      font-size: 1.8rem;
+      font-size: 2.4rem;
+    }
+    img {
+      border-radius: 1.3rem;
+      @include imageCover(100%, 100%, absolute, 0, 0);
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  %card_base {
+    @include card1(2.2rem, $color-black, 100%, 20rem, relative);
+
+    h4 {
+      position: absolute;
+      z-index: 3;
+      font-size: 2rem;
+    }
+    img {
+      border-radius: 1.3rem;
+      @include imageCover(100%, 100%, absolute, 0, 0);
+    }
+  }
+}
+@media (max-width: 420px) {
+  %card_base {
+    @include card1(2.2rem, $color-black, 80%, 20rem, relative);
+    margin: auto;
+    h4 {
+      position: absolute;
+      z-index: 3;
+      font-size: 2rem;
     }
     img {
       border-radius: 1.3rem;
@@ -40,6 +71,7 @@
   }
   @media (max-width: 700px) {
     grid-column: full-start / full-end;
+    padding: 2rem;
   }
   h2 {
     @include heading(4.5rem, $color-black, 800);
@@ -48,12 +80,20 @@
     @media (max-width: 900px) {
       font-size: 3.5rem;
     }
+    @media (max-width: 720px) {
+      font-size: 3rem;
+    }
+    @media (max-width: 420px) {
+      font-size: 2.7rem;
+    }
   }
   &__cards {
     @include gridCenter;
     grid-template-columns: repeat(auto-fit, minmax(35rem, 1fr));
-
     gap: 4rem;
+    @media (max-width: 720px) {
+      gap: 2rem;
+    }
     &__card1 {
       @extend %card_base;
     }
@@ -71,15 +111,26 @@
       @media (max-width: 900px) {
         @include card1(2.6rem, $color-black, 100%, 25rem, relative);
       }
+      @media (max-width: 720px) {
+        @include card1(2.2rem, $color-black, 100%, 20rem, relative);
+      }
+      @media (max-width: 420px) {
+        @include card1(2.2rem, $color-black, 80%, 20rem, relative);
+        margin: auto;
+      }
       background-color: $color-white;
       overflow: hidden;
       border-radius: 1.3rem;
+
       h4 {
         position: absolute;
         z-index: 3;
         font-size: 2.5rem;
         @media (max-width: 900px) {
-          font-size: 1.8rem;
+          font-size: 2.4rem;
+        }
+        @media (max-width: 900px) {
+          font-size: 2rem;
         }
       }
       img {

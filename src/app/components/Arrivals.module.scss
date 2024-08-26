@@ -1,4 +1,7 @@
 .arrivals {
   grid-column: full-start / full-end;
   padding: 6rem;
+  @media (max-width: 900px) {
+    padding: 2rem;
+  }
 }

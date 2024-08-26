@@ -7,6 +7,7 @@ import Button from "./Button";
 function ArrivalAndBestSelling() {
   const cards = [
     {
+      id: 1,
       title: "T-shirt with Tape details",
       image: "/img/Arrivals/image7.png",
       rating: 3.3,
@@ -15,6 +16,7 @@ function ArrivalAndBestSelling() {
       discount: 0,
     },
     {
+      id: 2,
       title: "Skinny Fit Jeans",
       image: "/img/Arrivals/image8.png",
       rating: 3.3,
@@ -23,6 +25,7 @@ function ArrivalAndBestSelling() {
       discount: 20,
     },
     {
+      id: 3,
       title: "Checkered Shirt",
       image: "/img/Arrivals/image9.png",
       rating: 3.3,
@@ -31,6 +34,7 @@ function ArrivalAndBestSelling() {
       discount: 0,
     },
     {
+      id: 4,
       title: "Sleeve Striped T-shirt",
       image: "/img/Arrivals/image10.png",
       rating: 4.3,
@@ -47,13 +51,13 @@ function ArrivalAndBestSelling() {
       <div className={styles.arrivals__slider}>
         <div className={styles.arrivals__slider__child}>
           {cards.map((card) => (
-            <div className={styles.arrivals__slider__child__card}>
+            <div className={styles.arrivals__slider__child__card} key={card.id}>
               <Image
                 src={card.image}
                 width={264}
                 height={264}
                 alt={card.title}
-                quality={1}
+                quality={90}
                 className={styles.arrivals__slider__child__card__img}
               />
               <h3>{card.title}</h3>

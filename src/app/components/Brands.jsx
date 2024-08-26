@@ -33,7 +33,7 @@ function Brands() {
   return (
     <div className={styles.brands}>
       {brands.map((brand) => (
-        <div>
+        <div key={brand.alt}>
           <Image src={brand.image} alt={brand.alt} quality={1} width={100} />
         </div>
       ))}

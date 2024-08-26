@@ -11,10 +11,10 @@ import styles from "./page.module.scss";
 export default function Home() {
   return (
     <>
-      <div className={styles.header__container}>
+      {/* <div className={styles.header__container}>
         <Header />
         <HeaderImg />
-      </div>
+      </div> */}
       <Brands />
       <Arrivals />
       <TopSelling />
