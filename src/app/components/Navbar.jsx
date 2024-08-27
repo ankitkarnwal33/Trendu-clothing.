@@ -1,4 +1,6 @@
 "use client";
+
+//Have to optimize more further.//
 import Image from "next/image";
 import styles from "./Navbar.module.scss";
 import logo from "./../../../public/img/Logo.png";
@@ -43,47 +45,58 @@ function Navbar() {
     setIsOpen(!isOpen);
   }
   return (
-    <nav className={`${active ? styles.center : styles.navbar}`}>
-      {!active && <Image priority src={logo} alt="TrendU" quality={100} />}
-
-      {width >= 900 ? <List className={"styles.open"} /> : ""}
-      {width > 620 && !active && (
-        <form className={styles.search}>
-          <IoSearch className={styles.search__icon} />
-          <input
-            type="text"
-            placeholder="Search for products"
-            className={styles.search__box}
-          />
-        </form>
-      )}
-
-      {!active && (
-        <div className={styles.icons}>
-          {width < 621 && !active ? (
-            <IoSearch className={styles.search__icon} onClick={useSearchBar} />
-          ) : (
-            ""
-          )}
-
-          <IoMdCart className={styles.icons__cart} />
-          <FaUserLarge className={styles.icons__user} />
-          {width > 901 ? (
-            ""
-          ) : isOpen ? (
-            <>
-              <RxCross2
-                className={styles.icons__bars}
-                onClick={toggleSidebar}
+    <nav className={styles.navbar}>
+      {active ? (
+        <SearchSmall onSubmit={handlesubmit} active={active} />
+      ) : (
+        <>
+          <Image priority src={logo} alt="TrendU" quality={100} />
+          {width >= 900 ? <List className={"styles.open"} /> : ""}
+          {width > 620 && !active && (
+            <form className={styles.search}>
+              <IoSearch className={styles.search__icon} />
+              <input
+                type="text"
+                placeholder="Search for products"
+                className={styles.search__box}
               />
-            </>
-          ) : (
-            <FaBars className={styles.icons__bars} onClick={toggleSidebar} />
+            </form>
           )}
-        </div>
+
+          {!active && (
+            <div className={styles.icons}>
+              {width < 621 && !active ? (
+                <IoSearch
+                  className={styles.search__icon}
+                  onClick={useSearchBar}
+                />
+              ) : (
+                ""
+              )}
+
+              <IoMdCart className={styles.icons__cart} />
+              <FaUserLarge className={styles.icons__user} />
+              {width > 901 ? (
+                ""
+              ) : isOpen ? (
+                <>
+                  <RxCross2
+                    className={styles.icons__bars}
+                    onClick={toggleSidebar}
+                  />
+                </>
+              ) : (
+                <FaBars
+                  className={styles.icons__bars}
+                  onClick={toggleSidebar}
+                />
+              )}
+            </div>
+          )}
+
+          {isOpen && width < 901 && <List className={styles.sidebar} />}
+        </>
       )}
-      {active && <SearchSmall onSubmit={handlesubmit} active={active} />}
-      {isOpen && width < 901 && <List className={styles.sidebar} />}
     </nav>
   );
 }

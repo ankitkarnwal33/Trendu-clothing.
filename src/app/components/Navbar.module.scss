@@ -1,8 +1,5 @@
 @import "./SASS/__variables";
 @import "./SASS/__mixins";
-.center {
-  grid-template-columns: center-start / center-end;
-}
 .navbar {
   background: #fff;
   grid-column: center-start / center-end;
@@ -12,6 +9,7 @@
   grid-template-rows: 1fr;
   position: relative;
   align-items: center;
+  transition: all 0.3s;
   @media (max-width: 901px) {
     grid-template-columns: min-content 1fr 0.1fr;
   }

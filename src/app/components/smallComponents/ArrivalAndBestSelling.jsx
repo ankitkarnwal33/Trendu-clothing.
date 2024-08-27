@@ -4,7 +4,7 @@ import Image from "next/image";
 import Star from "./Star";
 import Button from "./Button";
 
-function ArrivalAndBestSelling() {
+function ArrivalAndBestSelling({ children }) {
   const cards = [
     {
       id: 1,
@@ -46,7 +46,7 @@ function ArrivalAndBestSelling() {
   return (
     <div className={styles.arrivals__container}>
       <div className={styles.heading}>
-        <h1>New Arrivals</h1>
+        <h1>{children}</h1>
       </div>
       <div className={styles.arrivals__slider}>
         <div className={styles.arrivals__slider__child}>

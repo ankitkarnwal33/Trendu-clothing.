@@ -3,7 +3,7 @@ import ArrivalAndBestSelling from "./smallComponents/ArrivalAndBestSelling";
 function Arrivals() {
   return (
     <section className={styles.arrivals}>
-      <ArrivalAndBestSelling />
+      <ArrivalAndBestSelling> New Arrivals </ArrivalAndBestSelling>
     </section>
   );
 }
