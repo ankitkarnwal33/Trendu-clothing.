@@ -11,7 +11,6 @@ import { useEffect, useRef, useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import List from "@/components/smallComponents/List";
-import SearchSmall from "@/components/smallComponents/SearchSmall";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 function Navbar() {
@@ -53,8 +52,12 @@ function Navbar() {
               <Image src={logo} alt="trendu" height={70} />
             </Link>
           </div>
-          <div className={styles.navbar__list}>
-            <ul className={styles.navbar__list__listItems}>
+          <div
+            className={`${styles.navbar__list} ${
+              isOpen ? styles.navbar__open : ""
+            }`}
+          >
+            <ul className={`${styles.navbar__list__listItems} `}>
               <Link href={"/app/shop"}>
                 <li
                   className={`${styles.navbar__listItems__item} ${
@@ -106,14 +109,13 @@ function Navbar() {
             />
             {!isOpen ? (
               <FaBars
-                className={styles.navbar__icons__barsCross}
+                className={styles.navbar__icons__bars}
                 onClick={toggleSidebar}
               />
             ) : (
               <RxCross2
-                className={styles.navbar__icons__barsCross}
+                className={styles.navbar__icons__Cross}
                 onClick={toggleSidebar}
-                style={{ zIndex: "3" }}
               />
             )}
 
