@@ -54,10 +54,11 @@
     z-index: 2;
     background-color: $color-white;
     width: 18rem;
-    height: 100vh;
+    height: 70vh;
     border-radius: 3rem;
     border: $border-light-1;
     animation: moveSidebar 0.5s;
+    box-shadow: $shadow-light-1;
     @media (max-width: 500px) {
       width: 95vw;
     }
@@ -81,9 +82,15 @@
       top: 31%;
       left: 53px;
       color: $color-primary-ultra-light;
+      @media (max-width: 720px) {
+        top: 27%;
+      }
     }
     input {
       @include input(1.5rem, 4rem);
+      @media (max-width: 720px) {
+        padding: 1.1rem 4rem;
+      }
     }
   }
   &__icons {
