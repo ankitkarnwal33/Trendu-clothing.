@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Star from "./smallComponents/Star";
+import Star from "@/components/smallComponents/Star";
 import styles from "./Testimonials.module.scss";
 function Testimonials() {
   const [tracker, setTracker] = useState(0);

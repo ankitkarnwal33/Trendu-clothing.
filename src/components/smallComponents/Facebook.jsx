@@ -1,8 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import FacebookIcon from "./../../../../public/img/social/Facebook.svg";
-
+import FacebookIcon from "./../../../public/img/social/Facebook.svg";
 import styles from "./../Footer.module.scss";
 
 function Facebook() {

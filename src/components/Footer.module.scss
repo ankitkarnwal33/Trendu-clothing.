@@ -1,5 +1,5 @@
-@import "./SASS/__variables";
-@import "./SASS/__mixins";
+@import "./../SASS/__variables";
+@import "./../SASS/__mixins";
 .footer {
   background-color: $color-grey-light;
   grid-column: full-start / full-end;

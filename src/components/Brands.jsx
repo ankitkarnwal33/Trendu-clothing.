@@ -1,9 +1,9 @@
 import styles from "./Brands.module.scss";
-import Prada from "./../../../public/Vectors/Prada.png";
-import Versace from "./../../../public/Vectors/Versace.png";
-import Gucci from "./../../../public/Vectors/Gucci.png";
-import Calvin from "./../../../public/Vectors/Calvin.png";
-import Zara from "./../../../public/Vectors/Zara.png";
+import Prada from "@/../../public/Vectors/Prada.png";
+import Versace from "@/../../public/Vectors/Versace.png";
+import Gucci from "@/../../public/Vectors/Gucci.png";
+import Calvin from "@/../../public/Vectors/Calvin.png";
+import Zara from "@/../../public/Vectors/Zara.png";
 import Image from "next/image";
 
 const brands = [

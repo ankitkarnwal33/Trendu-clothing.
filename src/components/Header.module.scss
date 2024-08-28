@@ -1,13 +1,5 @@
-@font-face {
-  font-family: IntegralBold;
-  src: url("./../../font/integralcfBold.otf");
-}
-@font-face {
-  font-family: IntegralExtraBold;
-  src: url("./../../font/integralExtrabold.otf");
-}
-@import "./SASS/__variables";
-@import "./SASS/__mixins";
+@import "./../SASS/__variables";
+@import "./../SASS/__mixins";
 .container__header__content {
   background: $color-grey-lightest;
   grid-column: full-start / col-start 5;

@@ -1,5 +1,5 @@
 import styles from "./Header.module.scss";
-import MainImage from "./../../../public/img/MainImg.png";
+import MainImage from "@/../../public/img/MainImg.png";
 import Image from "next/image";
 function HeaderImg() {
   return (

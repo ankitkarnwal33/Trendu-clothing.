@@ -1,10 +1,10 @@
 import Image from "next/image";
-import styles from "./Footer.module.scss";
-import logo from "./../../../public/img/Logo.png";
 import Link from "next/link";
-import Social from "./../components/smallComponents/Social.jsx";
-import FooterLink from "./../components/smallComponents/FooterLink.jsx";
-import PaymentsIcons from "./../components/smallComponents/PaymentsIcons.jsx";
+import styles from "./Footer.module.scss";
+import logo from "@/../../public/img/Logo.png";
+import Social from "@/components/smallComponents/Social";
+import FooterLink from "@/components/smallComponents/FooterLink.jsx";
+import PaymentsIcons from "@/components/smallComponents/PaymentsIcons.jsx";
 
 function Footer() {
   return (

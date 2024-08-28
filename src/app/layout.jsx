@@ -1,8 +1,8 @@
 import "./globals.scss";
-import Footer from "./components/Footer";
-import Newslater from "./components/Newslater";
+import Footer from "@/components/Footer";
+import Newslater from "@/components/Newslater";
 import dynamic from "next/dynamic";
-const Navbar = dynamic(() => import("./components/Navbar"), { ssr: false });
+const Navbar = dynamic(() => import("@/components/Navbar"), { ssr: false });
 
 export default function RootLayout({ children }) {
   return (

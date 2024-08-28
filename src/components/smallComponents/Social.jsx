@@ -3,9 +3,10 @@ import Link from "next/link";
 
 //Social svg imports
 
-import Github from "./../../../../public/img/social/Github.svg";
-import Instagram from "./../../../../public/img/social/Instagram.svg";
-import Twitter from "./../../../../public/img/social/Twitter.svg";
+import Github from "./../../../public/img/social/Github.svg";
+
+import Instagram from "./../../../public/img/social/Instagram.svg";
+import Twitter from "./../../../public/img/social/Twitter.svg";
 import Facebook from "./Facebook";
 
 function Social() {

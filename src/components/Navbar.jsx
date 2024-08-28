@@ -3,15 +3,15 @@
 //Have to optimize more further.//
 import Image from "next/image";
 import styles from "./Navbar.module.scss";
-import logo from "./../../../public/img/Logo.png";
+import logo from "./../../public/img/Logo.png";
 import { IoSearch } from "react-icons/io5";
 import { FaUserLarge } from "react-icons/fa6";
 import { IoMdCart } from "react-icons/io";
 import { useEffect, useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
-import List from "./smallComponents/List";
-import SearchSmall from "./smallComponents/SearchSmall";
+import List from "@/components/smallComponents/List";
+import SearchSmall from "@/components/smallComponents/SearchSmall";
 function Navbar() {
   const [active, setIsActive] = useState(false);
   const [isOpen, setIsOpen] = useState(false);

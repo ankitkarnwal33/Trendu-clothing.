@@ -4,7 +4,7 @@ import Image from "next/image";
 import Star from "./Star";
 import Button from "./Button";
 
-function ArrivalAndBestSelling({ children }) {
+function ArrivalAndBestSelling({ children, toPath }) {
   const cards = [
     {
       id: 1,
@@ -88,7 +88,7 @@ function ArrivalAndBestSelling({ children }) {
           ))}
         </div>
       </div>
-      <Button />
+      <Button toPath={toPath} />
     </div>
   );
 }

@@ -1,9 +1,9 @@
 import Image from "next/image";
 import styles from "./Browse.module.scss";
-import Casual from "./../../../public/img/Casual.png";
-import Party from "./../../../public/img/Party.png";
-import Gym from "./../../../public/img/Gym.png";
-import Formal from "./../../../public/img/Formal.png";
+import Casual from "@/../../public/img/Casual.png";
+import Party from "@/../../public/img/Party.png";
+import Gym from "@/../../public/img/Gym.png";
+import Formal from "@/../../public/img/Formal.png";
 function Browse() {
   const browseData = [
     {
@@ -31,8 +31,8 @@ function Browse() {
     <section className={styles.browse}>
       <h2 className={styles.browse__heading}>browse by dress style</h2>
       <div className={styles.browse__cards}>
-        {browseData.map((card, index) => (
-          <div className={card.className}>
+        {browseData.map((card) => (
+          <div className={card.className} key={card.heading}>
             <h4>{card.heading}</h4>
             <Image
               src={card.image}

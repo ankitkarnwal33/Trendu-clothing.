@@ -1,5 +1,5 @@
-@import "./SASS/__variables";
-@import "./SASS/__mixins";
+@import "./../SASS/__variables";
+@import "./../SASS/__mixins";
 %card_base {
   @include card1(3rem, $color-black, 100%, 25rem, relative);
 

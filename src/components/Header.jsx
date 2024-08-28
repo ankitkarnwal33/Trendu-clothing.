@@ -29,7 +29,7 @@ function Header() {
       <Link href={"/dashboard"}>Shop Now</Link>
       <div className={styles.stats}>
         {headerData.map((data) => (
-          <div className={data.className}>
+          <div className={data.className} key={data.count}>
             {" "}
             <h3>{data.count}+</h3>
             <span>{data.title}</span>{" "}
