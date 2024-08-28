@@ -1,3 +1,4 @@
+@import "./__variables";
 @font-face {
   font-family: IntegralBold;
   src: url("./../font/integralcfBold.otf");
@@ -52,4 +53,13 @@
   justify-content: $just;
   flex-direction: $dir;
   gap: $gutter;
+}
+@mixin input($tbp, $lrp) {
+  border: none;
+  outline: none;
+  background-color: $color-grey-light;
+  padding: $tbp $lrp;
+  color: $color-primary-ultra-light;
+  border-radius: 10rem;
+  width: 100%;
 }

@@ -1,159 +1,109 @@
 @import "./../SASS/__variables";
 @import "./../SASS/__mixins";
+
 .navbar {
-  background: #fff;
   grid-column: center-start / center-end;
-
-  display: grid;
-  grid-template-columns: min-content 0.7fr 1fr 0.1fr;
-  grid-template-rows: 1fr;
-  position: relative;
+  width: 100%;
+  background: $color-white;
+  display: flex;
   align-items: center;
-  transition: all 0.3s;
-  @media (max-width: 901px) {
-    grid-template-columns: min-content 1fr 0.1fr;
-  }
-  @media (max-width: 620px) {
-    grid-template-columns: min-content 1fr;
-    justify-items: end;
-    align-items: center;
-    height: 6rem;
-    justify-content: center;
-  }
-  img {
-    width: 16rem;
-    height: min-content;
-    @media only screen and (max-width: 900px) {
-      width: 12rem;
-    }
-  }
+  justify-content: space-between;
+  position: relative;
 
-  ul {
-    list-style: none;
-    grid-template-columns: repeat(4, max-content);
-    grid-template-rows: 1fr;
-    gap: 2.5vw;
-    @include gridCenter;
-
-    a {
-      @include linkButton($color-black, 1.3rem);
-      @media only screen and (max-width: 900px) {
-        font-size: 1.7rem;
-        font-weight: bold;
+  @media (max-width: 900px) {
+    grid-column: full-start / full-end;
+    padding: 0rem 1rem;
+    &__logo {
+      img {
+        width: 15rem;
+        height: auto;
+        @media (max-width: 720px) {
+          width: 11rem;
+        }
       }
     }
-    @media only screen and (max-width: 900px) {
+  }
+
+  //media query here for parent
+  &__list {
+    margin: 0 3rem;
+    @media (max-width: 900px) {
+      display: none;
+    }
+    &__listItems {
       display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      position: absolute;
-      top: 165%;
-      right: 0;
-      background: $color-white;
-      border-radius: 2rem;
-      padding: 3rem 7rem;
-      transition: all 0.4s;
-      box-shadow: $shadow-light-1;
-      animation-name: moveSidebar;
-      animation-duration: 0.3s;
-      transition: all 0.3s;
-    }
-
-    @media only screen and (max-width: 500px) {
-      width: 100%;
+      list-style: none;
+      gap: 1.9rem;
+      a,
+      a:active,
+      a:visited,
+      li {
+        text-decoration: none;
+        color: $color-black;
+        font-size: 1.4rem;
+        font-weight: 500;
+      }
     }
   }
+  &__search {
+    position: relative;
+    flex-grow: 1;
+    padding: 0rem 4rem;
 
-  .search {
-    @include gridCenter;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-
-    &__icon {
-      position: absolute;
-      font-size: 1.8rem;
-      width: 7vw;
-      color: $color-primary-ultra-light;
-      @media only screen and (max-width: 900px) {
-        width: 59vw;
-        font-size: 1.5rem;
-      }
-      @media only screen and (max-width: 620px) {
-        text-align: right;
-        width: 3rem;
-        transform: translate(-47px);
-        font-size: 1.8rem;
-        color: $color-black;
-      }
-    }
-    &__box {
-      padding: 1.1vw 4vw;
-      border-radius: 100px;
-      background: $color-grey-light;
-      color: $color-primary-ultra-light;
-      border: none;
-      outline: none;
-      margin: 0 auto;
-      width: 95%;
-      @media only screen and (max-width: 900px) {
-        width: 50%;
-        font-size: 1.3rem;
-        margin-left: 27vw;
-      }
-    }
     @media (max-width: 620px) {
       display: none;
     }
+    > svg {
+      position: absolute;
+      font-size: 1.8rem;
+      top: 31%;
+      left: 53px;
+      color: $color-primary-ultra-light;
+    }
+    input {
+      @include input(1.5rem, 4rem);
+    }
   }
-  .icons {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr;
-    align-items: center;
+  &__icons {
+    display: flex;
     gap: 2rem;
-    &__cart {
-      font-size: 2rem;
-    }
-    &__user {
-      font-size: 1.7rem;
-    }
-
-    @media (max-width: 620px) {
-      grid-template-columns: 1fr 1fr 1fr 1fr;
-    }
-
-    @media (max-width: 900px) {
-      grid-template-columns: 1fr 1fr 1fr;
-
-      &__cart {
+    > svg {
+      font-size: 1.9rem;
+      color: $color-black;
+      @media (max-width: 720px) {
         font-size: 1.6rem;
       }
-      &__user {
-        font-size: 1.3rem;
+    }
+    &__barsCross {
+      display: none;
+      @media (max-width: 900px) {
+        display: block;
       }
-      &__bars {
-        font-size: 1.5rem;
-        z-index: 5;
+    }
+    &__search {
+      display: none;
+      @media (max-width: 620px) {
+        display: block;
       }
     }
   }
-}
-
-@keyframes moveSidebar {
-  0% {
-    opacity: 0;
-    transform: translateX(100%);
+  @media (max-width: 620px) {
+    .hidden {
+      display: none;
+    }
   }
-  50% {
-    opacity: 1;
-    transform: translateX(-5%);
-  }
-
-  80% {
-    transform: translateX(3%);
-  }
-
-  100% {
-    transform: translateX(0%);
+  &__inputFull {
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    input {
+      margin: auto;
+      @include input(1rem, 4rem);
+      width: 80%;
+      @media (max-width: 500px) {
+        width: 99%;
+      }
+    }
   }
 }
