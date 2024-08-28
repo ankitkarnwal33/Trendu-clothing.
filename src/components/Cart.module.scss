@@ -1,0 +1,204 @@
+@import "./../SASS/__mixins";
+@import "./../SASS/__variables";
+
+#heading {
+  @include heading(3.5rem, $color-black, 800);
+  line-height: normal;
+}
+.container {
+  &__boxes {
+    display: flex;
+    gap: 3rem;
+    width: 100%;
+    align-items: flex-start;
+    &__items {
+      @include boxes($border-light-1);
+      width: 58%;
+
+      &__item {
+        padding: 2rem 0rem;
+        width: 100%;
+
+        display: flex;
+        gap: 2rem;
+        border-bottom: $border-light-1;
+        img {
+          border-radius: 1rem;
+          user-select: none;
+          width: auto;
+          height: auto;
+        }
+        .item__details {
+          display: flex;
+          flex-direction: column;
+          gap: 1rem;
+          width: 100%;
+
+          &__title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            h3 {
+              font-size: 1.8rem;
+              color: $color-black;
+              user-select: none;
+            }
+            svg {
+              font-size: 2rem;
+              color: $color-red-dark;
+              user-select: none;
+            }
+          }
+          &__specs {
+            display: flex;
+            flex-direction: column;
+            > p {
+              font-size: 1.3rem;
+              color: $color-black;
+              user-select: none;
+              > span {
+                font-weight: 400;
+                color: $color-primary-light;
+              }
+            }
+          }
+          &__final {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            &__price {
+              font-size: 2rem;
+              font-weight: 800;
+              user-select: none;
+            }
+            > div {
+              width: 12rem;
+              border-radius: 10rem;
+              display: flex;
+              background-color: $color-grey-light;
+              padding: 0.7rem 2rem;
+              justify-content: space-between;
+              align-items: center;
+              user-select: none;
+              P {
+                font-size: 1.4rem;
+                font-weight: 600;
+                color: $color-black;
+                user-select: none;
+              }
+              svg {
+                font-size: 1.6rem;
+                text-align: center;
+              }
+            }
+          }
+        }
+      }
+      &__item:last-child {
+        border-bottom: none;
+      }
+    }
+    //Check it later
+    &__checkout {
+      @include boxes($border-light-1);
+      width: 40%;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      &__heading {
+        font-size: 2rem;
+        font-weight: 700;
+      }
+    }
+    .order {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      border-bottom: $border-light-1;
+      padding-bottom: 1rem;
+      &__subtotal,
+      &__discount,
+      &__delivery {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        h5 {
+          font-size: 1.7rem;
+          color: $color-primary-light;
+          font-weight: 400;
+          letter-spacing: 0.5px;
+        }
+        h4 {
+          font-size: 2rem;
+        }
+      }
+      &__discount {
+        h4 {
+          color: $color-red-dark;
+        }
+      }
+    }
+    .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h4 {
+        font-size: 1.9rem;
+        color: $color-black;
+        font-weight: 400;
+        letter-spacing: 0.4px;
+      }
+      h5 {
+        font-size: 2.2rem;
+      }
+    }
+    .promotion {
+      display: flex;
+      justify-content: space-between;
+      gap: 1rem;
+      input {
+        @include input(1rem, 2rem);
+        flex: 1;
+      }
+      input::placeholder {
+        color: $color-primary-ultra-light;
+      }
+      button {
+        padding: 1.3rem 3rem;
+        background: $color-black;
+        color: $color-white;
+        border: none;
+        outline: none;
+        border-radius: 10rem;
+        font-size: 1.4rem;
+      }
+    }
+    .finalCheckout {
+      width: 100%;
+      padding: 1.8rem 3rem;
+      background: $color-black;
+      color: $color-white;
+      border: none;
+      outline: none;
+      border-radius: 10rem;
+      font-size: 1.5rem;
+      svg {
+        transform: translate(8px, 4px);
+        font-size: 1.7rem;
+      }
+    }
+  }
+}
+
+.empty {
+  height: 50vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 3rem;
+  h3 {
+    font-size: 2rem;
+  }
+}

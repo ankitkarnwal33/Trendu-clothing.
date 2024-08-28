@@ -118,8 +118,9 @@ function Navbar() {
                 onClick={toggleSidebar}
               />
             )}
-
-            <IoMdCart />
+            <Link href={"/cart"}>
+              <IoMdCart />
+            </Link>
             <FaUserLarge />
           </div>
         </>

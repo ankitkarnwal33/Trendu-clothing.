@@ -103,6 +103,13 @@
         font-size: 1.6rem;
       }
     }
+    a > svg {
+      font-size: 1.9rem;
+      color: $color-black;
+      @media (max-width: 720px) {
+        font-size: 1.6rem;
+      }
+    }
     &__Cross,
     &__bars {
       display: none;
