@@ -174,7 +174,9 @@ function Cart() {
               </div>
               <div className={styles.total}>
                 <h4>Total</h4>
-                <h5>${(totalPrice - totalSaving).toFixed(0)}</h5>
+                <h5>
+                  ${(totalPrice + deliveryCharge - totalSaving).toFixed(0)}
+                </h5>
               </div>
               <div className={styles.promotion}>
                 <input type="text" placeholder="Add promo code" />
