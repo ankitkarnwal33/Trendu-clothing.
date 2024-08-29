@@ -3,8 +3,7 @@
   grid-column: full-start / full-end;
   padding: 2rem 6rem;
   width: 100%;
-  h1 {
-    padding: 2rem;
-    @include heading(2.2rem, $color-black, 800);
+  @media (max-width: 970px) {
+    padding: 2rem 1rem;
   }
 }

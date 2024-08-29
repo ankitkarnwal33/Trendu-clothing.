@@ -2,19 +2,29 @@
 @import "./../SASS/__variables";
 
 #heading {
+  padding: 2rem;
   @include heading(3.5rem, $color-black, 800);
   line-height: normal;
+  @media (max-width: 830px) {
+    font-size: 2.5rem;
+  }
 }
 .container {
   &__boxes {
-    display: flex;
-    gap: 3rem;
     width: 100%;
-    align-items: flex-start;
+    @include flexrow(3rem, flex-start);
+    @media (max-width: 830px) {
+      gap: 2rem;
+    }
+    @media (max-width: 670px) {
+      flex-direction: column;
+    }
     &__items {
       @include boxes($border-light-1);
       width: 58%;
-
+      @media (max-width: 830px) {
+        width: 100%;
+      }
       &__item {
         padding: 2rem 0rem;
         width: 100%;
@@ -27,31 +37,37 @@
           user-select: none;
           width: auto;
           height: auto;
+          @media (max-width: 830px) {
+            width: 100px;
+            height: 100px;
+          }
         }
         .item__details {
-          display: flex;
-          flex-direction: column;
-          gap: 1rem;
+          @include flexcol(0.5rem, unset);
           width: 100%;
-
           &__title {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            @include flexbox(center, space-between, row, 0rem);
             h3 {
               font-size: 1.8rem;
               color: $color-black;
               user-select: none;
+              @media (max-width: 830px) {
+                font-size: 1.6rem;
+              }
             }
             svg {
               font-size: 2rem;
               color: $color-red-dark;
               user-select: none;
+              @media (max-width: 830px) {
+                font-size: 1.8rem;
+              }
             }
           }
           &__specs {
             display: flex;
             flex-direction: column;
+
             > p {
               font-size: 1.3rem;
               color: $color-black;
@@ -63,32 +79,41 @@
             }
           }
           &__final {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            @include flexbox(center, space-between, row, 0rem);
             &__price {
               font-size: 2rem;
               font-weight: 800;
               user-select: none;
+              @media (max-width: 830px) {
+                font-size: 1.6rem;
+              }
             }
             > div {
               width: 12rem;
               border-radius: 10rem;
-              display: flex;
               background-color: $color-grey-light;
               padding: 0.7rem 2rem;
-              justify-content: space-between;
-              align-items: center;
+              @include flexbox(center, space-between, row, 0rem);
               user-select: none;
+              @media (max-width: 830px) {
+                width: 9rem;
+                padding: 0.7rem 0.9rem;
+              }
               P {
                 font-size: 1.4rem;
                 font-weight: 600;
                 color: $color-black;
                 user-select: none;
+                @media (max-width: 830px) {
+                  font-size: 1.2rem;
+                }
               }
               svg {
                 font-size: 1.6rem;
                 text-align: center;
+                @media (max-width: 830px) {
+                  font-size: 1.4rem;
+                }
               }
             }
           }
@@ -102,34 +127,41 @@
     &__checkout {
       @include boxes($border-light-1);
       width: 40%;
-      display: flex;
-      flex-direction: column;
-      gap: 2rem;
+      @media (max-width: 830px) {
+        width: 90%;
+        margin: auto;
+      }
+      @include flexcol(2rem, unset);
       &__heading {
         font-size: 2rem;
         font-weight: 700;
+        @media (max-width: 830px) {
+          font-size: 1.7rem;
+        }
       }
     }
     .order {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+      @include flexcol(1rem, unset);
       border-bottom: $border-light-1;
       padding-bottom: 1rem;
       &__subtotal,
       &__discount,
       &__delivery {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        @include flexbox(center, space-between, row, 0rem);
         h5 {
           font-size: 1.7rem;
           color: $color-primary-light;
           font-weight: 400;
           letter-spacing: 0.5px;
+          @media (max-width: 830px) {
+            font-size: 1.4rem;
+          }
         }
         h4 {
           font-size: 2rem;
+          @media (max-width: 830px) {
+            font-size: 1.7rem;
+          }
         }
       }
       &__discount {
@@ -139,23 +171,28 @@
       }
     }
     .total {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      @include flexbox(center, space-between, row, 0rem);
       h4 {
         font-size: 1.9rem;
         color: $color-black;
         font-weight: 400;
         letter-spacing: 0.4px;
+        @media (max-width: 830px) {
+          font-size: 1.7rem;
+        }
       }
       h5 {
         font-size: 2.2rem;
+        @media (max-width: 830px) {
+          font-size: 1.8rem;
+        }
       }
     }
     .promotion {
-      display: flex;
-      justify-content: space-between;
-      gap: 1rem;
+      @include flexbox(unset, space-between, row, 1rem);
+      @media (max-width: 830px) {
+        flex-direction: column;
+      }
       input {
         @include input(1rem, 2rem);
         flex: 1;
@@ -171,17 +208,24 @@
         outline: none;
         border-radius: 10rem;
         font-size: 1.4rem;
+        @media (max-width: 830px) {
+          width: 40%;
+          margin: auto;
+        }
       }
     }
     .finalCheckout {
       width: 100%;
-      padding: 1.8rem 3rem;
+      padding: 1.7rem 3rem;
       background: $color-black;
       color: $color-white;
       border: none;
       outline: none;
       border-radius: 10rem;
       font-size: 1.5rem;
+      @media (max-width: 830px) {
+        padding: 1.5rem 3rem;
+      }
       svg {
         transform: translate(8px, 4px);
         font-size: 1.7rem;
@@ -193,11 +237,8 @@
 .empty {
   height: 50vh;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 3rem;
+
+  @include flexbox(center, center, column, 3rem);
   h3 {
     font-size: 2rem;
   }

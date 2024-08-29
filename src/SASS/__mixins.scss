@@ -54,6 +54,17 @@
   flex-direction: $dir;
   gap: $gutter;
 }
+@mixin flexrow($g, $align) {
+  display: flex;
+  align-items: $align;
+  gap: $g;
+}
+@mixin flexcol($g, $align) {
+  display: flex;
+  align-items: $align;
+  flex-direction: column;
+  gap: $g;
+}
 @mixin input($tbp, $lrp) {
   border: none;
   outline: none;
