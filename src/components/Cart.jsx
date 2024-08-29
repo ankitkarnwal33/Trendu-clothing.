@@ -4,78 +4,113 @@ import Image from "next/image";
 import { MdDelete } from "react-icons/md";
 import { GoPlus } from "react-icons/go";
 import { HiMinus } from "react-icons/hi2";
-import { act, useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import styles from "./Cart.module.scss";
 import Button from "./smallComponents/Button";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
 
 function reducer(state, action) {
+  let newState;
   switch (action.type) {
     case "inc":
-      return state.map((item) =>
+      newState = state.map((item) =>
         item.id === action.payload.id
           ? { ...item, quantity: item.quantity + action.payload.val }
           : item
       );
+      break;
     case "dec":
-      return state.map((item) =>
+      newState = state.map((item) =>
         item.id === action.payload.id && item.quantity > 1
           ? { ...item, quantity: item.quantity - action.payload.val }
           : item
       );
+      break;
     case "del":
-      return state.filter((item) => item.id !== action.payload);
+      newState = state.filter((item) => item.id !== action.payload);
+      break;
+    case "set":
+      return action.payload;
+    case "reset":
+      return action.payload;
     default:
       return state;
   }
+  if (typeof window !== "undefined") {
+    localStorage.setItem("cart", JSON.stringify(newState));
+  }
+  return newState;
 }
 function Cart() {
-  const initialState = [
-    {
-      id: 1,
-      title: "T-shirt with Tape details",
-      image: "/img/Arrivals/image7.png",
-      color: "Black",
-      size: "Large",
-      price: 220,
-      discount: 5,
-      quantity: 1,
-    },
-    {
-      id: 2,
-      title: "Skinny Fit Jeans",
-      image: "/img/Arrivals/image8.png",
-      color: "Black",
-      size: "Large",
-      price: 220,
-      discount: 20,
-      quantity: 1,
-    },
-    {
-      id: 3,
-      title: "Checkered Shirt",
-      image: "/img/Arrivals/image9.png",
-      color: "black",
-      size: "large",
-      price: 220,
-      discount: 7,
-      quantity: 1,
-    },
-    {
-      id: 4,
-      title: "Sleeve Striped T-shirt",
-      image: "/img/Arrivals/image10.png",
-      color: "black",
-      size: "large",
-      price: 320,
-      discount: 15,
-      quantity: 1,
-    },
-  ];
-  const [state, dispatch] = useReducer(reducer, initialState);
+  useEffect(() => {
+    const localCart = localStorage.getItem("cart");
+    if (localCart) {
+      dispatch({
+        type: "set",
+        payload: JSON.parse(localCart),
+      });
+    } else {
+      dispatch({
+        type: "set",
+        payload: [
+          {
+            id: 1,
+            title: "T-shirt with Tape details",
+            image: "/img/Arrivals/image7.png",
+            color: "Black",
+            size: "Large",
+            price: 220,
+            discount: 5,
+            quantity: 1,
+          },
+          {
+            id: 2,
+            title: "Skinny Fit Jeans",
+            image: "/img/Arrivals/image8.png",
+            color: "Black",
+            size: "Large",
+            price: 220,
+            discount: 20,
+            quantity: 1,
+          },
+          {
+            id: 3,
+            title: "Checkered Shirt",
+            image: "/img/Arrivals/image9.png",
+            color: "black",
+            size: "large",
+            price: 220,
+            discount: 7,
+            quantity: 1,
+          },
+          {
+            id: 4,
+            title: "Sleeve Striped T-shirt",
+            image: "/img/Arrivals/image10.png",
+            color: "black",
+            size: "large",
+            price: 320,
+            discount: 15,
+            quantity: 1,
+          },
+        ],
+      });
+    }
+  }, []);
+
+  const [state, dispatch] = useReducer(reducer, []);
+  // Reset local Storage cart items on component mount .
+  useEffect(() => {
+    const localCarts = localStorage.getItem("cart");
+    if (localCarts) {
+      dispatch({
+        type: "reset",
+        payload: JSON.parse(localCarts),
+      });
+    }
+  }, []);
   const length = state.length;
-  console.log(length);
   function handleMinus(id) {
     dispatch({
       type: "dec",
