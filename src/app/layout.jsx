@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Newslater from "@/components/Newslater";
 import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
+import ContextWrapper from "@/context/context";
 
 export default function RootLayout({ children }) {
   return (
@@ -14,12 +15,14 @@ export default function RootLayout({ children }) {
         ></link>
       </head>
       <body className="light_mode container">
-        <Navbar />
-        {children}
-        <div className="footer">
-          <Newslater />
-          <Footer />
-        </div>
+        <ContextWrapper>
+          <Navbar />
+          {children}
+          <div className="footer">
+            <Newslater />
+            <Footer />
+          </div>
+        </ContextWrapper>
       </body>
     </html>
   );

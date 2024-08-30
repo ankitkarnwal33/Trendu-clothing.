@@ -9,6 +9,9 @@ import styles from "./Cart.module.scss";
 import Button from "./smallComponents/Button";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { useAppContext } from "@/context/context";
+
+//The cart popup has to be implemented later in this component.
 
 function reducer(state, action) {
   let newState;
@@ -29,11 +32,11 @@ function reducer(state, action) {
       break;
     case "del":
       newState = state.filter((item) => item.id !== action.payload);
+
       break;
     case "set":
-      return action.payload;
-    case "reset":
-      return action.payload;
+      newState = action.payload;
+      break;
     default:
       return state;
   }
@@ -42,7 +45,50 @@ function reducer(state, action) {
   }
   return newState;
 }
+const data = [
+  {
+    id: 1,
+    title: "T-shirt with Tape details",
+    image: "/img/Arrivals/image7.png",
+    color: "Black",
+    size: "Large",
+    price: 220,
+    discount: 5,
+    quantity: 1,
+  },
+  {
+    id: 2,
+    title: "Skinny Fit Jeans",
+    image: "/img/Arrivals/image8.png",
+    color: "Black",
+    size: "Large",
+    price: 220,
+    discount: 20,
+    quantity: 1,
+  },
+  {
+    id: 3,
+    title: "Checkered Shirt",
+    image: "/img/Arrivals/image9.png",
+    color: "black",
+    size: "large",
+    price: 220,
+    discount: 7,
+    quantity: 1,
+  },
+  {
+    id: 4,
+    title: "Sleeve Striped T-shirt",
+    image: "/img/Arrivals/image10.png",
+    color: "black",
+    size: "large",
+    price: 320,
+    discount: 15,
+    quantity: 1,
+  },
+];
 function Cart() {
+  const [state, dispatch] = useReducer(reducer, []);
   useEffect(() => {
     const localCart = localStorage.getItem("cart");
     if (localCart) {
@@ -53,64 +99,10 @@ function Cart() {
     } else {
       dispatch({
         type: "set",
-        payload: [
-          {
-            id: 1,
-            title: "T-shirt with Tape details",
-            image: "/img/Arrivals/image7.png",
-            color: "Black",
-            size: "Large",
-            price: 220,
-            discount: 5,
-            quantity: 1,
-          },
-          {
-            id: 2,
-            title: "Skinny Fit Jeans",
-            image: "/img/Arrivals/image8.png",
-            color: "Black",
-            size: "Large",
-            price: 220,
-            discount: 20,
-            quantity: 1,
-          },
-          {
-            id: 3,
-            title: "Checkered Shirt",
-            image: "/img/Arrivals/image9.png",
-            color: "black",
-            size: "large",
-            price: 220,
-            discount: 7,
-            quantity: 1,
-          },
-          {
-            id: 4,
-            title: "Sleeve Striped T-shirt",
-            image: "/img/Arrivals/image10.png",
-            color: "black",
-            size: "large",
-            price: 320,
-            discount: 15,
-            quantity: 1,
-          },
-        ],
+        payload: data,
       });
     }
   }, []);
-
-  const [state, dispatch] = useReducer(reducer, []);
-  // Reset local Storage cart items on component mount .
-  useEffect(() => {
-    const localCarts = localStorage.getItem("cart");
-    if (localCarts) {
-      dispatch({
-        type: "reset",
-        payload: JSON.parse(localCarts),
-      });
-    }
-  }, []);
-  const length = state.length;
   function handleMinus(id) {
     dispatch({
       type: "dec",
@@ -130,11 +122,14 @@ function Cart() {
     });
   }
   function handleDeleteCartItem(id) {
-    dispatch({
-      type: "del",
-      payload: id,
-    });
+    if (state.length > 0) {
+      dispatch({
+        type: "del",
+        payload: id,
+      });
+    }
   }
+  let length = state.length;
   const totalPrice = state.reduce((accumulator, item) => {
     return accumulator + item.quantity * item.price;
   }, 0);

@@ -1,3 +1,4 @@
+import Index from "@/lib";
 import styles from "./Arrivals.module.scss";
 import ArrivalAndBestSelling from "./smallComponents/ArrivalAndBestSelling";
 const cards = [
@@ -40,6 +41,7 @@ const cards = [
 ];
 function Arrivals() {
   // New products data here to be passed to the component.
+
   return (
     <section className={styles.arrivals}>
       <ArrivalAndBestSelling toPath={"/allArrivals"} cards={cards}>

@@ -10,7 +10,6 @@ import { IoMdCart } from "react-icons/io";
 import { useEffect, useRef, useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
-import List from "@/components/smallComponents/List";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 function Navbar() {
@@ -18,7 +17,6 @@ function Navbar() {
   const [icons, setHideIcons] = useState(false);
   const inputRef = useRef(null);
   const [isOpen, setIsOpen] = useState(false);
-
   //Function start to fetch current width of viewport
   useEffect(() => {
     if (inputRef.current) {
@@ -58,7 +56,7 @@ function Navbar() {
             }`}
           >
             <ul className={`${styles.navbar__list__listItems} `}>
-              <Link href={"/app/shop"}>
+              <Link href={"/product"}>
                 <li
                   className={`${styles.navbar__listItems__item} ${
                     path === "/app/shop" ? styles.active : ""
