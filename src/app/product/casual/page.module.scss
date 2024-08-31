@@ -1,0 +1,123 @@
+@import "./../../../SASS/__variables";
+@import "./../../../SASS/__mixins";
+.container {
+  grid-column: full-start / full-end;
+  padding: 6rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 2rem;
+  @media (max-width: 1000px) {
+    padding: 6rem 3rem;
+  }
+  @media (max-width: 900px) {
+    padding: 6rem 1rem;
+  }
+  .filter {
+    user-select: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem 3rem;
+    border-radius: 1rem;
+    border: $border-light-1;
+    &__heading,
+    &__list {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 2rem;
+      border-bottom: $border-light-1;
+      align-items: center;
+      h4 {
+        color: $color-black;
+        font-size: 1.7rem;
+      }
+      svg {
+        color: $color-black;
+        font-size: 1.9rem;
+      }
+    }
+
+    &__price,
+    &__colors,
+    &__size {
+      display: flex;
+      flex-direction: column;
+      border-bottom: $border-light-1;
+      gap: 1rem;
+      > div {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 2rem;
+        align-items: center;
+        h4 {
+          color: $color-black;
+          font-size: 1.7rem;
+        }
+        svg {
+          color: $color-black;
+          font-size: 1.9rem;
+        }
+      }
+    }
+
+    &__heading {
+      align-items: center;
+      svg {
+        font-size: 1.6rem;
+        color: $color-primary;
+      }
+    }
+
+    &__list {
+      flex-direction: column;
+      align-items: unset;
+      gap: 1rem;
+      li {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        p,
+        svg {
+          font-size: 1.5rem;
+          color: $color-primary-light;
+        }
+        svg {
+          font-size: 1.9rem;
+        }
+      }
+    }
+  }
+  // Products section has been started form there.
+  .products {
+    width: 100%;
+    flex: 1;
+    &__typo {
+      display: flex;
+      justify-content: space-between;
+      padding-bottom: 1rem;
+      h3 {
+        font-size: 2rem;
+        font-weight: 600;
+        color: $color-black;
+      }
+      &__sub {
+        display: flex;
+        gap: 3rem;
+        > p {
+          font-size: 1.5rem;
+          color: $color-primary-light;
+          span {
+            color: $color-black;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+    &__items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      gap: 2rem;
+    }
+  }
+}

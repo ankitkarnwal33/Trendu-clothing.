@@ -1,7 +1,8 @@
 "use client";
 import Image from "next/image";
 import Star from "./Star";
-import styles from "./ArrivalAndBestSelling.module.scss";
+import styles from "./card.module.scss";
+import NextImage from "./Image";
 
 const Card = ({ card }) => {
   const handleClick = (card) => {
@@ -13,10 +14,10 @@ const Card = ({ card }) => {
       key={card.id}
       onClick={() => handleClick(card)}
     >
-      <Image
+      <NextImage
         src={card.image}
-        width={264}
         height={264}
+        width={264}
         alt={card.title}
         quality={90}
         className={styles.arrivals__slider__child__card__img}

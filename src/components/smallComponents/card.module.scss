@@ -1,0 +1,83 @@
+@import "./../../SASS/__mixins";
+@import "./../../SASS/__variables";
+
+.arrivals__slider__child__card {
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 900px) {
+    > div {
+      width: 20rem;
+    }
+  }
+  > img {
+    border-radius: 2rem;
+    @media (max-width: 900px) {
+      width: 20rem;
+      height: 20rem;
+    }
+  }
+  > h3 {
+    font-size: 2rem;
+    color: $color-black;
+    font-weight: 600;
+    padding-top: 1.1rem;
+    @media (max-width: 900px) {
+      font-size: 1.7rem;
+    }
+  }
+  > .rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.2rem;
+    @media (max-width: 900px) {
+      font-size: 1rem;
+    }
+    > .rating__stars {
+      display: flex;
+      gap: 0.1rem;
+      > span {
+        font-size: 1.9rem;
+        font-weight: 800;
+        color: $color-yellow;
+        @media (max-width: 900px) {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+  > .price {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    > span {
+      color: $color-red-dark;
+      padding: 0.5rem 1.5rem;
+      background: $color-red-light;
+      border-radius: 2rem;
+      font-size: 1.1rem;
+      @media (max-width: 900px) {
+        font-size: 0.9rem;
+      }
+    }
+    > .price__net {
+      font-size: 2.2rem;
+      color: $color-black;
+      font-weight: 800;
+      @media (max-width: 900px) {
+        font-size: 1.8rem;
+      }
+    }
+    > .price__all {
+      font-size: 2.2rem;
+      color: $color-primary-ultra-light;
+      font-weight: 800;
+      text-decoration: line-through;
+      text-decoration-color: $color-primary-ultra-light;
+      text-decoration-thickness: 1px;
+      @media (max-width: 900px) {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
