@@ -6,6 +6,7 @@
   flex-direction: column;
   @media (max-width: 900px) {
   }
+
   > img {
     border-radius: 2rem;
     height: 20vw;
@@ -21,6 +22,7 @@
     color: $color-black;
     font-weight: 600;
     padding-top: 1.1rem;
+    width: 90%;
     @media (max-width: 900px) {
       font-size: 1.6rem;
     }
