@@ -20,6 +20,9 @@
     padding: 2rem 3rem;
     border-radius: 1rem;
     border: $border-light-1;
+    @media (max-width: 900px) {
+      display: none;
+    }
     &__heading,
     &__list {
       display: flex;
@@ -115,8 +118,8 @@
       }
     }
     &__items {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
+      display: flex;
+      flex-wrap: wrap;
       gap: 2rem;
     }
   }

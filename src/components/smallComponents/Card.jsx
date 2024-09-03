@@ -14,12 +14,9 @@ const Card = ({ card }) => {
       key={card.id}
       onClick={() => handleClick(card)}
     >
-      <NextImage
+      <img
         src={card.image}
-        height={264}
-        width={264}
         alt={card.title}
-        quality={90}
         className={styles.arrivals__slider__child__card__img}
       />
       <h3>{card.title}</h3>
