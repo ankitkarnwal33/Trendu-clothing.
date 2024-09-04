@@ -1,6 +1,7 @@
 import styles from "./page.module.scss";
 import Card from "@/components/smallComponents/Card";
 import Filter from "@/components/Filter";
+import { Suspense } from "react";
 const cards = [
   {
     id: 1,
@@ -86,24 +87,26 @@ const cards = [
 ];
 export default function Casual() {
   return (
-    <div className={styles.container}>
-      <Filter />
-      <div className={styles.products}>
-        <div className={styles.products__typo}>
-          <h3 className={styles.products__typo__heading}>Casual</h3>
-          <div className={styles.products__typo__sub}>
-            <p>Showing 1-10 of 100 products</p>
-            <p>
-              Sort by: <span>Most Popular</span>
-            </p>
+    <Suspense fallback={<h1>Loading</h1>}>
+      <div className={styles.container}>
+        <Filter />
+        <div className={styles.products}>
+          <div className={styles.products__typo}>
+            <h3 className={styles.products__typo__heading}>Casual</h3>
+            <div className={styles.products__typo__sub}>
+              <p>Showing 1-10 of 100 products</p>
+              <p>
+                Sort by: <span>Most Popular</span>
+              </p>
+            </div>
+          </div>
+          <div className={styles.products__items}>
+            {cards.map((card) => (
+              <Card card={card} key={card.id} />
+            ))}
           </div>
         </div>
-        <div className={styles.products__items}>
-          {cards.map((card) => (
-            <Card card={card} key={card.id} />
-          ))}
-        </div>
       </div>
-    </div>
+    </Suspense>
   );
 }
