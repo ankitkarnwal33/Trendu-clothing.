@@ -1,9 +1,6 @@
-import Button from "@/components/smallComponents/Button";
 import styles from "./page.module.scss";
-import { RxCaretRight } from "react-icons/rx";
-import { FaFilter } from "react-icons/fa";
 import Card from "@/components/smallComponents/Card";
-// import Slider from "react-slider";
+import Filter from "@/components/Filter";
 const cards = [
   {
     id: 1,
@@ -78,7 +75,7 @@ const cards = [
     discount: 19,
   },
   {
-    id: 8,
+    id: 9,
     title: "Faded Skinny Jeans",
     image: "/img/Best_Selling/image10.png",
     rating: 4.9,
@@ -90,58 +87,7 @@ const cards = [
 export default function Casual() {
   return (
     <div className={styles.container}>
-      <div className={styles.filter}>
-        <div className={styles.filter__heading}>
-          <h4>Filter</h4>
-          <FaFilter />
-        </div>
-        <ul className={styles.filter__list}>
-          <li>
-            <p>T-shirts</p>
-            <RxCaretRight />
-          </li>
-          <li>
-            <p>Shorts</p>
-            <RxCaretRight />
-          </li>
-          <li>
-            <p>Shirts</p>
-            <RxCaretRight />
-          </li>
-          <li>
-            <p>Hoodie</p>
-            <RxCaretRight />
-          </li>
-          <li>
-            <p>Jeans</p>
-            <RxCaretRight />
-          </li>
-        </ul>
-        <div className={styles.filter__price}>
-          <div className={styles.filter__price__item}>
-            <h4>Price</h4>
-            <RxCaretRight />
-          </div>
-          {/* <input type="text" /> */}
-          {/* Input field here if > is clicked by the user. */}
-        </div>
-        <div className={styles.filter__colors}>
-          <div>
-            <h4>Colors</h4>
-            <RxCaretRight />
-          </div>
-          {/* Input field here if > is clicked by the user. */}
-        </div>
-        <div className={styles.filter__size}>
-          <div>
-            <h4>Size</h4>
-            <RxCaretRight />
-          </div>
-          {/* Input field here if > is clicked by the user. */}
-        </div>
-
-        <Button toPath={"/"} content="Apply" />
-      </div>
+      <Filter />
       <div className={styles.products}>
         <div className={styles.products__typo}>
           <h3 className={styles.products__typo__heading}>Casual</h3>

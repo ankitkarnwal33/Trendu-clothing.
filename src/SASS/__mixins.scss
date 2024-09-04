@@ -80,3 +80,9 @@
   border: $bor;
   border-radius: 1.4rem;
 }
+
+@mixin active($col, $bgcol) {
+  border-radius: 2rem;
+  background: $bgcol;
+  color: $col;
+}

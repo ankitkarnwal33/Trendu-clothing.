@@ -1,0 +1,143 @@
+@import "./../SASS/__variables";
+@import "./../SASS/__mixins";
+
+.filter {
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem 3rem;
+  border-radius: 1rem;
+  border: $border-light-1;
+  width: 20vw;
+  @media (max-width: 900px) {
+    display: none;
+  }
+  &__heading,
+  &__list {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 2rem;
+    border-bottom: $border-light-1;
+    align-items: center;
+    h4 {
+      color: $color-black;
+      font-size: 1.7rem;
+    }
+    svg {
+      color: $color-black;
+      font-size: 1.9rem;
+    }
+  }
+
+  &__price,
+  &__colors,
+  &__size {
+    display: flex;
+    flex-direction: column;
+    border-bottom: $border-light-1;
+    gap: 1rem;
+    padding-bottom: 2rem;
+    &__size {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      p {
+        padding: 0.7rem 1.5rem;
+        color: $color-black;
+        background: $color-grey-light;
+        border-radius: 3rem;
+        font-size: 1.2rem;
+      }
+      .active {
+        @include active($color-white, $color-black);
+      }
+    }
+    > div:first-child {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      h4 {
+        color: $color-black;
+        font-size: 1.7rem;
+      }
+      svg {
+        color: $color-black;
+        font-size: 1.9rem;
+        cursor: pointer;
+      }
+    }
+  }
+  &__price {
+    &__filters {
+      display: flex;
+      gap: 1rem;
+      > p {
+        transition: all 0.2s;
+        padding: 0.8rem 1.2rem;
+        font-size: 1.2rem;
+        color: $color-primary-light;
+        font-weight: 400;
+        background: $color-grey-light;
+        border-radius: 2rem;
+        cursor: pointer;
+      }
+      .active {
+        @include active($color-white, $color-black);
+      }
+    }
+  }
+
+  &__colors {
+    &__colors {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      gap: 1rem;
+      > div {
+        text-align: center;
+        padding: 1rem;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 10rem;
+        border: $border-big-light;
+        svg {
+          font-size: 3.5rem;
+          transform: translate(-38%, -38%);
+          color: $color-white;
+          border-radius: 100px;
+        }
+      }
+    }
+  }
+
+  &__heading {
+    align-items: center;
+    svg {
+      font-size: 1.6rem;
+      color: $color-primary;
+    }
+  }
+
+  &__list {
+    flex-direction: column;
+    align-items: unset;
+    gap: 1rem;
+    li {
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      p,
+      svg {
+        font-size: 1.5rem;
+        color: $color-primary-light;
+      }
+      svg {
+        font-size: 1.9rem;
+      }
+    }
+  }
+}

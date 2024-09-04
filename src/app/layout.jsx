@@ -1,7 +1,6 @@
 import "./globals.scss";
 import Footer from "@/components/Footer";
 import Newslater from "@/components/Newslater";
-import dynamic from "next/dynamic";
 import Navbar from "@/components/Navbar";
 import ContextWrapper from "@/context/context";
 
