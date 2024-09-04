@@ -1,7 +1,9 @@
 @import "./../../SASS/__variables";
-
+#link {
+  margin: auto;
+}
 .button {
-  padding: 1.6rem 8rem;
+  padding: 1.5rem 5vw;
   color: $color-black;
   border: none;
   outline: none;
