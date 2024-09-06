@@ -113,7 +113,7 @@ export default function Casual() {
               <div className={styles.products__typo__sub__para}>
                 <p>Showing 1-10 of 100 products</p>
                 <p>
-                  Sort by: <span>Most Popular</span>
+                  Sort by: <span>Most Popula</span>
                 </p>
               </div>
               {!active ? (
