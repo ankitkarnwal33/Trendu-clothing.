@@ -157,11 +157,12 @@
     transform: translateX(100%);
   }
   50% {
-    opacity: 1;
+    opacity: 0.5;
     transform: translateX(-5%);
   }
 
   80% {
+    opacity: 1;
     transform: translateX(3%);
   }
 

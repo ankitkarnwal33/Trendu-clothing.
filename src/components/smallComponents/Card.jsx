@@ -1,8 +1,6 @@
 "use client";
-import Image from "next/image";
 import Star from "./Star";
 import styles from "./card.module.scss";
-import NextImage from "./Image";
 
 const Card = ({ card }) => {
   const handleClick = (card) => {

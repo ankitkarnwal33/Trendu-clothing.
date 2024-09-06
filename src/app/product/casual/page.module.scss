@@ -1,16 +1,17 @@
 @import "./../../../SASS/__variables";
 @import "./../../../SASS/__mixins";
 .container {
+  position: relative;
   grid-column: full-start / full-end;
   padding: 6rem;
   display: flex;
   align-items: flex-start;
   gap: 2rem;
   @media (max-width: 1000px) {
-    padding: 6rem 3rem;
+    padding: 5rem 3rem;
   }
   @media (max-width: 900px) {
-    padding: 6rem 2rem;
+    padding: 3rem 2rem;
   }
 
   // Products section has been started form there.
@@ -23,6 +24,12 @@
       padding-bottom: 1rem;
       align-items: center;
       padding: 1rem 3rem;
+      @media (max-width: 600px) {
+        padding: 1rem;
+      }
+      @media (max-width: 500px) {
+        padding: 1rem 0rem;
+      }
       h3 {
         font-size: 2.2rem;
         font-weight: 600;
@@ -30,22 +37,37 @@
       }
       &__sub {
         display: flex;
-        gap: 3rem;
-        @media (max-width: 540px) {
-          flex-direction: column;
-          gap: 0;
-        }
-
-        > p {
-          font-size: 1.5rem;
-          color: $color-primary-light;
+        align-items: center;
+        gap: 1.9rem;
+        &__para {
+          display: flex;
+          gap: 3rem;
           @media (max-width: 600px) {
-            font-size: 1.3rem;
+            flex-direction: column;
+            gap: 0;
           }
 
-          span {
-            color: $color-black;
-            font-weight: 500;
+          > p {
+            font-size: 1.5rem;
+            color: $color-primary-light;
+            @media (max-width: 652px) {
+              font-size: 1.3rem;
+            }
+
+            span {
+              color: $color-black;
+              font-weight: 500;
+            }
+          }
+        }
+        .filterIcon {
+          display: none;
+          font-size: 1.5rem;
+          color: $color-black;
+          z-index: 3;
+          cursor: pointer;
+          @media (max-width: 765px) {
+            display: block;
           }
         }
       }
