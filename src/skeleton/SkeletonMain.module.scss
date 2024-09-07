@@ -1,0 +1,44 @@
+.skeleton {
+  margin: 2rem 0;
+  border-radius: 10rem;
+  position: relative;
+  overflow: hidden;
+  animation: scale2 1.2s infinite;
+}
+
+.skeleton::after {
+  content: "";
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 10rem;
+  animation: gotoRight 1.2s infinite;
+  background: white;
+  z-index: 2;
+  filter: blur(40px);
+}
+
+@keyframes gotoRight {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes scale2 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
