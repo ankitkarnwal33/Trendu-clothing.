@@ -1,7 +1,7 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import Card from "./smallComponents/Card";
 import filterCards, { filterByType } from "@/lib/filterCards";
+import CardProduct from "./smallComponents/CardProduct";
 
 export default function Products({ cards }) {
   const searchParams = useSearchParams();
@@ -27,7 +27,7 @@ export default function Products({ cards }) {
   return (
     <>
       {filterdCards.map((card) => (
-        <Card card={card} key={card.id} />
+        <CardProduct card={card} key={card.id} />
       ))}
     </>
   );

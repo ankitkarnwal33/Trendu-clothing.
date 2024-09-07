@@ -1,6 +1,6 @@
 "use client";
 import { RxCaretRight, RxCaretUp, RxCross2 } from "react-icons/rx";
-import Button from "./smallComponents/Button";
+
 import { FaFilter } from "react-icons/fa";
 import styles from "./Filter.module.scss";
 import { CiCircleCheck } from "react-icons/ci";

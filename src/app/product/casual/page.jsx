@@ -3,8 +3,7 @@ import styles from "./page.module.scss";
 import Filter from "@/components/Filter";
 import { Suspense, useState } from "react";
 import Products from "@/components/Products";
-import { FaCross, FaFilter } from "react-icons/fa6";
-import { RxCross2 } from "react-icons/rx";
+import { FaFilter } from "react-icons/fa6";
 
 const cards = [
   {

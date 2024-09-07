@@ -1,0 +1,203 @@
+@import "./../../SASS/__mixins";
+@import "./../../SASS/__variables";
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  width: 20vw;
+  padding-bottom: 2rem;
+  @media (max-width: 870px) {
+    width: 18rem;
+  }
+  @media (max-width: 620px) {
+    width: 14rem;
+  }
+  @media (max-width: 420px) {
+    width: 16rem;
+  }
+
+  &__image {
+    width: 20vw;
+    height: 20vw;
+    @media (max-width: 870px) {
+      width: 18rem;
+      height: 18rem;
+    }
+    @media (max-width: 620px) {
+      width: 14rem;
+      height: 14rem;
+    }
+    @media (max-width: 420px) {
+      width: 16rem;
+      height: 16rem;
+    }
+
+    &__img {
+      border-radius: 2rem;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  h3 {
+    font-size: 1.6rem;
+    color: $color-black;
+    font-weight: 600;
+    padding-top: 1.1rem;
+    @media (max-width: 720px) {
+      font-size: 1.3rem;
+    }
+  }
+  &__rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.2rem;
+    @media (max-width: 720px) {
+      font-size: 1rem;
+    }
+    &__stars {
+      display: flex;
+      gap: 0rem;
+      > span {
+        font-size: 1.7rem;
+        font-weight: 800;
+        color: $color-yellow;
+        @media (max-width: 720px) {
+          font-size: 1.3rem;
+        }
+      }
+    }
+  }
+  &__price {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    @media (max-width: 720px) {
+      gap: 0.6rem;
+    }
+    > span {
+      color: $color-red-dark;
+      padding: 0.5rem 1.5rem;
+      background: $color-red-light;
+      border-radius: 2rem;
+      font-size: 1.1rem;
+      @media (max-width: 720px) {
+        padding: 0.3rem 0.8rem;
+        font-size: 0.8rem;
+      }
+    }
+    &__net {
+      font-size: 1.7rem;
+      color: $color-black;
+      font-weight: 800;
+      @media (max-width: 720px) {
+        font-size: 1.3rem;
+      }
+    }
+    &__all {
+      font-size: 1.7rem;
+      color: $color-primary-ultra-light;
+      font-weight: 800;
+      text-decoration: line-through;
+      text-decoration-color: $color-primary-ultra-light;
+      text-decoration-thickness: 1px;
+      @media (max-width: 720px) {
+        font-size: 1.3rem;
+      }
+    }
+  }
+}
+
+/*
+.arrivals__slider__child__card {
+  display: flex;
+  flex-direction: column;
+  @media (max-width: 900px) {
+  }
+
+  > img {
+    border-radius: 2rem;
+    height: 20vw;
+    width: 20vw;
+    @media (max-width: 900px) {
+      width: 17rem;
+      height: 17rem;
+    }
+    @media (max-width: 420px) {
+      width: 15rem;
+      height: 15rem;
+    }
+  }
+  > h3 {
+    font-size: 1.8rem;
+    color: $color-black;
+    font-weight: 600;
+    padding-top: 1.1rem;
+    width: 90%;
+    @media (max-width: 900px) {
+      font-size: 1.6rem;
+    }
+  }
+  > .rating {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-size: 1.2rem;
+    @media (max-width: 900px) {
+      font-size: 1rem;
+    }
+    > .rating__stars {
+      display: flex;
+      gap: 0.1rem;
+      > span {
+        font-size: 1.9rem;
+        font-weight: 800;
+        color: $color-yellow;
+        @media (max-width: 900px) {
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+  > .price {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    @media (max-width: 480px) {
+      gap: 0.6rem;
+    }
+    > span {
+      color: $color-red-dark;
+      padding: 0.5rem 1.5rem;
+      background: $color-red-light;
+      border-radius: 2rem;
+      font-size: 1.1rem;
+      @media (max-width: 900px) {
+        font-size: 0.9rem;
+      }
+    }
+    > .price__net {
+      font-size: 2rem;
+      color: $color-black;
+      font-weight: 800;
+      @media (max-width: 900px) {
+        font-size: 1.6rem;
+      }
+    }
+    > .price__all {
+      font-size: 1.8rem;
+      color: $color-primary-ultra-light;
+      font-weight: 800;
+      text-decoration: line-through;
+      text-decoration-color: $color-primary-ultra-light;
+      text-decoration-thickness: 1px;
+      @media (max-width: 900px) {
+        font-size: 1.8rem;
+      }
+    }
+  }
+}
+
+*/
