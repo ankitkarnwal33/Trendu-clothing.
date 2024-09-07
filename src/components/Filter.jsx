@@ -139,8 +139,6 @@ export default function Filter({ active, handleActive }) {
             </div>
           )}
         </div>
-
-        {<Button toPath={"/"} content="Apply" />}
       </div>
     </>
   );
