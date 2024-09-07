@@ -102,10 +102,14 @@ const cards = [
 
 export default function Casual() {
   const [active, setActive] = useState(false);
+
+  function handleActive() {
+    setActive(!active);
+  }
   return (
     <Suspense fallback={<h1>Loading</h1>}>
       <div className={styles.container}>
-        <Filter active={active} />
+        <Filter active={active} handleActive={handleActive} />
         <div className={styles.products}>
           <div className={styles.products__typo}>
             <h3 className={styles.products__typo__heading}>Casual</h3>
@@ -116,15 +120,10 @@ export default function Casual() {
                   Sort by: <span>Most Popular</span>
                 </p>
               </div>
-              {!active ? (
+              {!active && (
                 <FaFilter
                   className={styles.filterIcon}
-                  onClick={() => setActive(!active)}
-                />
-              ) : (
-                <RxCross2
-                  className={styles.filterIcon}
-                  onClick={() => setActive(!active)}
+                  onClick={handleActive}
                 />
               )}
             </div>

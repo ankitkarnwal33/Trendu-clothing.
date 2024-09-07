@@ -12,17 +12,24 @@
   width: 20vw;
   @media (max-width: 765px) {
     display: none;
+    gap: 1rem;
   }
   &__heading,
   &__list {
     display: flex;
     justify-content: space-between;
     padding-bottom: 1rem;
+    @media (max-width: 765px) {
+      padding-bottom: 1rem;
+    }
     border-bottom: $border-light-1;
     align-items: center;
     h4 {
       color: $color-black;
       font-size: 1.7rem;
+      @media (max-width: 765px) {
+        font-size: 1.5rem;
+      }
     }
     svg {
       color: $color-black;
@@ -39,19 +46,29 @@
     display: flex;
     flex-direction: column;
     border-bottom: $border-light-1;
-    gap: 1rem;
     padding-bottom: 2rem;
+    @media (max-width: 765px) {
+      padding-bottom: 1rem;
+    }
     &__size {
       display: flex;
       gap: 1rem;
       flex-wrap: wrap;
       justify-content: flex-start;
+      padding: 1rem 0rem;
+      @media (max-width: 765px) {
+        gap: 0.8rem;
+      }
       p {
         padding: 0.7rem 1.5rem;
         color: $color-black;
         background: $color-grey-light;
         border-radius: 3rem;
         font-size: 1.2rem;
+        @media (max-width: 765px) {
+          padding: 0.4rem 1rem;
+          font-size: 1.1rem;
+        }
       }
       .active {
         @include active($color-white, $color-black);
@@ -64,11 +81,18 @@
       h4 {
         color: $color-black;
         font-size: 1.7rem;
+
+        @media (max-width: 765px) {
+          font-size: 1.5rem;
+        }
       }
       svg {
         color: $color-black;
         font-size: 1.9rem;
         cursor: pointer;
+        @media (max-width: 765px) {
+          font-size: 1.7rem;
+        }
       }
     }
   }
@@ -78,15 +102,18 @@
       flex-direction: column;
       text-align: center;
       gap: 1rem;
+      padding: 1rem 0;
       > p {
-        transition: all 0.2s;
-        padding: 0.8rem 1.2rem;
+        padding: 0.8rem 0rem;
         font-size: 1.2rem;
         color: $color-primary-light;
-        font-weight: 400;
         background: $color-grey-light;
-        border-radius: 2rem;
+        border-radius: 10rem;
         cursor: pointer;
+        @media (max-width: 765px) {
+          padding: 0.4rem 0rem;
+          font-size: 1.1rem;
+        }
       }
       .active {
         @include active($color-white, $color-black);
@@ -99,6 +126,7 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: flex-start;
+      padding: 1rem 0;
       gap: 1rem;
       > div {
         text-align: center;
@@ -107,11 +135,19 @@
         height: 3rem;
         border-radius: 10rem;
         border: $border-big-light;
+        @media (max-width: 765px) {
+          width: 2.5rem;
+          height: 2.5rem;
+        }
         svg {
           font-size: 3.5rem;
           transform: translate(-38%, -38%);
           color: $color-white;
           border-radius: 100px;
+          @media (max-width: 765px) {
+            font-size: 2.9rem;
+            transform: translate(-43%, -44%);
+          }
         }
       }
     }
@@ -137,10 +173,16 @@
       padding: 1rem;
       position: relative;
       cursor: pointer;
+      @media (max-width: 765px) {
+        padding: 0.2rem 0rem;
+      }
       p,
       svg {
         font-size: 1.5rem;
         color: $color-primary-light;
+        @media (max-width: 765px) {
+          font-size: 1.3rem;
+        }
       }
       svg {
         font-size: 1.9rem;
@@ -153,18 +195,48 @@
       height: 3rem;
       background: $color-black;
       left: -5%;
-      border-radius: 2rem;
+      border-radius: 10rem;
+      @media (max-width: 765px) {
+        height: 2rem;
+      }
     }
   }
 }
 
 .open {
-  display: block;
+  display: flex;
   position: absolute;
   right: 2%;
+  top: 10%;
   background: $color-white;
-  width: 25rem;
+  width: 27vw;
+  z-index: 2;
   animation: filterBar 0.3s;
+  @media (max-width: 610px) {
+    width: 35vw;
+  }
+  @media (max-width: 500px) {
+    width: 40vw;
+  }
+  @media (max-width: 420px) {
+    position: fixed;
+    width: 100vw;
+    right: 0;
+    border-radius: 3rem 3rem 0rem 0rem;
+    animation: filterBar2 0.3s;
+  }
+  :first-child {
+    svg {
+      display: block;
+    }
+  }
+  ul {
+    li {
+      svg {
+        display: block;
+      }
+    }
+  }
 }
 
 @keyframes filterBar {
@@ -174,5 +246,15 @@
 
   100% {
     transform: translateX(0%);
+  }
+}
+
+@keyframes filterBar2 {
+  0% {
+    transform: translateY(100%);
+  }
+
+  100% {
+    transform: translateY(0%);
   }
 }

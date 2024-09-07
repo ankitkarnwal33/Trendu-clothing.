@@ -1,5 +1,5 @@
 "use client";
-import { RxCaretRight, RxCaretUp } from "react-icons/rx";
+import { RxCaretRight, RxCaretUp, RxCross2 } from "react-icons/rx";
 import Button from "./smallComponents/Button";
 import { FaFilter } from "react-icons/fa";
 import styles from "./Filter.module.scss";
@@ -23,7 +23,7 @@ const colors = [
 const sizes = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "3XL", "4XL"];
 const listItems = ["t-shirts", "shorts", "shirts", "hoodie", "jeans"];
 
-export default function Filter({ active }) {
+export default function Filter({ active, handleActive }) {
   const searchParams = useSearchParams();
   const router = useRouter();
   console.log(active);
@@ -53,10 +53,19 @@ export default function Filter({ active }) {
 
   return (
     <>
-      <div className={`${styles.filter} ${active ? styles.open : ""}`}>
+      <div
+        className={`${styles.filter} ${active ? styles.open : styles.close} `}
+      >
         <div className={styles.filter__heading}>
           <h4>Filter</h4>
-          <FaFilter />
+          {active ? (
+            <RxCross2
+              className={styles.filterIcon}
+              onClick={() => handleActive(active)}
+            />
+          ) : (
+            <FaFilter />
+          )}
         </div>
         <ul className={styles.filter__list}>
           {listItems.map((item, index) => (
