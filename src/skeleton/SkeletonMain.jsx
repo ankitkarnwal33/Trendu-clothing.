@@ -11,7 +11,6 @@ export default function SkeletonMain({
         width: `${width}`,
         height: `${height}px`,
         borderRadius: `${radius}rem`,
-        background: "#202020",
       }}
     ></div>
   );

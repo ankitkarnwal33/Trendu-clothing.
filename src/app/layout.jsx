@@ -2,27 +2,21 @@ import "./globals.scss";
 import Footer from "@/components/Footer";
 import Newslater from "@/components/Newslater";
 import Navbar from "@/components/Navbar";
-import ContextWrapper from "@/context/context";
+
+export const metadata = {
+  title: "TrendU",
+  description:
+    "Discover the latest fashion trends at Trendu. Shop stylish and affordable clothing for men, women, and kids. From chic outfits to everyday essentials, find your perfect look with free shipping on orders over 550. Stay trendy with Trendu!",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  link: `href="https://fonts.cdnfonts.com/css/satoshi?styles=135009,135004,135005,135006,135007,135008,135002,135003,135000,135001" rel="stylesheet"`,
+};
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <head>
-        <link
-          href="https://fonts.cdnfonts.com/css/satoshi?styles=135009,135004,135005,135006,135007,135008,135002,135003,135000,135001"
-          rel="stylesheet"
-        ></link>
-      </head>
-      <body className="light_mode container">
-        <ContextWrapper>
-          <Navbar />
-          {children}
-          <div className="footer">
-            <Newslater />
-            <Footer />
-          </div>
-        </ContextWrapper>
-      </body>
+      <body className="light_mode container">{children}</body>
     </html>
   );
 }
