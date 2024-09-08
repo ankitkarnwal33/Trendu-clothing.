@@ -4,8 +4,6 @@
 .arrivals__slider__child__card {
   display: flex;
   flex-direction: column;
-  @media (max-width: 900px) {
-  }
 
   > img {
     border-radius: 2rem;

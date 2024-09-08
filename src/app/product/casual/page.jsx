@@ -4,7 +4,9 @@ import Filter from "@/components/Filter";
 import { Suspense, useState } from "react";
 import Products from "@/components/Products";
 import { FaFilter } from "react-icons/fa6";
-
+const metadata = {
+  title: "Casual",
+};
 const cards = [
   {
     id: 1,

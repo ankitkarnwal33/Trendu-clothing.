@@ -14,11 +14,14 @@
     grid-column: full-start / full-end;
     padding: 0rem 1rem;
     &__logo {
-      img {
+      a {
         width: 15rem;
-        height: auto;
-        @media (max-width: 720px) {
-          width: 11rem;
+        img {
+          width: 15rem;
+          height: auto;
+          @media (max-width: 720px) {
+            width: 11rem;
+          }
         }
       }
     }

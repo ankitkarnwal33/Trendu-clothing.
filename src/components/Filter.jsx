@@ -26,7 +26,6 @@ const listItems = ["t-shirts", "shorts", "shirts", "hoodie", "jeans"];
 export default function Filter({ active, handleActive }) {
   const searchParams = useSearchParams();
   const router = useRouter();
-  console.log(active);
   // Get active filter values from the URL
   const activePrice = searchParams.get("price");
   const activeColor = searchParams.get("color");

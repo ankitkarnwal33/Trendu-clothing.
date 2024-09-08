@@ -1,22 +1,33 @@
 .container {
-  width: 25rem;
+  width: 20vw;
   padding-bottom: 2rem;
+  @media (max-width: 870px) {
+    width: 18rem;
+  }
+  @media (max-width: 620px) {
+    width: 14rem;
+  }
+  @media (max-width: 420px) {
+    width: 16rem;
+  }
 
   &__image {
     position: relative;
     overflow: hidden;
-    width: 25rem;
-    height: 25rem;
+    width: 20vw;
+    height: 20vw;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 2rem;
-
     @media (max-width: 870px) {
       width: 18rem;
       height: 18rem;
     }
-
+    @media (max-width: 620px) {
+      width: 14rem;
+      height: 14rem;
+    }
     @media (max-width: 420px) {
       width: 16rem;
       height: 16rem;

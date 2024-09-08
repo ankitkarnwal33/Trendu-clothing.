@@ -16,7 +16,7 @@ export default function Products({ cards }) {
   useEffect(() => {
     setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 800);
   }, [setLoading]);
   if (searchParams.has("price")) {
     activePrice = searchParams.get("price").toString();
@@ -37,7 +37,6 @@ export default function Products({ cards }) {
       {loading
         ? Array.from({ length: 6 }, (_, index) => <CardSkeleton key={index} />)
         : filterdCards.map((card) => <CardProduct card={card} key={card.id} />)}
-      {}
     </>
   );
 }

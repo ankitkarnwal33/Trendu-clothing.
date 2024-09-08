@@ -3,7 +3,6 @@ import { usePathname } from "next/navigation";
 import styles from "./page.module.scss";
 function NotFound() {
   const path = usePathname();
-  console.log(path);
   return (
     <div className={styles.NotFound}>
       <h1>

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import Star from "./Star";
 import styles from "./card.module.scss";

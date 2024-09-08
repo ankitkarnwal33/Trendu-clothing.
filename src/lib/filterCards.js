@@ -12,7 +12,6 @@ export default function FilterPrice(cards, filter) {
 }
 
 export function filterByType(cards, filter) {
-    console.log(filter)
     if (typeof filter === "undefined") return cards;
     return cards.filter((card) => card.type === filter);
 }
