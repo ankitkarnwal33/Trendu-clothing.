@@ -4,6 +4,7 @@
   position: relative;
   grid-column: center-start / center-end;
   margin: 10rem auto;
+  user-select: none;
   background-color: $color-grey-light;
   padding: 2rem 4rem;
   border-radius: 0.1rem;
@@ -73,6 +74,16 @@
       font-size: 1.1rem;
       margin-left: 1rem;
       display: none;
+    }
+  }
+  &__fieldRel {
+    position: relative;
+    > svg {
+      position: absolute;
+      font-size: 1.8rem;
+      right: 4%;
+      top: 60%;
+      color: $color-primary;
     }
   }
   button {
