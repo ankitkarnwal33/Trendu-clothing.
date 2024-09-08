@@ -13,6 +13,9 @@
   @media (max-width: 900px) {
     padding: 3rem 2rem;
   }
+  @media (max-width: 420px) {
+    padding: 3rem 1rem;
+  }
 
   // Products section has been started form there.
   .products {
@@ -74,12 +77,16 @@
     }
     &__items {
       display: flex;
-
       flex-wrap: wrap;
       gap: 2rem;
+
       @media (max-width: 900px) {
         padding-top: 2rem;
+        gap: 1rem;
         justify-content: center;
+      }
+      @media (max-width: 420px) {
+        gap: 1rem;
       }
     }
   }

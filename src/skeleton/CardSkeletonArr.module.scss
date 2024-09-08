@@ -1,3 +1,5 @@
+@import "./../SASS/__mixins";
+@import "./../SASS/__variables";
 .container {
   width: 20vw;
   padding-bottom: 2rem;
@@ -16,9 +18,7 @@
     overflow: hidden;
     width: 20vw;
     height: 20vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexCenter;
     border-radius: 2rem;
     @media (max-width: 870px) {
       width: 18rem;
@@ -32,10 +32,10 @@
       width: 16rem;
       height: 16rem;
     }
-    background: #272626;
+    background: $color-grey-light;
     > svg {
       font-size: 3rem;
-      color: white;
+      color: $color-black;
       animation: scale 1.5s infinite;
     }
   }

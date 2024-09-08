@@ -1,8 +1,11 @@
+@import "./../SASS/__mixins";
+@import "./../SASS/__variables";
 .skeleton {
   margin: 2rem 0;
   border-radius: 10rem;
   position: relative;
   overflow: hidden;
+  background: $color-white;
   animation: scale2 1.2s infinite;
 }
 
@@ -15,7 +18,7 @@
   left: 0;
   border-radius: 10rem;
   animation: gotoRight 1.2s infinite;
-  background: white;
+  background: $color-black;
   z-index: 2;
   filter: blur(50px);
 }
