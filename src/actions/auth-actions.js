@@ -8,7 +8,11 @@ import { redirect } from 'next/navigation'
 
 export async function signUp(prevState, formData) {
     console.log("run")
-    await connectDB();
+    try {
+        await connectDB().then(() => { console.log("connected") }).catch((error) => { console.log(error.message) });
+    } catch (error) {
+
+    }
     console.log("Error thrown");
 
     const email = formData.get("email");
