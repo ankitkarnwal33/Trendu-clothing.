@@ -5,10 +5,10 @@ import Link from "next/link";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { useFormState } from "react-dom";
-import { signup } from "@/actions/auth-actions";
+import { signUp } from "@/actions/auth-actions";
 export default function AuthForm() {
   const [showPassword, setShowPassword] = useState(false);
-  const [signupState, signupAction] = useFormState(signup, {});
+  const [signupState, signupAction] = useFormState(signUp, {});
   function handleEyeClick() {
     setShowPassword(!showPassword);
   }

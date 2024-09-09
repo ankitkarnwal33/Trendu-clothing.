@@ -119,7 +119,7 @@ function Navbar() {
             <Link href={"/cart"}>
               <IoMdCart />
             </Link>
-            <Link href={"/login"}>
+            <Link href={"/signup"}>
               <FaUserLarge />
             </Link>
           </div>
