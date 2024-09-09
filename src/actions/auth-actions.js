@@ -35,7 +35,7 @@ export async function signUp(prevState, formData) {
             email,
             password: hashedPassword,
             salt
-        }).then((user) => {
+        }).then(() => {
             redirectPath = "/cart"
         })
     } catch (error) {
