@@ -20,7 +20,7 @@ export default async function connectDB() {
       db.connections[0].readyState
     ) {
       connection.isConnected = db.connections[0].readyState;
-      console.log("Database has been connected.");
+      console.log("Database has been connected again.");
     }
   } catch (error) {
     console.log("can't connect + ", error);

@@ -7,10 +7,14 @@ import { redirect } from 'next/navigation'
 
 
 export async function signUp(prevState, formData) {
+    console.log("run")
     await connectDB();
+    console.log("Error thrown");
+
     const email = formData.get("email");
     const name = formData.get("name");
     const password = formData.get("password");
+    console.log(email, name, password);
     let errors = {}
     if (name.length < 2) {
         errors.name = "Name should be at least 2 characters long."
