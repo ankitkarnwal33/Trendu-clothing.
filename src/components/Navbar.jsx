@@ -125,7 +125,7 @@ function Navbar({ user }) {
               <IoMdCart />
             </Link>
             {user !== null ? (
-              <TbLogout2 onClick={handleLogout} />
+              <TbLogout2 onClick={handleLogout} style={{ cursor: "pointer" }} />
             ) : (
               <Link href={"/login"}>
                 <FaUserLarge />
