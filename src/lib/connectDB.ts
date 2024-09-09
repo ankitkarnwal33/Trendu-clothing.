@@ -12,8 +12,8 @@ export default async function connectDB() {
   }
 
   try {
-    const db = await mongoose.connect(process.env.MONGO_URI, {}); //Production
-    // const db = await mongoose.connect(process.env.MONGO_URI_LOCAL, {}); //Localhost
+    // const db = await mongoose.connect(process.env.MONGO_URI, {}); //Production
+    const db = await mongoose.connect(process.env.MONGO_URI_LOCAL, {}); //Localhost
     if (
       db &&
       db.connections &&

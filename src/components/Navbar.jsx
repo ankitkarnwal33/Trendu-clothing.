@@ -11,6 +11,7 @@ import { useEffect, useRef, useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { TbLogout2 } from "react-icons/tb";
+import { logout } from "@/actions/auth-actions";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 function Navbar({ user }) {
