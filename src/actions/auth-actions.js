@@ -11,9 +11,8 @@ export async function signUp(prevState, formData) {
     try {
         await connectDB().then(() => { console.log("connected") }).catch((error) => { console.log(error.message) });
     } catch (error) {
-
+        console.log("Error thrown", error);
     }
-    console.log("Error thrown");
 
     const email = formData.get("email");
     const name = formData.get("name");
