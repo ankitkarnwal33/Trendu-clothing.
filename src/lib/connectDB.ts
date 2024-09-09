@@ -12,7 +12,10 @@ export default async function connectDB() {
   }
 
   try {
-    const db = await mongoose.connect(process.env.MONGO_URI_LOCAL, {});
+    const db = await mongoose.connect(
+      process.env.MONGO_URI_LOCAL || process.env.MONGO_URI,
+      {}
+    );
     if (
       db &&
       db.connections &&
