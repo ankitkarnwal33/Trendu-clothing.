@@ -12,7 +12,10 @@ export default async function connectDB() {
   }
 
   try {
-    const db = await mongoose.connect(process.env.MONGO_URI || "", {});
+    const db = await mongoose.connect(
+      "mongodb+srv://viperankityt:b4TLrh3Msucw8akh@trendu.b9bvy.mongodb.net/?retryWrites=true&w=majority&appName=trendu",
+      {}
+    );
     if (
       db &&
       db.connections &&
