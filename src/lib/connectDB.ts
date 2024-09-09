@@ -12,7 +12,7 @@ export default async function connectDB() {
   }
 
   try {
-    console.log(process.env.MONGO_URI);
+    console.log("Mongo uri : ", process.env.MONGO_URI);
     const db = await mongoose.connect(process.env.MONGO_URI, {});
     if (
       db &&
