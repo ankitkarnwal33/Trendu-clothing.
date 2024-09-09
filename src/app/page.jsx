@@ -1,3 +1,4 @@
+import { getSessionDetails } from "@/actions/auth-actions";
 import Arrivals from "@/components/Arrivals";
 import Brands from "@/components/Brands";
 import Browse from "@/components/Browse";
@@ -8,11 +9,13 @@ import Navbar from "@/components/Navbar";
 import Newslater from "@/components/Newslater";
 import Testimonials from "@/components/Testimonials";
 import TopSelling from "@/components/TopSelling";
+import { redirect } from "next/navigation";
 
-export default function Home() {
+export default async function Home() {
+  const user = await getSessionDetails();
   return (
     <>
-      <Navbar />
+      <Navbar user={user} />
       <Header />
       <HeaderImg />
       <Brands />

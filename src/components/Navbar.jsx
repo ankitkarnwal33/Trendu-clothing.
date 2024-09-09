@@ -10,9 +10,10 @@ import { IoMdCart } from "react-icons/io";
 import { useEffect, useRef, useState } from "react";
 import { FaBars } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
+import { TbLogout2 } from "react-icons/tb";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-function Navbar() {
+function Navbar({ user }) {
   const path = usePathname();
   const [icons, setHideIcons] = useState(false);
   const inputRef = useRef(null);
@@ -34,6 +35,9 @@ function Navbar() {
   function handleFormSubmit(event) {
     event.preventDefault();
     setHideIcons(false);
+  }
+  function handleLogout() {
+    logout();
   }
   return (
     <nav className={styles.navbar}>
@@ -119,9 +123,13 @@ function Navbar() {
             <Link href={"/cart"}>
               <IoMdCart />
             </Link>
-            <Link href={"/signup"}>
-              <FaUserLarge />
-            </Link>
+            {user !== null ? (
+              <TbLogout2 onClick={handleLogout} />
+            ) : (
+              <Link href={"/login"}>
+                <FaUserLarge />
+              </Link>
+            )}
           </div>
         </>
       )}

@@ -5,42 +5,18 @@ import Link from "next/link";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
 import { useFormState } from "react-dom";
-import { signUp } from "@/actions/auth-actions";
-export default function AuthForm() {
+import { login } from "@/actions/auth-actions";
+export default function AuthFormLogin() {
   const [showPassword, setShowPassword] = useState(false);
-  const [signupState, signupAction] = useFormState(signUp, {});
+  const [loginState, loginAction] = useFormState(login, {});
   function handleEyeClick() {
     setShowPassword(!showPassword);
   }
   return (
-    <form className={styles.form} action={signupAction}>
+    <form className={styles.form} action={loginAction}>
       <div className={styles.form__icon}>
         <FaLock />
       </div>
-      <p className={styles.form__fields}>
-        <label htmlFor="name" className={styles.form__fields__label}>
-          Full Name
-        </label>
-        <input
-          type="name"
-          name="name"
-          id="name"
-          placeholder="John Snow"
-          className={styles.form__fields__input}
-        />
-      </p>
-      <p className={styles.form__fields}>
-        <label htmlFor="number" className={styles.form__fields__label}>
-          Mobile
-        </label>
-        <input
-          type="number"
-          name="number"
-          id="number"
-          placeholder="+91 1234567890"
-          className={styles.form__fields__input}
-        />
-      </p>
       <p className={styles.form__fields}>
         <label htmlFor="email" className={styles.form__fields__label}>
           Email
@@ -49,8 +25,9 @@ export default function AuthForm() {
           type="email"
           name="email"
           id="email"
-          placeholder="example@test.com"
+          placeholder="Email address"
           className={styles.form__fields__input}
+          required
         />
       </p>
       <p className={`${styles.form__fields} ${styles.form__fieldRel} `}>
@@ -62,6 +39,7 @@ export default function AuthForm() {
           name="password"
           id="password"
           placeholder="Password"
+          required
           className={styles.form__fields__input}
         />
         {showPassword ? (
@@ -70,16 +48,16 @@ export default function AuthForm() {
           <FaRegEye onClick={handleEyeClick} />
         )}
       </p>
-      {signupState.errors && (
+      {loginState.errors && (
         <ul>
-          {Object.keys(signupState.errors).map((error) => (
-            <li key={error}>{signupState.errors[error]}</li>
+          {Object.keys(loginState.errors).map((error) => (
+            <li key={error}>{loginState.errors[error]}</li>
           ))}
         </ul>
       )}
-      <button type="submit">Create Account</button>
-      <Link href={"/login"} className={styles.form__link}>
-        <p>Login with existing account.</p>
+      <button type="submit">Login</button>
+      <Link href={"/signup"} className={styles.form__link}>
+        <p>Create Account</p>
       </Link>
     </form>
   );

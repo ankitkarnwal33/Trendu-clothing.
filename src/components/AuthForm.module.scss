@@ -69,6 +69,16 @@
     &__input:hover {
       border: 1.4px solid $color-violet;
     }
+    input[type="number"] {
+      -moz-appearance: textfield;
+    }
+
+    /* Hide arrows in Chrome, Safari, Edge, and Opera */
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
   }
   ul {
     list-style: none;
@@ -103,6 +113,10 @@
   &__link {
     text-align: center;
     @include linkButton($color-blue-2, 1.3rem);
+    p {
+      text-decoration: underline;
+      text-underline-offset: 4px;
+    }
     @media (max-width: 480px) {
       font-size: 1.1rem;
     }
