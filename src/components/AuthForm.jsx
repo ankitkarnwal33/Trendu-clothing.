@@ -4,18 +4,31 @@ import styles from "./AuthForm.module.scss";
 import Link from "next/link";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
-import { FaEarDeaf } from "react-icons/fa6";
-
+import { useFormState } from "react-dom";
+import { signup } from "@/actions/auth-actions";
 export default function AuthForm() {
   const [showPassword, setShowPassword] = useState(false);
+  const [signupState, signupAction] = useFormState(signup, {});
   function handleEyeClick() {
     setShowPassword(!showPassword);
   }
   return (
-    <form className={styles.form}>
+    <form className={styles.form} action={signupAction}>
       <div className={styles.form__icon}>
         <FaLock />
       </div>
+      <p className={styles.form__fields}>
+        <label htmlFor="name" className={styles.form__fields__label}>
+          Full Name
+        </label>
+        <input
+          type="name"
+          name="name"
+          id="name"
+          placeholder="John Snow"
+          className={styles.form__fields__input}
+        />
+      </p>
       <p className={styles.form__fields}>
         <label htmlFor="email" className={styles.form__fields__label}>
           Email
@@ -44,8 +57,14 @@ export default function AuthForm() {
         ) : (
           <FaRegEye onClick={handleEyeClick} />
         )}
-        <span>Password should be 8 characters long.</span>
       </p>
+      {signupState.errors && (
+        <ul>
+          {Object.keys(signupState.errors).map((error) => (
+            <li key={error}>{signupState.errors[error]}</li>
+          ))}
+        </ul>
+      )}
       <button type="submit">Create Account</button>
       <Link href={"#"} className={styles.form__link}>
         <p>Login with existing account.</p>

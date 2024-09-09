@@ -1,7 +1,5 @@
-import AuthForm from "@/components/AuthForm";
-
-function Login() {
-  return <AuthForm />;
+function Page() {
+  return <div></div>;
 }
 
-export default Login;
+export default Page;
