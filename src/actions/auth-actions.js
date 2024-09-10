@@ -62,27 +62,13 @@ export async function signUp(formData) {
     }
     const { hashedPassword, salt } = hashUserPassword(password); //Hashing user password.
     try {
-        const user = await User.create({
+        await User.create({
             name,
             number,
             email,
             password: hashedPassword,
             salt
-        });
-        if (user === null) return { errors: { signup: "Some error occured. Try again." } }//sign up failed
-        const { name, email, _id } = user; //User created
-        const token = generateToken({ id, email, name });
-        const expiresIn = new Date(Date.now() + 60 * 60 * 24 * 1000);
-        if (!token) { //User created but token not generated
-            return {
-                errors: {
-                    token: "You have signed up. Please login."
-                }
-            }
-        }
-
-        cookies().set("session", token, { expiresIn, httpOnly: true });
-
+        })
     } catch (error) {
         if (error.code === 11000) { //Duplicate id found error code from mongodb
             if (error.message.includes("email")) {
@@ -100,9 +86,11 @@ export async function signUp(formData) {
                 }
             }
         } else {
+            console.log(error);
             return {
+
                 errors: {
-                    error_main: error.message,
+                    error_main: "error",
                 }
             }
         }

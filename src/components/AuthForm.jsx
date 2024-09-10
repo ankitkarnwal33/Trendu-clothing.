@@ -20,7 +20,7 @@ export default function AuthForm() {
     if (result?.errors) {
       setErrors(result.errors);
     } else {
-      router.push("/");
+      router.push("/login");
     }
     setLoading(false);
   }
