@@ -94,7 +94,6 @@ export default function AuthForm() {
       ) : null}
       <button type="submit" disabled={loading}>
         {loading ? <BsGearFill /> : "Create Account"}
-        Create Account
       </button>
       <Link href={"/login"} className={styles.form__link}>
         <p>Login with existing account.</p>
