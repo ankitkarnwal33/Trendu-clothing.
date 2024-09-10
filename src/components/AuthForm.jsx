@@ -4,16 +4,31 @@ import styles from "./AuthForm.module.scss";
 import Link from "next/link";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
-import { useFormState } from "react-dom";
 import { signUp } from "@/actions/auth-actions";
+import { useRouter } from "next/navigation";
+import { BsGearFill } from "react-icons/bs";
 export default function AuthForm() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const [signupState, signupAction] = useFormState(signUp, {});
+  const [errors, setErrors] = useState(null);
+  const [loading, setLoading] = useState(false);
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setLoading(true);
+    const formData = new FormData(event.target);
+    const result = await signUp(formData);
+    if (result?.errors) {
+      setErrors(result.errors);
+    } else {
+      router.push("/");
+    }
+    setLoading(false);
+  }
   function handleEyeClick() {
     setShowPassword(!showPassword);
   }
   return (
-    <form className={styles.form} action={signupAction}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.form__icon}>
         <FaLock />
       </div>
@@ -70,14 +85,17 @@ export default function AuthForm() {
           <FaRegEye onClick={handleEyeClick} />
         )}
       </p>
-      {signupState.errors && (
+      {errors !== null ? (
         <ul>
-          {Object.keys(signupState.errors).map((error) => (
-            <li key={error}>{signupState.errors[error]}</li>
+          {Object.keys(errors).map((error) => (
+            <li key={error}>{errors[error]}</li>
           ))}
         </ul>
-      )}
-      <button type="submit">Create Account</button>
+      ) : null}
+      <button type="submit" disabled={loading}>
+        {loading ? <BsGearFill /> : "Create Account"}
+        Create Account
+      </button>
       <Link href={"/login"} className={styles.form__link}>
         <p>Login with existing account.</p>
       </Link>

@@ -4,16 +4,39 @@ import styles from "./AuthForm.module.scss";
 import Link from "next/link";
 import { FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { useState } from "react";
-import { useFormState } from "react-dom";
 import { login } from "@/actions/auth-actions";
+import { useRouter } from "next/navigation";
+import { BsGearFill } from "react-icons/bs";
 export default function AuthFormLogin() {
   const [showPassword, setShowPassword] = useState(false);
-  const [loginState, loginAction] = useFormState(login, {});
+  //   const [loginState, loginAction] = useFormState(login, {});
+  const [errors, setErrors] = useState(null);
+  const [loading, setLoading] = useState(false);
+
+  const router = useRouter();
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    try {
+      setLoading(true);
+      const result = await login(formData);
+      if (result?.errors) {
+        setErrors(result.errors);
+      } else {
+        router.push("/");
+        setErrors(null);
+      }
+      setLoading(false);
+    } catch {}
+  }
+  console.log(errors);
+
   function handleEyeClick() {
     setShowPassword(!showPassword);
   }
+
   return (
-    <form className={styles.form} action={loginAction}>
+    <form className={styles.form} onSubmit={handleSubmit}>
       <div className={styles.form__icon}>
         <FaLock />
       </div>
@@ -48,14 +71,16 @@ export default function AuthFormLogin() {
           <FaRegEye onClick={handleEyeClick} />
         )}
       </p>
-      {loginState.errors && (
+      {errors !== null ? (
         <ul>
-          {Object.keys(loginState.errors).map((error) => (
-            <li key={error}>{loginState.errors[error]}</li>
+          {Object.keys(errors).map((error) => (
+            <li key={error}>{errors[error]}</li>
           ))}
         </ul>
-      )}
-      <button type="submit">Login</button>
+      ) : null}
+      <button type="submit" disabled={loading}>
+        {loading ? <BsGearFill /> : "Login"}
+      </button>
       <Link href={"/signup"} className={styles.form__link}>
         <p>Create Account</p>
       </Link>

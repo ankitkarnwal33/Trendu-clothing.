@@ -106,8 +106,14 @@
     cursor: pointer;
     margin-top: 2rem;
     font-size: 1.3rem;
+    transition: all 0.3s;
     @media (max-width: 480px) {
       font-size: 1.2rem;
+    }
+    svg {
+      font-size: 1.5rem;
+      animation: rounding 1.4s linear infinite;
+      transition: all 0.2s;
     }
   }
   &__link {
@@ -120,5 +126,14 @@
     @media (max-width: 480px) {
       font-size: 1.1rem;
     }
+  }
+}
+
+@keyframes rounding {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }

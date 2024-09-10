@@ -26,7 +26,7 @@ function verifyToken(token) {
     return payload;
 }
 
-export async function signUp(prevState, formData) {
+export async function signUp(formData) {
     let errors = {}
     try {
         await connectDB();
@@ -42,7 +42,6 @@ export async function signUp(prevState, formData) {
     const name = formData.get("name");
     const number = formData.get("number");
     const password = formData.get("password");
-    console.log(number);
     if (name.length < 2) {
         errors.name = "Name should be at least 2 characters long."
     }
@@ -62,7 +61,6 @@ export async function signUp(prevState, formData) {
         }
     }
     const { hashedPassword, salt } = hashUserPassword(password); //Hashing user password.
-    let redirectPath = null;
     try {
         const user = await User.create({
             name,
@@ -70,12 +68,23 @@ export async function signUp(prevState, formData) {
             email,
             password: hashedPassword,
             salt
-        }).then(() => {
-            redirectPath = "/cart"
-        })
+        });
+        if (user === null) return { errors: { signup: "Some error occured. Try again." } }//sign up failed
+        const { name, email, _id } = user; //User created
+        const token = generateToken({ id, email, name });
+        const expiresIn = new Date(Date.now() + 60 * 60 * 24 * 1000);
+        if (!token) { //User created but token not generated
+            return {
+                errors: {
+                    token: "You have signed up. Please login."
+                }
+            }
+        }
+
+        cookies().set("session", token, { expiresIn, httpOnly: true });
+
     } catch (error) {
-        if (error.code === 11000) { //Duplicate email id found error code from mongodb
-            console.log(error.message)
+        if (error.code === 11000) { //Duplicate id found error code from mongodb
             if (error.message.includes("email")) {
                 return {
                     errors: {
@@ -97,17 +106,15 @@ export async function signUp(prevState, formData) {
                 }
             }
         }
-    } finally {
-        if (redirectPath === "/cart") //Redirect only if there is no error.
-            redirect(redirectPath);
     }
 }
 
-export async function login(prevState, formData) {
+export async function login(formData) {
     const email = formData.get("email");
     const password = formData.get("password");
     let errors = {};
-    let redirectPath = null;
+    console.log(email, password);
+    // let redirectPath = null;
     if (password.trim().length < 8) {
         errors.password = "Invalid password !";
     }
@@ -139,7 +146,7 @@ export async function login(prevState, formData) {
         }
         //Double check for authenticated.
         if (user && isValidPassword) { //User is authenticated
-            const token = generateToken({ id: user._id, name: user.name, email: user.email, number: user.number });
+            const token = generateToken({ id: user._id, name: user.name, email: user.email });
             const expiresIn = new Date(Date.now() + 60 * 60 * 24 * 1000);  //1day
             if (token === null) { //Token is not generated
                 return {
@@ -149,7 +156,6 @@ export async function login(prevState, formData) {
                 }
             }
             cookies().set("session", token, { expiresIn, httpOnly: true })
-            redirectPath = "/";
         }
 
     } catch (error) {
@@ -158,10 +164,10 @@ export async function login(prevState, formData) {
                 err: "Some error occured. Please try again later."
             }
         }
-    } finally {
-        if (redirectPath === "/")
-            redirect("/");
-    }
+    }// finally {
+    //     if (redirectPath === "/")
+    //         redirect("/");
+    // }
 
 }
 export async function logout() {
