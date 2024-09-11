@@ -9,7 +9,6 @@ import styles from "./Cart.module.scss";
 import Button from "./smallComponents/Button";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
-import { useAppContext } from "@/context/context";
 
 //The cart popup has to be implemented later in this component.
 

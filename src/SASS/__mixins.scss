@@ -70,6 +70,7 @@
   flex-direction: column;
   gap: $g;
 }
+
 @mixin input($tbp, $lrp) {
   border: none;
   outline: none;
@@ -87,7 +88,7 @@
 }
 
 @mixin active($col, $bgcol) {
-  border-radius: 2rem;
+  border-radius: 10rem;
   background: $bgcol;
   color: $col;
 }

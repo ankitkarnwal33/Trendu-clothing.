@@ -22,9 +22,7 @@ const Card = ({ card }) => {
       <h3>{card.title}</h3>
       <div className={styles.rating}>
         <div className={styles.rating__stars}>
-          {Array.from({ length: rating }, (_, index) => (
-            <Star key={index} />
-          ))}
+          <Star rating={rating} />
         </div>
         <span>{card.rating}</span>
       </div>

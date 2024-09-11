@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 import Star from "./Star";
 import styles from "./CardProduct.module.scss";
@@ -24,9 +25,7 @@ export default function CardProduct({ card }) {
       <h3>{card.title}</h3>
       <div className={styles.container__rating}>
         <div className={styles.container__rating__stars}>
-          {Array.from({ length: rating }, (_, index) => (
-            <Star key={index} />
-          ))}
+          <Star rating={rating} />
         </div>
         <span>{card.rating}</span>
       </div>

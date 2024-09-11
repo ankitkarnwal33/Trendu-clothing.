@@ -9,7 +9,6 @@ import Navbar from "@/components/Navbar";
 import Newslater from "@/components/Newslater";
 import Testimonials from "@/components/Testimonials";
 import TopSelling from "@/components/TopSelling";
-import { redirect } from "next/navigation";
 
 export default async function Home() {
   const user = await getSessionDetails();

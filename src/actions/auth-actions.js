@@ -1,12 +1,10 @@
 "use server";
-
 import connectDB from "@/lib/connectDB";
 import { hashUserPassword, verifyUserPassword } from "@/lib/hashPassword";
 import User from '@/models/user'
-import crypto from 'node:crypto'
-import { notFound, redirect } from 'next/navigation'
-import jwt from 'jsonwebtoken'
+import jwt from 'jsonwebtoken';
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 //Function for generate tokens.
 const secret = process.env.SECRET_KEY;
@@ -18,8 +16,6 @@ function generateToken(payload) {
     if (token) return token;
     return null;
 }
-
-
 function verifyToken(token) {
     if (!token) return null;
     const payload = jwt.verify(token, secret, { algorithms: "HS256" })
@@ -143,23 +139,20 @@ export async function login(formData) {
                     }
                 }
             }
+            //Everything is okk, set the session in cookies for authentication
             cookies().set("session", token, { expiresIn, httpOnly: true })
         }
-
     } catch (error) {
         return {
             errors: {
                 err: "Some error occured. Please try again later."
             }
         }
-    }// finally {
-    //     if (redirectPath === "/")
-    //         redirect("/");
-    // }
-
+    }
 }
 export async function logout() {
     cookies().set("session", "", { expires: new Date(0) });
+    redirect("/login");
 }
 
 export async function getSessionDetails() {
@@ -168,7 +161,6 @@ export async function getSessionDetails() {
     const result = verifyToken(session);
     return result;
 }
-
 
 export async function updateSession(request) {
     const session = request.cookies.get("session")?.value;
@@ -184,3 +176,4 @@ export async function updateSession(request) {
     })
     return response;
 }
+

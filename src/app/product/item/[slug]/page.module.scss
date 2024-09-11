@@ -1,0 +1,18 @@
+.container {
+  grid-column: full-start / full-end;
+  padding: 2rem 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  margin: auto;
+  // width: 100%;
+  @media (max-width: 900px) {
+    padding: 2rem 3rem;
+  }
+  @media (max-width: 720px) {
+    padding: 2rem 2rem;
+  }
+  @media (max-width: 620px) {
+    padding: 2rem 1rem;
+  }
+}

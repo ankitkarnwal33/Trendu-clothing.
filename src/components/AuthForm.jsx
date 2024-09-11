@@ -15,12 +15,13 @@ export default function AuthForm() {
   async function handleSubmit(event) {
     event.preventDefault();
     setLoading(true);
-    const formData = new FormData(event.target);
+    const formData = new FormData(event.currentTarget);
     const result = await signUp(formData);
     if (result?.errors) {
       setErrors(result.errors);
     } else {
       router.push("/login");
+      setErrors(null);
     }
     setLoading(false);
   }

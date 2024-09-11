@@ -1,7 +1,4 @@
 import "./globals.scss";
-import Footer from "@/components/Footer";
-import Newslater from "@/components/Newslater";
-import Navbar from "@/components/Navbar";
 
 export const metadata = {
   title: "TrendU",

@@ -5,7 +5,7 @@ import { FaFilter } from "react-icons/fa";
 import styles from "./Filter.module.scss";
 import { CiCircleCheck } from "react-icons/ci";
 import { useSearchParams, useRouter } from "next/navigation";
-import { act, useState } from "react";
+import { useState } from "react";
 
 const prices = ["Low to High", "High to Low"];
 const colors = [
