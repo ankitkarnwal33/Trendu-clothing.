@@ -97,15 +97,22 @@
     border-top: $border-light-1-big;
     border-bottom: $border-light-1-big;
     padding: 1.3rem 0;
-
+    @media (max-width: 530px) {
+      flex-direction: column;
+    }
     &__heading {
       font-size: 1.5rem;
       color: $color-primary;
+      min-width: 16rem;
     }
     &__all {
       display: flex;
       flex-wrap: wrap;
+      flex-direction: row-reverse;
       gap: 1rem;
+      @media (max-width: 530px) {
+        flex-direction: row;
+      }
       span {
         padding: 1.3rem;
         border-radius: 10rem;
@@ -142,16 +149,24 @@
     justify-content: space-between;
     border-bottom: $border-light-1-big;
     padding: 1rem 0;
+    @media (max-width: 530px) {
+      flex-direction: column;
+    }
     &__heading {
       font-size: 1.5rem;
       color: $color-primary;
+      min-width: 16rem;
     }
     &__all {
       padding-bottom: 1rem;
       display: flex;
       flex-wrap: wrap;
       user-select: none;
+      flex-direction: row-reverse;
       gap: 1rem;
+      @media (max-width: 530px) {
+        flex-direction: row;
+      }
       > span {
         padding: 0.8rem 1.5rem;
         font-size: 1.3rem;
@@ -209,6 +224,17 @@
     @media (max-width: 990px) {
       &__control {
         padding: 0.5rem 1rem;
+      }
+    }
+    @media (max-width: 430px) {
+      &__control {
+        gap: 1rem;
+        > svg {
+          font-size: 1.5rem;
+        }
+        > p {
+          font-size: 1.4rem;
+        }
       }
     }
   }

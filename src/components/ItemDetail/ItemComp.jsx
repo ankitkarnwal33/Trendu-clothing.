@@ -9,7 +9,7 @@ const item = {
   rating: 4,
   description:
     "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-  colors: ["olive", "green", "darkblue"],
+  colors: ["olive", "green", "darkblue", "Black", "White", "Red"],
   size: ["S", "M", "L", "XL"],
   quantity: 1,
   specifications: {

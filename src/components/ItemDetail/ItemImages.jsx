@@ -27,8 +27,12 @@ function ItemImages() {
           <div
             key={index}
             className={`${styles.images__all__img} ${
-              images.at(index) === activeImage ? styles.active : ""
-            }`}
+              images.at(index) === activeImage
+                ? styles.active
+                : index === 0 && !activeImage
+                ? styles.active
+                : ""
+            } `}
             onClick={() => updateQueryParams("photo", images.at(index))}
           >
             <img src={`/img/item/image${index + 1}.png`} alt="Image" />
@@ -36,7 +40,10 @@ function ItemImages() {
         ))}
       </div>
       <div className={styles.images__main}>
-        <img src={`/img/item/${activeImage}.png`} alt="Image Main" />
+        <img
+          src={`/img/item/${activeImage ? activeImage : "image1"}.png`}
+          alt="Image Main"
+        />
       </div>
     </div>
   );

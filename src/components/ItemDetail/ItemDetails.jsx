@@ -15,9 +15,7 @@ function ItemDetails({ item }) {
   const activeSize = searchParams.get("size");
   function handleMinus(id) {}
   function handlePlus(id) {}
-  function handleActiveColor(index) {
-    setActiveColorIndex(index);
-  }
+
   function updateQueryParams(key, value) {
     const params = new URLSearchParams(searchParams.toString());
     if (params.has(key, value)) {
