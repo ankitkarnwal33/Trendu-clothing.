@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import CardSkeleton from "@/skeleton/CardSkeleton";
 
 export default function Products({ cards }) {
-  console.log(cards);
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(true);
   let activePrice;

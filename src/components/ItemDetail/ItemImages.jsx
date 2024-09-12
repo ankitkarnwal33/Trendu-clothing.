@@ -35,7 +35,7 @@ function ItemImages({ item }) {
             } `}
             onClick={() => updateQueryParams("photo", images.at(index))}
           >
-            <img src={`${item.image}`} alt="Image" />
+            <img src={`${item?.image}`} alt="Image" />
           </div>
         ))}
       </div>

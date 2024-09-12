@@ -2,7 +2,7 @@
 import { FaFilter } from "react-icons/fa6";
 import Filter from "./Filter";
 import Products from "./Products";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import styles from "@/app/product/casual/page.module.scss";
 
 function FilterMain({ cards }) {
@@ -12,7 +12,7 @@ function FilterMain({ cards }) {
     setActive(!active);
   }
   return (
-    <>
+    <Suspense fallback={<h1>Loading</h1>}>
       <Filter active={active} handleActive={handleActive} />
       <div className={styles.products}>
         <div className={styles.products__typo}>
@@ -33,7 +33,7 @@ function FilterMain({ cards }) {
           <Products cards={cards} />
         </div>
       </div>
-    </>
+    </Suspense>
   );
 }
 
