@@ -1,0 +1,87 @@
+@import "./../../SASS/__mixins";
+@import "./../../SASS/__variables";
+
+.header {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  &__typo {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    span {
+      font-size: 2rem;
+      font-weight: 600;
+      color: $color-black;
+    }
+    #reviews {
+      font-size: 1.5rem;
+      font-weight: 400;
+    }
+    @media (max-width: 700px) {
+      span {
+        font-size: 1.8rem;
+      }
+      #reviews {
+        font-size: 1.2rem;
+      }
+    }
+    @media (max-width: 420px) {
+      gap: 0.4rem;
+    }
+  }
+  &__buttons {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    @media (max-width: 700px) {
+      gap: 1rem;
+    }
+    > span {
+      background: $color-grey-light;
+      padding: 1.3rem 1.5rem;
+      color: $color-black;
+      border-radius: 10rem;
+      @include flexCenter;
+
+      > svg {
+        font-size: 1.8rem;
+      }
+      @media (max-width: 700px) {
+        padding: 1rem 1.2rem;
+        svg {
+          font-size: 1.6rem;
+        }
+      }
+    }
+    button {
+      padding: 1.3rem 2.3rem;
+      border: none;
+      outline: none;
+      border-radius: 10rem;
+      background: $color-grey-light;
+      @include flexCenter;
+      gap: 2rem;
+      > span {
+        color: $color-black;
+        font-size: 1.3rem;
+      }
+      > svg {
+        font-size: 1.6rem;
+        color: $color-black;
+      }
+      &:last-child {
+        background: $color-black;
+        color: $color-white;
+        @media (max-width: 420px) {
+          padding: 1rem 1.5rem;
+        }
+      }
+    }
+    #btn {
+      @media (max-width: 530px) {
+        display: none;
+      }
+    }
+  }
+}

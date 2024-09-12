@@ -7,6 +7,9 @@
   user-select: none;
   &__header {
     @include flexcol(0rem, unset);
+    h3 {
+      @include heading(2rem, $color-black, 600);
+    }
     &__heading {
       @include heading(2.95rem, $color-black, 800);
       @media (max-width: 990px) {

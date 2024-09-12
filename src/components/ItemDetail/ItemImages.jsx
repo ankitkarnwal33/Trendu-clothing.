@@ -16,7 +16,7 @@ function ItemImages() {
     } else {
       params.set(key, value);
     }
-    router.push(`?${params.toString()}`);
+    router.push(`?${params.toString()}`, { scroll: false });
   }
 
   return (

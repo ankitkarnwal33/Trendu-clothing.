@@ -1,24 +1,26 @@
 "use client";
-import Link from "next/link";
-import styles from "./RatingReviews.module.scss";
-import { useState } from "react";
+import Links from "./Links";
+import ReviewsHeader from "./ReviewsHeader";
+import Reviews from "./Reviews";
+import FAQs from "./FAQs";
+import Specifications from "./Specifications";
+import { useSearchParams } from "next/navigation";
 
 function RatingReviews() {
-  const list = ["Product Details", "Rating & Reviews", "FAQs"];
-  const [activeIndex, setActiveIndex] = useState(null);
-  function handleClick(index) {
-    setActiveIndex(index);
-  }
+  const searchParams = useSearchParams();
+  const activeLink = searchParams.get("page");
   return (
-    <ul className={styles.list}>
-      {list.map((_, index) => (
-        <li key={index} className={index === activeIndex ? styles.active : ""}>
-          <Link href={"#"} onClick={() => handleClick(index)}>
-            {list.at(index)}
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <>
+      <Links />
+      {activeLink === "Rating & Reviews" && (
+        <>
+          <ReviewsHeader />
+          <Reviews />
+        </>
+      )}
+      {activeLink === "Product Details" && <Specifications />}
+      {activeLink === "FAQs" && <FAQs />}
+    </>
   );
 }
 

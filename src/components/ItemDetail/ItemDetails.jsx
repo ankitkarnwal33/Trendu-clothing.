@@ -31,6 +31,7 @@ function ItemDetails({ item }) {
   return (
     <div className={styles.container}>
       <div className={styles.container__header}>
+        <h3>{item.brand}</h3>
         <h4 className={styles.container__header__heading}>{item.title}</h4>
         <div className={styles.container__header__rating}>
           <p>
