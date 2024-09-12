@@ -1,47 +1,12 @@
 import Index from "@/lib";
 import styles from "./Arrivals.module.scss";
 import ArrivalAndBestSelling from "./smallComponents/ArrivalAndBestSelling";
-const cards = [
-  {
-    id: 1,
-    title: "T-shirt with Tape details",
-    image: "/img/Arrivals/image7.png",
-    rating: 3,
-    toatalRating: 5,
-    price: 220,
-    discount: 0,
-  },
-  {
-    id: 2,
-    title: "Skinny Fit Jeans",
-    image: "/img/Arrivals/image8.png",
-    rating: 3,
-    toatalRating: 5,
-    price: 220,
-    discount: 20,
-  },
-  {
-    id: 3,
-    title: "Checkered Shirt",
-    image: "/img/Arrivals/image9.png",
-    rating: 4,
-    toatalRating: 5,
-    price: 220,
-    discount: 0,
-  },
-  {
-    id: 4,
-    title: "Men Regular Fit Short-Sleeved Lyocell Shirt",
-    image: "/img/Arrivals/image11.jpg",
-    rating: 5,
-    toatalRating: 5,
-    price: 320,
-    discount: 15,
-  },
-];
-function Arrivals() {
-  // New products data here to be passed to the component.
-
+import connectDB from "@/lib/connectDB";
+import { Item } from "@/models/product/item";
+export default async function Arrivals() {
+  await connectDB();
+  const newArrivals = await Item.find({}).sort({ createdAt: -1 }).limit(4);
+  const cards = JSON.parse(JSON.stringify(newArrivals));
   return (
     <section className={styles.arrivals}>
       <ArrivalAndBestSelling toPath={"/allArrivals"} cards={cards}>
@@ -50,5 +15,3 @@ function Arrivals() {
     </section>
   );
 }
-
-export default Arrivals;

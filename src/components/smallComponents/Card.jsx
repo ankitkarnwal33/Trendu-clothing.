@@ -1,18 +1,32 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
+import { useRouter } from "next/navigation";
 import Star from "./Star";
 import styles from "./card.module.scss";
+import { useEffect, useState } from "react";
 
 const Card = ({ card }) => {
-  const handleClick = (card) => {
-    console.log(card);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (card) {
+      setTimeout(() => {
+        setLoading(false);
+      }, 3000);
+    }
+    return clearTimeout(() => {}, 3000);
+  }, [card]);
+
+  const router = useRouter();
+  const handleClick = (id) => {
+    router.push(`/product/item?page=Rating+%26+Reviews&id=${id}`);
   };
+
   const rating = +card.rating.toFixed(0);
   return (
     <div
       className={styles.arrivals__slider__child__card}
       key={card.id}
-      onClick={() => handleClick(card)}
+      onClick={() => handleClick(card._id)}
     >
       <img
         src={card.image}
@@ -36,7 +50,7 @@ const Card = ({ card }) => {
         {card.discount > 0 ? (
           <>
             <p className={styles.price__all}>${card.price}</p>
-            <span>-{card.discount}%</span>{" "}
+            <span>-{card.discount}%</span>
           </>
         ) : (
           ""

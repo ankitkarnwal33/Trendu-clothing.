@@ -4,7 +4,7 @@ import { useState } from "react";
 import styles from "./ItemImages.module.scss";
 import { useSearchParams, useRouter } from "next/navigation";
 
-function ItemImages() {
+function ItemImages({ item }) {
   const images = ["image1", "image2", "image3"];
   const searchParams = useSearchParams();
   const activeImage = searchParams.get("photo");
@@ -35,13 +35,13 @@ function ItemImages() {
             } `}
             onClick={() => updateQueryParams("photo", images.at(index))}
           >
-            <img src={`/img/item/image${index + 1}.png`} alt="Image" />
+            <img src={`${item.image}`} alt="Image" />
           </div>
         ))}
       </div>
       <div className={styles.images__main}>
         <img
-          src={`/img/item/${activeImage ? activeImage : "image1"}.png`}
+          src={`${activeImage ? item.image : item.image}`}
           alt="Image Main"
         />
       </div>

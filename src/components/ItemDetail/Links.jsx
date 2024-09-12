@@ -7,7 +7,6 @@ function Links() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const activeLink = searchParams.get("page");
-  console.log(activeLink);
 
   function updateQueryParams(key, value) {
     const params = new URLSearchParams(searchParams.toString());

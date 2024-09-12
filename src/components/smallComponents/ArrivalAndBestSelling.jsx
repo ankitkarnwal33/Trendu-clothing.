@@ -1,9 +1,7 @@
 import styles from "./ArrivalAndBestSelling.module.scss";
-
 import Button from "./Button";
 import Card from "./Card";
-
-function ArrivalAndBestSelling({ children, toPath, cards }) {
+async function ArrivalAndBestSelling({ children, toPath, cards }) {
   return (
     <div className={styles.arrivals__container}>
       <div className={styles.heading}>
@@ -12,7 +10,7 @@ function ArrivalAndBestSelling({ children, toPath, cards }) {
       <div className={styles.arrivals__slider}>
         <div className={styles.arrivals__slider__child}>
           {cards.map((card) => (
-            <Card card={card} key={card.id} />
+            <Card card={card} key={card._id} />
           ))}
         </div>
       </div>

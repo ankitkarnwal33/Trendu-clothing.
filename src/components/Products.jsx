@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import CardSkeleton from "@/skeleton/CardSkeleton";
 
 export default function Products({ cards }) {
+  console.log(cards);
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState(true);
   let activePrice;
@@ -14,10 +15,8 @@ export default function Products({ cards }) {
   let activeType;
   let filterdCards = cards;
   useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 800);
-  }, [setLoading]);
+    if (cards) setLoading(false);
+  }, [cards]);
   if (searchParams.has("price")) {
     activePrice = searchParams.get("price").toString();
     filterdCards = filterCards(cards, activePrice);
@@ -36,7 +35,9 @@ export default function Products({ cards }) {
     <>
       {loading
         ? Array.from({ length: 6 }, (_, index) => <CardSkeleton key={index} />)
-        : filterdCards.map((card) => <CardProduct card={card} key={card.id} />)}
+        : filterdCards.map((card) => (
+            <CardProduct card={card} key={card._id} />
+          ))}
     </>
   );
 }

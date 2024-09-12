@@ -1,6 +1,6 @@
 import AuthFormLogin from "@/components/AuthFormLogin";
 
-function Page() {
+async function Page() {
   return <AuthFormLogin />;
 }
 

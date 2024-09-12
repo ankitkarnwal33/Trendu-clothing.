@@ -2,17 +2,19 @@
 "use client";
 import Star from "./Star";
 import styles from "./CardProduct.module.scss";
+import { useRouter } from "next/navigation";
 
 export default function CardProduct({ card }) {
-  const handleClick = (card) => {
-    console.log(card);
+  const router = useRouter();
+  const handleClick = (id) => {
+    router.push(`/product/item?page=Rating+%26+Reviews&id=${id}`);
   };
   const rating = +card.rating.toFixed(0);
   return (
     <div
       className={styles.container}
       key={card.id}
-      onClick={() => handleClick(card)}
+      onClick={() => handleClick(card._id)}
     >
       <div className={styles.container__image}>
         <img

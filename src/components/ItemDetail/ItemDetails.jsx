@@ -3,18 +3,28 @@ import { HiMinus } from "react-icons/hi2";
 import Star from "../smallComponents/Star";
 import { GoPlus } from "react-icons/go";
 import styles from "./ItemDetails.module.scss";
-
 import { useSearchParams, useRouter } from "next/navigation";
 import { CiCircleCheck } from "react-icons/ci";
-
+import { useEffect, useState } from "react";
 function ItemDetails({ item }) {
+  const [loading, setLoading] = useState(true);
   const rating = +item?.rating.toFixed(0);
   const searchParams = useSearchParams();
   const router = useRouter();
   const activeColor = searchParams.get("color");
   const activeSize = searchParams.get("size");
-  function handleMinus(id) {}
-  function handlePlus(id) {}
+  const [quantity, setQuantity] = useState(1);
+  useEffect(() => {
+    if (item) {
+      setLoading(false);
+    }
+  }, [item]);
+  function handleMinus() {
+    setQuantity((quantity) => (quantity > 1 ? quantity - 1 : quantity));
+  }
+  function handlePlus() {
+    setQuantity((quantity) => (quantity < 10 ? quantity + 1 : quantity));
+  }
 
   function updateQueryParams(key, value) {
     const params = new URLSearchParams(searchParams.toString());
@@ -27,6 +37,16 @@ function ItemDetails({ item }) {
     }
 
     router.push(`?${params.toString()}`, { scroll: false });
+  }
+  function handleSubmit() {
+    const cartItem = {
+      id: item.id,
+      title: item.title,
+      quantity: quantity,
+      color: activeColor,
+      size: item.sizes,
+      price: `${(item.price - (item.price * item.discount) / 100).toFixed(0)}`,
+    };
   }
   return (
     <div className={styles.container}>
@@ -66,13 +86,13 @@ function ItemDetails({ item }) {
       <div className={styles.container__sizes}>
         <p className={styles.container__sizes__heading}>Choose Size</p>
         <div className={styles.container__sizes__all}>
-          {item.size.map((size, index) => (
+          {item.sizes.map((size, index) => (
             <span
               key={size}
               className={`${
-                activeSize === item.size.at(index) ? styles.active : ""
+                activeSize === item.sizes.at(index) ? styles.active : ""
               }`}
-              onClick={() => updateQueryParams("size", item.size.at(index))}
+              onClick={() => updateQueryParams("size", item.sizes.at(index))}
             >
               {size}
             </span>
@@ -82,13 +102,17 @@ function ItemDetails({ item }) {
       <div className={styles.container__buttons}>
         <span className={styles.container__buttons__control}>
           <HiMinus onClick={() => handleMinus(item.id)} />
-          <p>{item.quantity}</p>
+          <p>{quantity}</p>
           <GoPlus onClick={() => handlePlus(item.id)} />
         </span>
-        <button className={styles.container__buttons__btn}>Add To Cart</button>
+        <button
+          className={styles.container__buttons__btn}
+          onClick={handleSubmit}
+        >
+          Add To Cart
+        </button>
       </div>
     </div>
   );
 }
-
 export default ItemDetails;

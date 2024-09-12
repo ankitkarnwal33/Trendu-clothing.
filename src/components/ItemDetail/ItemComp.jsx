@@ -1,27 +1,24 @@
-/* eslint-disable @next/next/no-img-element */
+import connectDB from "@/lib/connectDB";
 import styles from "./ItemComp.module.scss";
 import ItemDetails from "./ItemDetails";
 import ItemImages from "./ItemImages";
-const item = {
-  title: "One life graphic t-shirt",
-  price: 300,
-  discount: 10,
-  brand: "ZARA",
-  rating: 4,
-  description:
-    "This graphic t-shirt which is perfect for any occasion. Crafted from a soft and breathable fabric, it offers superior comfort and style.",
-  colors: ["olive", "green", "darkblue", "Black", "White", "Red"],
-  size: ["S", "M", "L", "XL"],
-  quantity: 1,
-};
+import { Item } from "@/models/product/item";
+import PlainObj from "@/lib/PlainObject";
 
-function ItemComp() {
+export default async function ItemComp({ itemId }) {
+  let Product;
+  let item;
+  try {
+    await connectDB();
+    Product = await Item.findById(itemId);
+    item = PlainObj(Product);
+  } catch (error) {
+    return <h1>{JSON.stringify(error.message)}</h1>;
+  }
   return (
     <div className={styles.container}>
-      <ItemImages />
+      <ItemImages item={item} />
       <ItemDetails item={item} />
     </div>
   );
 }
-
-export default ItemComp;
