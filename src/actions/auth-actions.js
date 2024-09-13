@@ -23,71 +23,79 @@ function verifyToken(token) {
 }
 
 export async function signUp(formData) {
-    let errors = {}
     try {
         await connectDB();
     } catch (error) {
         return {
-            errors: {
-                dbError: "Some error occured 🥲. Please try again later.",
-            }
+            status: "failed",
+            message: "Some error occured 🥲. Please try again later.",
+
         }
     }
-
     const email = formData.get("email");
     const name = formData.get("name");
     const number = formData.get("number");
     const password = formData.get("password");
     if (name.length < 2) {
-        errors.name = "Name should be at least 2 characters long."
-    }
-    if (number.length < 10 || number.length > 10) {
-        errors.number = "Mobile number should be 10 digits."
-    }
-    if (!email.includes("@") || !email.includes(".")) {
-        errors.email = "Please enter a valid email address."
-    }
-    if (password.trim().length < 8) {
-        errors.password = "Password must be at least 8 characters long."
-    }
-
-    if (Object.keys(errors).length > 0) {
         return {
-            errors,
+            status: "failed",
+            message: "Name should be at least 2 characters long."
         }
     }
+    if (number.length < 10 || number.length > 10) {
+        return {
+            status: "failed",
+            message: "Not a valid number."
+        }
+    }
+    if (!email.includes("@") || !email.includes(".")) {
+        return {
+            status: "failed",
+            message: "Please enter a valid email address."
+        }
+    }
+    if (password.trim().length < 8) {
+        return {
+            status: "failed",
+            message: "Password must be at least 8 characters long."
+        }
+    }
+
     const { hashedPassword, salt } = hashUserPassword(password); //Hashing user password.
     try {
-        await User.create({
+        const data = await User.create({
             name,
             number,
             email,
             password: hashedPassword,
             salt
-        })
+        });
+        console.log(data);
+        return {
+            status: "success",
+            data: {
+                name: data.name
+            }
+        }
     } catch (error) {
         if (error.code === 11000) { //Duplicate id found error code from mongodb
             if (error.message.includes("email")) {
                 return {
-                    errors: {
-                        email: `Email ${email} already exists.`
-                    }
+                    status: "failed",
+                    message: `Email ${email} already exists.`
                 }
+
             }
             if (error.message.includes("number")) {
                 return {
-                    errors: {
-                        number: `Number ${number} already exists.`
-                    }
+                    status: "failed",
+                    message: `Number ${number} already exists.`
                 }
             }
         } else {
-            console.log(error);
             return {
-
-                errors: {
-                    error_main: "error",
-                }
+                status: "failed",
+                message: "Some error occurred. Try again."
             }
         }
     }
@@ -100,17 +108,17 @@ export async function login(formData) {
     if (password.trim().length < 8) {
         return {
             status: "failed",
-            message: "Invalid password !",
+            message: "Invalid Password !",
         }
     }
     if (!email.trim().includes("@") || !email.includes(".")) {
         return {
             status: "failed",
-            message: "Invalid email address",
+            message: "Invalid Email Address",
         }
     }
     try {
-        await connectDB();
+        await connectDB().catch((err) => { throw new Error(err.message) });
         let user = await User.findOne({ email });
         if (user === null) {
             return {

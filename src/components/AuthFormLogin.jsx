@@ -7,6 +7,7 @@ import { redirect, useRouter } from "next/navigation";
 import { FaLock, FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { BsGearFill } from "react-icons/bs";
 import SkeletonMain from "@/skeleton/SkeletonMain";
+import Popup from "./smallComponents/Popup";
 export default function AuthFormLogin() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -22,8 +23,11 @@ export default function AuthFormLogin() {
       setLoading(true);
       const response = await login(formData);
       if (response?.status === "failed") {
-        setLoading(false);
         setError(response.message);
+        setLoading(false);
+        setTimeout(() => {
+          setError(null);
+        }, 5000);
       } else if (response?.status === "success") {
         setName(response.data.name);
         setLoggedIn(true);
@@ -41,17 +45,9 @@ export default function AuthFormLogin() {
   }
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      {loading && <SkeletonMain height={50} radius={0.5} />}
-      {!loading && loggedIn && (
-        <p className={`${styles.show} ${styles.success}`}>
-          Welcome Back {name.split(" ")[0]}
-        </p>
-      )}
-      {!loading && !loggedIn && error !== null && (
-        <p className={`${styles.show} ${styles.error}`}>
-          <span>{error}</span>
-        </p>
-      )}
+      {loading && <SkeletonMain height={40} radius={0.5} />}
+      {!loading && loggedIn && <Popup type={"success"} name={name} />}
+      {!loading && !loggedIn && error !== null && <Popup error={error} />}
       <div className={styles.form__icon}>
         <FaLock />
       </div>

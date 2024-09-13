@@ -7,29 +7,46 @@ import { useState } from "react";
 import { signUp } from "@/actions/auth-actions";
 import { useRouter } from "next/navigation";
 import { BsGearFill } from "react-icons/bs";
+import Popup from "./smallComponents/Popup";
+import SkeletonMain from "@/skeleton/SkeletonMain";
 export default function AuthForm() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const [errors, setErrors] = useState(null);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  const [name, setName] = useState("");
   async function handleSubmit(event) {
     event.preventDefault();
     setLoading(true);
     const formData = new FormData(event.currentTarget);
-    const result = await signUp(formData);
-    if (result?.errors) {
-      setErrors(result.errors);
+    const response = await signUp(formData);
+    if (response?.status === "failed") {
+      setError(response.message);
+      setLoading(false);
+      setTimeout(() => {
+        setError(null);
+      }, 5000);
+    } else if (response?.status === "success") {
+      setName(response.data.name);
+      setError(null);
+      setLoading(false);
+      setTimeout(() => {
+        router.push("/login");
+      }, 1500);
     } else {
-      router.push("/login");
-      setErrors(null);
+      setError("Something Went Wrong 🥲");
     }
-    setLoading(false);
   }
   function handleEyeClick() {
     setShowPassword(!showPassword);
   }
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
+      {loading && <SkeletonMain height={30} radius={0.5} />}
+      {!loading && error === null && name !== "" && (
+        <Popup type="signup" name={name} />
+      )}
+      {!loading && error !== null && <Popup type="failed" error={error} />}
       <div className={styles.form__icon}>
         <FaLock />
       </div>
@@ -86,13 +103,6 @@ export default function AuthForm() {
           <FaRegEye onClick={handleEyeClick} />
         )}
       </p>
-      {errors !== null ? (
-        <ul>
-          {Object.keys(errors).map((error) => (
-            <li key={error}>{errors[error]}</li>
-          ))}
-        </ul>
-      ) : null}
       <button type="submit" disabled={loading}>
         {loading ? <BsGearFill /> : "Create Account"}
       </button>

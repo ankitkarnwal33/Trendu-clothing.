@@ -1,0 +1,41 @@
+@import "../../SASS/__mixins";
+@import "../../SASS/__variables";
+
+.show {
+  font-size: 1.4rem;
+  padding: 1.5rem 4rem;
+  border-radius: 0.5rem;
+  box-shadow: $shadow-light-1;
+  text-align: center;
+  animation: moveIn 0.8s ease;
+  @media (max-width: 500px) {
+    font-size: 1.2rem;
+    padding: 1rem 4rem;
+  }
+}
+
+.success {
+  background: black;
+  color: white;
+  font-weight: 600;
+}
+.error {
+  background: $color-red-dark;
+  color: $color-white;
+  font-weight: 500;
+}
+
+@keyframes moveIn {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  50% {
+    opacity: 0.5;
+    transform: translateX(0px);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(10px);
+  }
+}
