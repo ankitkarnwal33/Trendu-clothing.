@@ -17,7 +17,7 @@ function reducer(state, action) {
   switch (action.type) {
     case "inc":
       newState = state.map((item) =>
-        item.id === action.payload.id
+        item.id === action.payload.id && item.quantity < 10
           ? { ...item, quantity: item.quantity + action.payload.val }
           : item
       );

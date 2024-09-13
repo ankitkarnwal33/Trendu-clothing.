@@ -76,6 +76,7 @@ function ItemDetails({ item }) {
       itemsArray.push(cartItem);
     }
     localStorage.setItem("cart", JSON.stringify(itemsArray));
+    router.push("/cart");
   }
   return (
     <div className={styles.container}>
@@ -128,7 +129,7 @@ function ItemDetails({ item }) {
           ))}
         </div>
       </div>
-      {error && (
+      {error !== null && Object.keys(error).length > 0 && (
         <span className={styles.error}>
           {Object.keys(error).map((err, index) => (
             <p key={err}>{error[err]}</p>
