@@ -86,7 +86,7 @@ function ItemDetails({ item }) {
           <p>
             <Star rating={rating} />
           </p>
-          <span>{rating}/5</span>
+          <span>{rating}/</span>
         </div>
         <div className={styles.container__prices}>
           <p className={styles.container__prices__net}>
