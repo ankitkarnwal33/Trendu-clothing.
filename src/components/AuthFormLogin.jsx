@@ -6,6 +6,7 @@ import { login } from "@/actions/auth-actions";
 import { redirect, useRouter } from "next/navigation";
 import { FaLock, FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { BsGearFill } from "react-icons/bs";
+import SkeletonMain from "@/skeleton/SkeletonMain";
 export default function AuthFormLogin() {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
@@ -21,16 +22,17 @@ export default function AuthFormLogin() {
       setLoading(true);
       const response = await login(formData);
       if (response?.status === "failed") {
+        setLoading(false);
         setError(response.message);
       } else if (response?.status === "success") {
         setName(response.data.name);
         setLoggedIn(true);
         setError(null);
+        setLoading(false);
         setTimeout(() => {
           return router.push("/");
-        }, 2000);
+        }, 1500);
       }
-      setLoading(false);
     } catch {}
   }
 
@@ -39,12 +41,13 @@ export default function AuthFormLogin() {
   }
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
-      {loggedIn && (
+      {loading && <SkeletonMain height={50} radius={0.5} />}
+      {!loading && loggedIn && (
         <p className={`${styles.show} ${styles.success}`}>
           Welcome Back {name.split(" ")[0]}
         </p>
       )}
-      {!loggedIn && error !== null && (
+      {!loading && !loggedIn && error !== null && (
         <p className={`${styles.show} ${styles.error}`}>
           <span>{error}</span>
         </p>

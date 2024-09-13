@@ -1,16 +1,18 @@
 @import "./../SASS/__mixins";
 @import "./../SASS/__variables";
 .skeleton {
-  margin: 2rem 0;
+  // margin: 2rem 0;
   border-radius: 10rem;
   position: relative;
   overflow: hidden;
-  background: $color-grey-light;
   animation: scale2 1.2s infinite;
+  animation-timing-function: linear;
+  background: $color-grey-light;
 }
 
 .skeleton::after {
   content: "";
+  background: $color-black;
   position: absolute;
   width: 50%;
   height: 100%;
@@ -18,7 +20,6 @@
   left: 0;
   border-radius: 10rem;
   animation: gotoRight 1.2s infinite;
-  background: $color-black;
   z-index: 2;
   filter: blur(50px);
 }
