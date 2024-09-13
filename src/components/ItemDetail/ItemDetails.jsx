@@ -3,7 +3,7 @@ import { HiMinus } from "react-icons/hi2";
 import Star from "../smallComponents/Star";
 import { GoPlus } from "react-icons/go";
 import styles from "./ItemDetails.module.scss";
-import { useSearchParams, useRouter } from "next/navigation";
+import { useSearchParams, useRouter, redirect } from "next/navigation";
 import { CiCircleCheck } from "react-icons/ci";
 import { useEffect, useState } from "react";
 function ItemDetails({ item }) {
@@ -14,6 +14,7 @@ function ItemDetails({ item }) {
   const activeColor = searchParams.get("color");
   const activeSize = searchParams.get("size");
   const [quantity, setQuantity] = useState(1);
+  const [error, setError] = useState(null);
   useEffect(() => {
     if (item) {
       setLoading(false);
@@ -25,7 +26,6 @@ function ItemDetails({ item }) {
   function handlePlus() {
     setQuantity((quantity) => (quantity < 10 ? quantity + 1 : quantity));
   }
-
   function updateQueryParams(key, value) {
     const params = new URLSearchParams(searchParams.toString());
     if (params.has(key, value)) {
@@ -38,15 +38,44 @@ function ItemDetails({ item }) {
 
     router.push(`?${params.toString()}`, { scroll: false });
   }
+
+  if (loading) {
+    return <h1>Loading</h1>;
+  }
+
   function handleSubmit() {
+    let newErrors = {};
+    if (activeColor === null) {
+      newErrors.color = "Please choose a color.";
+    }
+    if (activeSize === null) {
+      newErrors.size = "Please choose a size.";
+    }
+    if (Object.keys(newErrors).length > 0) {
+      setError(newErrors);
+      return;
+    }
+    setError({});
     const cartItem = {
-      id: item.id,
+      id: item._id,
       title: item.title,
       quantity: quantity,
+      discount: item.discount,
+      image: item.image,
       color: activeColor,
-      size: item.sizes,
-      price: `${(item.price - (item.price * item.discount) / 100).toFixed(0)}`,
+      size: activeSize,
+      price: (item.price - (item.price * item.discount) / 100).toFixed(0),
     };
+    const existingCart = localStorage.getItem("cart");
+    const itemsArray = existingCart ? JSON.parse(existingCart) : [];
+
+    const index = itemsArray.findIndex((i) => i.id === cartItem.id);
+    if (index !== -1) {
+      itemsArray[index] = cartItem;
+    } else {
+      itemsArray.push(cartItem);
+    }
+    localStorage.setItem("cart", JSON.stringify(itemsArray));
   }
   return (
     <div className={styles.container}>
@@ -99,6 +128,13 @@ function ItemDetails({ item }) {
           ))}
         </div>
       </div>
+      {error && (
+        <span className={styles.error}>
+          {Object.keys(error).map((err, index) => (
+            <p key={err}>{error[err]}</p>
+          ))}
+        </span>
+      )}
       <div className={styles.container__buttons}>
         <span className={styles.container__buttons__control}>
           <HiMinus onClick={() => handleMinus(item.id)} />

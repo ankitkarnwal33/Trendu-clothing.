@@ -12,6 +12,7 @@ export default async function ItemComp({ itemId }) {
     await connectDB();
     Product = await Item.findById(itemId);
     item = PlainObj(Product);
+    console.log(item);
   } catch (error) {
     return <h1>{JSON.stringify(error.message)}</h1>;
   }

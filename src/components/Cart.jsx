@@ -31,7 +31,6 @@ function reducer(state, action) {
       break;
     case "del":
       newState = state.filter((item) => item.id !== action.payload);
-
       break;
     case "set":
       newState = action.payload;
@@ -44,48 +43,6 @@ function reducer(state, action) {
   }
   return newState;
 }
-const data = [
-  {
-    id: 1,
-    title: "T-shirt with Tape details",
-    image: "/img/Arrivals/image7.png",
-    color: "Black",
-    size: "Large",
-    price: 220,
-    discount: 5,
-    quantity: 1,
-  },
-  {
-    id: 2,
-    title: "Skinny Fit Jeans",
-    image: "/img/Arrivals/image8.png",
-    color: "Black",
-    size: "Large",
-    price: 220,
-    discount: 20,
-    quantity: 1,
-  },
-  {
-    id: 3,
-    title: "Checkered Shirt",
-    image: "/img/Arrivals/image9.png",
-    color: "black",
-    size: "large",
-    price: 220,
-    discount: 7,
-    quantity: 1,
-  },
-  {
-    id: 4,
-    title: "Sleeve Striped T-shirt",
-    image: "/img/Arrivals/image10.png",
-    color: "black",
-    size: "large",
-    price: 320,
-    discount: 15,
-    quantity: 1,
-  },
-];
 function Cart() {
   const [state, dispatch] = useReducer(reducer, []);
   useEffect(() => {
@@ -94,11 +51,6 @@ function Cart() {
       dispatch({
         type: "set",
         payload: JSON.parse(localCart),
-      });
-    } else {
-      dispatch({
-        type: "set",
-        payload: data,
       });
     }
   }, []);

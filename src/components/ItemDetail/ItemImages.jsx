@@ -1,14 +1,19 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./ItemImages.module.scss";
 import { useSearchParams, useRouter } from "next/navigation";
+import { TbH1 } from "react-icons/tb";
 
 function ItemImages({ item }) {
   const images = ["image1", "image2", "image3"];
   const searchParams = useSearchParams();
   const activeImage = searchParams.get("photo");
   const router = useRouter();
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    if (!item) setLoading(false);
+  }, [item]);
   function updateQueryParams(key, value) {
     const params = new URLSearchParams(searchParams.toString());
     if (params.has(key, value)) {

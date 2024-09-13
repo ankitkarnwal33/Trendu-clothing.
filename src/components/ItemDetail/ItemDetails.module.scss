@@ -243,3 +243,30 @@
     }
   }
 }
+
+.error {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 1rem;
+  color: $color-red-dark;
+  font-size: 1.2rem;
+  p {
+    padding: 1rem 2rem;
+    background: $color-grey-light;
+    border-radius: 1rem;
+    animation: error 0.2s;
+  }
+}
+
+@keyframes error {
+  0% {
+    transform: translateX(-1rem);
+  }
+  50% {
+    transform: translateX(1rem);
+  }
+  100% {
+    transform: translateX(-1rem);
+  }
+}
