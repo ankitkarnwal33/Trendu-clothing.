@@ -1,27 +1,34 @@
 "use client";
 import styles from "./AuthForm.module.scss";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { login } from "@/actions/auth-actions";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 import { FaLock, FaRegEye, FaEyeSlash } from "react-icons/fa";
 import { BsGearFill } from "react-icons/bs";
 export default function AuthFormLogin() {
-  const [errors, setErrors] = useState(null);
+  const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [name, setName] = useState("");
   const router = useRouter();
+
   async function handleSubmit(event) {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
     try {
       setLoading(true);
-      const result = await login(formData);
-      if (result?.errors) {
-        setErrors(result.errors);
-      } else {
-        router.push("/");
-        setErrors(null);
+      const response = await login(formData);
+      if (response?.status === "failed") {
+        setError(response.message);
+      } else if (response?.status === "success") {
+        setName(response.data.name);
+        setLoggedIn(true);
+        setError(null);
+        setTimeout(() => {
+          return router.push("/");
+        }, 2000);
       }
       setLoading(false);
     } catch {}
@@ -30,9 +37,18 @@ export default function AuthFormLogin() {
   function handleClick() {
     setShowPassword(!showPassword);
   }
-
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
+      {loggedIn && (
+        <p className={`${styles.show} ${styles.success}`}>
+          Welcome Back {name.split(" ")[0]}
+        </p>
+      )}
+      {!loggedIn && error !== null && (
+        <p className={`${styles.show} ${styles.error}`}>
+          <span>{error}</span>
+        </p>
+      )}
       <div className={styles.form__icon}>
         <FaLock />
       </div>
@@ -67,13 +83,7 @@ export default function AuthFormLogin() {
           <FaEyeSlash onClick={handleClick} />
         )}
       </p>
-      {errors !== null ? (
-        <ul>
-          {Object.keys(errors).map((error) => (
-            <li key={error}>{errors[error]}</li>
-          ))}
-        </ul>
-      ) : null}
+
       <button type="submit" disabled={loading}>
         {loading ? <BsGearFill /> : "Login"}
       </button>

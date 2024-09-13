@@ -1,0 +1,36 @@
+# Query: console
+# Flags: WordMatch
+# Including: ./trendu
+# ContextLines: 1
+
+7 results - 5 files
+
+middleware.ts:
+  4  export async function middleware(request: Request) {
+  5:   console.log("done");
+  6    const response = await updateSession(request);
+
+src\actions\auth-actions.js:
+   84          } else {
+   85:             console.log(error);
+   86              return {
+
+   99      let errors = {};
+  100:     console.log(email, password);
+  101      // let redirectPath = null;
+
+src\components\ItemDetail\ItemComp.jsx:
+  14      item = PlainObj(Product);
+  16    } catch (error) {
+
+src\lib\connectDB.ts:
+  19        connection.isConnected = db.connections[0].readyState; //Set the ready state
+  20:       // console.log("Database has been connected");
+  21      }
+
+src\lib\index.js:
+   7  //     const result = await response.json();
+   8: //     if (result) console.log(result);
+   9  //   } catch (error) {
+  10: //     console.log(error);
+  11  //   }

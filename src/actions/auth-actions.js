@@ -96,18 +96,17 @@ export async function signUp(formData) {
 export async function login(formData) {
     const email = formData.get("email");
     const password = formData.get("password");
-    let errors = {};
-    console.log(email, password);
-    // let redirectPath = null;
+    //Edge cases
     if (password.trim().length < 8) {
-        errors.password = "Invalid password !";
+        return {
+            status: "failed",
+            message: "Invalid password !",
+        }
     }
     if (!email.trim().includes("@") || !email.includes(".")) {
-        errors.email = "Invalid email address";
-    }
-    if (Object.keys(errors).length > 0) {
         return {
-            errors,
+            status: "failed",
+            message: "Invalid email address",
         }
     }
     try {
@@ -115,17 +114,15 @@ export async function login(formData) {
         let user = await User.findOne({ email });
         if (user === null) {
             return {
-                errors: {
-                    notFound: "User not found !. Did you signed up ?",
-                }
+                status: "failed",
+                message: "User not found. Check your email."
             }
         }
         const isValidPassword = verifyUserPassword(user.password, password, user.salt);
         if (!isValidPassword) {
             return {
-                errors: {
-                    wrongPassword: "Wrong password ! Try again."
-                }
+                status: "failed",
+                message: "Oo Wrong Password, Try again"
             }
         }
         //Double check for authenticated.
@@ -134,19 +131,23 @@ export async function login(formData) {
             const expiresIn = new Date(Date.now() + 60 * 60 * 24 * 1000);  //1day
             if (token === null) { //Token is not generated
                 return {
-                    errors: {
-                        token: "Some error occured. try again later."
-                    }
+                    status: "failed",
+                    message: "Something went wrong.Try again."
                 }
             }
             //Everything is okk, set the session in cookies for authentication
             cookies().set("session", token, { expiresIn, httpOnly: true })
+            return {
+                status: "success",
+                data: {
+                    name: user.name
+                }
+            };
         }
     } catch (error) {
         return {
-            errors: {
-                err: "Some error occured. Please try again later."
-            }
+            status: "failed",
+            message: "Some error occured. Please try again later."
         }
     }
 }

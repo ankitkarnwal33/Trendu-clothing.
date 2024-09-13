@@ -10,8 +10,6 @@ import Button from "./smallComponents/Button";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
 
-//The cart popup has to be implemented later in this component.
-
 function reducer(state, action) {
   let newState;
   switch (action.type) {
