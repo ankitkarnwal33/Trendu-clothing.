@@ -1,0 +1,268 @@
+@import "./../SASS/__mixins";
+@import "./../SASS/__variables";
+.container {
+  width: 100%;
+  //   @include flexrow(3rem, start);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.heading {
+  margin: 2rem 0rem 0rem 1rem;
+  @include mixinMain(25rem, 5rem, $color-grey-light);
+  @media (max-width: 830px) {
+    width: 15rem;
+    height: 3rem;
+  }
+}
+.heading::after {
+  margin-top: 2rem;
+  @include mixinAfter($color-black);
+}
+
+.container__full {
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+  @media (max-width: 830px) {
+    align-items: flex-start;
+    gap: 2rem;
+  }
+  @media (max-width: 670px) {
+    flex-direction: column;
+  }
+}
+.main {
+  @include boxes($border-light-1);
+  width: 58%;
+  @media (max-width: 830px) {
+    width: 100%;
+  }
+  padding: 1.5rem 2rem;
+  display: flex;
+  flex-direction: column;
+  &__1 {
+    padding: 2rem 0rem;
+    border-bottom: $border-light-1;
+    display: flex;
+    gap: 2rem;
+    &_2 {
+      width: 100%;
+      @include flexrow(1rem, unset);
+      gap: 2rem;
+      .image {
+        @include mixinMain(12vw, 10vw, $color-grey-light);
+        border-radius: 1rem;
+        min-width: 10rem;
+        min-height: 8rem;
+      }
+      .image::after {
+        @include mixinAfter($color-black);
+      }
+      .details {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 100%;
+        gap: 1rem;
+        &_1 {
+          align-items: center;
+          display: flex;
+          justify-content: space-between;
+          &_item {
+            @include mixinMain(60%, 2.7rem, $color-grey-light);
+          }
+          &_item::after {
+            @include mixinAfter($color-black);
+          }
+          &_circle {
+            @include mixinMain(3rem, 3rem, $color-grey-light);
+          }
+          &_circle::after {
+            @include mixinAfter($color-black);
+          }
+          @media (max-width: 830px) {
+            &_item {
+              @include mixinMain(70%, 1.7rem, $color-grey-light);
+            }
+            &_circle {
+              @include mixinMain(2rem, 2rem, $color-grey-light);
+            }
+          }
+        }
+        &_2 {
+          display: flex;
+          flex-direction: column;
+          gap: 0.9rem;
+          .small {
+            @include mixinMain(28%, 1.3rem, $color-grey-light);
+          }
+
+          .small::after {
+            @include mixinAfter($color-black);
+          }
+          @media (max-width: 830px) {
+            gap: 0.5rem;
+            .small {
+              @include mixinMain(35%, 1rem, $color-grey-light);
+            }
+          }
+        }
+        &_data {
+          @include mixinMain(20%, 2.5rem, $color-grey-light);
+        }
+        &_data::after {
+          @include mixinAfter($color-black);
+        }
+        &_button {
+          @include mixinMain(25%, 3.5rem, $color-grey-light);
+        }
+        &_button::after {
+          @include mixinAfter($color-black);
+        }
+        @media (max-width: 830px) {
+          &_data {
+            @include mixinMain(25%, 1.8rem, $color-grey-light);
+          }
+          &_button {
+            @include mixinMain(40%, 2.5rem, $color-grey-light);
+          }
+        }
+      }
+    }
+  }
+
+  ///Latr
+  &__2 {
+    @include boxes($border-light-1);
+    @include flexcol(2rem, unset);
+    padding: 2rem;
+
+    width: 40%;
+    @media (max-width: 830px) {
+      width: 90%;
+      margin: auto;
+    }
+    .head {
+      @include mixinMain(50%, 2.5rem, $color-grey-light);
+    }
+    .head::after {
+      @include mixinAfter($color-black);
+    }
+    .mid {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      border-bottom: $border-light-1;
+      padding-bottom: 2rem;
+      &_item {
+        display: flex;
+        justify-content: space-between;
+        &_1 {
+          @include mixinMain(30%, 2rem, $color-grey-light);
+        }
+        &_1::after {
+          @include mixinAfter($color-black);
+        }
+        &_2 {
+          @include mixinMain(5rem, 2.2rem, $color-grey-light);
+        }
+        &_2::after {
+          @include mixinAfter($color-black);
+        }
+      }
+    }
+    .end {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      &_item {
+        display: flex;
+        justify-content: space-between;
+        &_1 {
+          @include mixinMain(20%, 2.5rem, $color-grey-light);
+        }
+        &_1::after {
+          @include mixinAfter($color-black);
+        }
+        &_2 {
+          @include mixinMain(6rem, 2.2rem, $color-grey-light);
+        }
+        &_2::after {
+          @include mixinAfter($color-black);
+        }
+        &_input {
+          @include mixinMain(60%, 3.5rem, $color-grey-light);
+        }
+        &_input::after {
+          @include mixinAfter($color-black);
+        }
+        &_btn {
+          @include mixinMain(8rem, 3.5rem, $color-grey-light);
+        }
+        &_btn::after {
+          @include mixinAfter($color-black);
+        }
+        &_button {
+          @include mixinMain(100%, 3.7rem, $color-grey-light);
+        }
+        &_button::after {
+          @include mixinAfter($color-black);
+        }
+      }
+      .item {
+        display: flex;
+        justify-content: space-between;
+        @media (max-width: 830px) {
+          flex-direction: column;
+          gap: 2rem;
+        }
+        &_input {
+          @include mixinMain(60%, 3rem, $color-grey-light);
+          @media (max-width: 830px) {
+            width: 100%;
+          }
+        }
+        &_input::after {
+          @include mixinAfter($color-black);
+        }
+        &_btn {
+          @include mixinMain(10rem, 3rem, $color-grey-light);
+          @media (max-width: 830px) {
+            width: 50%;
+            margin: auto;
+          }
+        }
+        &_btn::after {
+          @include mixinAfter($color-black);
+        }
+      }
+    }
+  }
+}
+
+@keyframes gotoRight {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes scale2 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}

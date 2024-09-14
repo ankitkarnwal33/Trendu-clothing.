@@ -92,3 +92,29 @@
   background: $bgcol;
   color: $col;
 }
+
+@mixin mixinMain($width, $hei, $bgcol) {
+  width: $width;
+  height: $hei;
+  border-radius: 10rem;
+  position: relative;
+  overflow: hidden;
+  animation: scale2 1.2s infinite;
+  animation-timing-function: linear;
+  background: $bgcol;
+  border-radius: 10rem;
+}
+
+@mixin mixinAfter($bgcol) {
+  content: "";
+  position: absolute;
+  background: $bgcol;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 10rem;
+  animation: gotoRight 1.2s infinite;
+  z-index: 2;
+  filter: blur(100px);
+}

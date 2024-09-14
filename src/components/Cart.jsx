@@ -4,11 +4,15 @@ import Image from "next/image";
 import { MdDelete } from "react-icons/md";
 import { GoPlus } from "react-icons/go";
 import { HiMinus } from "react-icons/hi2";
-import { useEffect, useReducer } from "react";
+import { useEffect, useReducer, useState } from "react";
 import styles from "./Cart.module.scss";
 import Button from "./smallComponents/Button";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
+
+import { Triangle } from "react-loader-spinner";
+import CartSkeleton from "@/skeleton/CartSkeleton";
+import { TbCoinRupee } from "react-icons/tb";
 
 function reducer(state, action) {
   let newState;
@@ -43,14 +47,18 @@ function reducer(state, action) {
 }
 function Cart() {
   const [state, dispatch] = useReducer(reducer, []);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     const localCart = localStorage.getItem("cart");
-    if (localCart) {
-      dispatch({
-        type: "set",
-        payload: JSON.parse(localCart),
-      });
-    }
+    setTimeout(() => {
+      if (localCart) {
+        dispatch({
+          type: "set",
+          payload: JSON.parse(localCart),
+        });
+      }
+      setLoading(false);
+    }, 500);
   }, []);
   function handleMinus(id) {
     dispatch({
@@ -86,11 +94,21 @@ function Cart() {
     return accumulator + (item.discount * item.price * item.quantity) / 100;
   }, 0);
   let deliveryCharge = totalPrice >= 500 ? 0 : 49;
+
   return (
     <>
-      {length > 0 ? (
+      {loading && <CartSkeleton />}
+      {length <= 0 && !loading && (
+        <div className={styles.empty}>
+          <h3>
+            Your cart is waiting for the perfect pick. Start shopping now!
+          </h3>
+          <Button toPath={"/"} content="Home" />
+        </div>
+      )}
+      {length > 0 && !loading && (
         <>
-          <h1 id={styles.heading}>Your cart </h1>
+          <h1 id={styles.heading}>Your cart</h1>
           <div className={styles.container__boxes}>
             <div className={styles.container__boxes__items}>
               {state.map((item) => (
@@ -169,13 +187,6 @@ function Cart() {
             </div>
           </div>
         </>
-      ) : (
-        <div className={styles.empty}>
-          <h3>
-            Your cart is waiting for the perfect pick. Start shopping now!
-          </h3>
-          <Button toPath={"/"} content="Home" />
-        </div>
       )}
     </>
   );

@@ -1,0 +1,50 @@
+@import "../SASS/__mixins";
+@import "../SASS/__variables";
+.skeleton {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 10rem;
+  position: relative;
+  overflow: hidden;
+  animation: scale2 1.2s infinite;
+  animation-timing-function: linear;
+  background: $color-grey-light;
+  border-radius: 10rem;
+}
+
+.skeleton::after {
+  content: "";
+  background: $color-black;
+  position: absolute;
+  width: 50%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 10rem;
+  animation: gotoRight 1.2s infinite;
+  z-index: 2;
+  filter: blur(50px);
+}
+
+@keyframes gotoRight {
+  0% {
+    transform: translateX(-100%);
+  }
+
+  100% {
+    transform: translateX(200%);
+  }
+}
+
+@keyframes scale2 {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.02);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
