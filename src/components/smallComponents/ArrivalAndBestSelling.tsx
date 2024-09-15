@@ -1,8 +1,19 @@
-import { Key } from "react";
+import { Key, ReactNode } from "react";
 import styles from "./ArrivalAndBestSelling.module.scss";
 import Button from "./Button";
 import Card from "./Card";
-async function ArrivalAndBestSelling({ children, toPath, cards }) {
+import { CardObj } from "@/lib/filterCards";
+interface ArrivalAndBestSellingType {
+  children: ReactNode;
+  toPath: string;
+  cards: CardObj[];
+}
+
+async function ArrivalAndBestSelling({
+  children,
+  toPath,
+  cards,
+}: ArrivalAndBestSellingType) {
   return (
     <div className={styles.arrivals__container}>
       <div className={styles.heading}>
@@ -10,7 +21,7 @@ async function ArrivalAndBestSelling({ children, toPath, cards }) {
       </div>
       <div className={styles.arrivals__slider}>
         <div className={styles.arrivals__slider__child}>
-          {cards.map((card) => (
+          {cards.map((card: CardObj) => (
             <Card card={card} key={card._id} />
           ))}
         </div>

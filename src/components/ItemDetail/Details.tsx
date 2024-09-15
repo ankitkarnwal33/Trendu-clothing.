@@ -1,10 +1,13 @@
 import styles from "./Details.module.scss";
 import RatingReviews from "./RatingReviews";
 
-export default async function Details({ itemId: string }) {
+interface DetailsProps {
+  itemId: string;
+}
+export default async function Details({ itemId }: DetailsProps) {
   return (
     <div className={styles.container}>
-      <RatingReviews />
+      <RatingReviews itemId={itemId} />
     </div>
   );
 }

@@ -1,6 +1,7 @@
 "use client";
 
 //Have to optimize more further.//
+
 import Image from "next/image";
 import styles from "./Navbar.module.scss";
 import logo from "./../../public/img/Logo.png";
@@ -14,7 +15,9 @@ import { TbLogout2 } from "react-icons/tb";
 import { logout } from "@/actions/auth-actions";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-function Navbar({ user }) {
+import { User } from "@/app/page";
+function Navbar({ user }: { user: User }) {
+  console.log(user);
   const path = usePathname();
   const [icons, setHideIcons] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);

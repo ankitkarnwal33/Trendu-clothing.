@@ -3,8 +3,13 @@
 import Star from "./Star";
 import styles from "./CardProduct.module.scss";
 import { useRouter } from "next/navigation";
+import { CardObj } from "@/lib/filterCards";
 
-export default function CardProduct({ card }) {
+interface CardProduct {
+  card: CardObj;
+}
+
+export default function CardProduct({ card }: CardProduct) {
   const router = useRouter();
   const handleClick = (id: string): void => {
     router.push(`/product/item?page=Rating+%26+Reviews&id=${id}`);
@@ -13,7 +18,7 @@ export default function CardProduct({ card }) {
   return (
     <div
       className={styles.container}
-      key={card.id}
+      key={card._id}
       onClick={() => handleClick(card._id)}
     >
       <div className={styles.container__image}>

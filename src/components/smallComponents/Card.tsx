@@ -3,20 +3,11 @@
 import { useRouter } from "next/navigation";
 import Star from "./Star";
 import styles from "./card.module.scss";
-import { useEffect, useState } from "react";
-
-const Card = ({ card }) => {
-  const [loading, setLoading] = useState<boolean>(true);
-  useEffect(() => {
-    let id: any;
-    if (card) {
-      id = setTimeout(() => {
-        setLoading(false);
-      }, 3000);
-    }
-    return clearTimeout(id);
-  }, [card]);
-
+import { CardObj } from "@/lib/filterCards";
+interface CardProps {
+  card: CardObj;
+}
+export default function Card({ card }: CardProps) {
   const router = useRouter();
   const handleClick = (id: string): void => {
     router.push(`/product/item?page=Rating+%26+Reviews&id=${id}`);
@@ -26,7 +17,7 @@ const Card = ({ card }) => {
   return (
     <div
       className={styles.arrivals__slider__child__card}
-      key={card.id}
+      key={card._id}
       onClick={() => handleClick(card._id)}
     >
       <img
@@ -60,6 +51,4 @@ const Card = ({ card }) => {
       </div>
     </div>
   );
-};
-
-export default Card;
+}

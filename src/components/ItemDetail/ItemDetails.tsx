@@ -6,11 +6,23 @@ import styles from "./ItemDetails.module.scss";
 import { useSearchParams, useRouter } from "next/navigation";
 import { CiCircleCheck } from "react-icons/ci";
 import { useEffect, useState } from "react";
-function ItemDetails({ item }) {
-  type Error = {
-    color: string;
-    size: string;
-  };
+import { CardObj } from "@/lib/filterCards";
+export interface CartItem {
+  id: string;
+  title: string;
+  quantity: number;
+  discount: number;
+  image: string;
+  color: string;
+  size: string;
+  price: number;
+}
+
+interface ItemDetaisProps {
+  item: CardObj;
+}
+
+function ItemDetails({ item }: ItemDetaisProps) {
   const rating: number = +item?.rating.toFixed(0);
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -70,16 +82,7 @@ function ItemDetails({ item }) {
       size: activeSize,
       price: +(item.price - (item.price * item.discount) / 100).toFixed(0),
     };
-    type CartItem = {
-      id: string;
-      title: string;
-      quantity: number;
-      discount: number;
-      image: string;
-      color: string;
-      size: string;
-      price: number;
-    };
+
     const existingCart: string = localStorage.getItem("cart");
     const itemsArray: CartItem[] = existingCart ? JSON.parse(existingCart) : [];
 

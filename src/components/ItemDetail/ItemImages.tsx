@@ -3,9 +3,13 @@
 import { useEffect, useState } from "react";
 import styles from "./ItemImages.module.scss";
 import { useSearchParams, useRouter } from "next/navigation";
-import { TbH1 } from "react-icons/tb";
+import { CardObj } from "@/lib/filterCards";
 
-function ItemImages({ item }) {
+interface ItemImagesProps {
+  item: CardObj;
+}
+
+function ItemImages({ item }: ItemImagesProps) {
   type ImagesTuple = [string, string, string];
   const images: ImagesTuple = ["image1", "image2", "image3"];
   const searchParams = useSearchParams();

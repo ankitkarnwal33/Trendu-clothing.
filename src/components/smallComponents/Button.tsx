@@ -1,7 +1,11 @@
 import Link from "next/link";
 import styles from "./button.module.scss";
-
-function Button({ toPath, content = "View All" }) {
+import { ReactNode } from "react";
+interface PropsTypes {
+  toPath: string;
+  content?: string;
+}
+function Button({ toPath, content = "View All" }: PropsTypes) {
   return (
     <>
       {toPath ? (

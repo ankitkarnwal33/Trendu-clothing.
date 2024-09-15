@@ -4,8 +4,9 @@ import Filter from "./Filter";
 import Products from "./Products";
 import { Suspense, useState } from "react";
 import styles from "@/app/product/casual/page.module.scss";
+import { CardObj } from "@/lib/filterCards";
 
-function FilterMain({ cards }) {
+function FilterMain({ cards }: { cards: CardObj[] }) {
   const [active, setActive] = useState<boolean>(false);
 
   function handleActive(): void {

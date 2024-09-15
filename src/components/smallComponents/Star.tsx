@@ -1,4 +1,8 @@
-export default function Star({ rating }) {
+interface StarProps {
+  rating: number;
+}
+
+export default function Star({ rating }: { rating: number }) {
   return (
     <>
       {Array.from({ length: rating }, (_, index) => (

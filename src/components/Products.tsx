@@ -5,7 +5,7 @@ import CardProduct from "./smallComponents/CardProduct";
 import { useEffect, useState } from "react";
 import CardSkeleton from "@/skeleton/CardSkeleton";
 
-export default function Products({ cards }) {
+export default function Products({ cards }: { cards: CardObj[] }) {
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState<boolean>(true);
   let activePrice: string;

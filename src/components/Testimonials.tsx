@@ -4,7 +4,7 @@ import Star from "@/components/smallComponents/Star";
 import styles from "./Testimonials.module.scss";
 function Testimonials() {
   const [tracker, setTracker] = useState<number>(0);
-  const [transformCard, setTransformCard] = useState(0);
+  const [transformCard, setTransformCard] = useState<number>(0);
   interface Review {
     rating: number;
     owner: string;

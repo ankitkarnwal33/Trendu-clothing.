@@ -11,6 +11,8 @@ type Payload = {
   id: string;
   name: string;
   email: string;
+  exp?: Date;
+  iat?: Date;
 };
 export type Result = {
   status: string;

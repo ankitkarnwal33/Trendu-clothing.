@@ -1,5 +1,10 @@
 import styles from "./Popup.module.scss";
-function Popup({ type = "failed", name = "", error = "" }) {
+interface PopupType {
+  type?: string;
+  name?: string;
+  error?: string;
+}
+function Popup({ type = "failed", name = "", error = "" }: PopupType) {
   let classNames = `${styles.show} ${
     type === "success" || type === "signup" ? styles.success : styles.error
   }`;

@@ -11,9 +11,16 @@ import Newslater from "@/components/Newslater";
 import Testimonials from "@/components/Testimonials";
 import TopSelling from "@/components/TopSelling";
 
+export interface User {
+  email: string;
+  exp?: Date;
+  iat?: Date;
+  id: string;
+  name: string;
+}
 export default async function Home() {
   initializeSession();
-  const user = await getSessionDetails();
+  const user: User = await getSessionDetails();
   return (
     <>
       <Navbar user={user} />

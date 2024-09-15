@@ -4,14 +4,19 @@ import ItemDetails from "./ItemDetails";
 import ItemImages from "./ItemImages";
 import { Item } from "@/models/product/item";
 import PlainObj from "@/lib/PlainObject";
+import { CardObj } from "@/lib/filterCards";
 
-export default async function ItemComp({ itemId }) {
-  let Product: Object[];
-  let item: Object[];
+interface ItemCompProps {
+  itemId: string;
+}
+
+export default async function ItemComp({ itemId }: ItemCompProps) {
+  let Product: CardObj;
+  let item: CardObj;
   try {
     await connectDB();
     Product = await Item.findById(itemId);
-    item = PlainObj(Product);
+    item = JSON.parse(JSON.stringify(Product));
   } catch (error) {
     return <h1>{JSON.stringify(error.message)}</h1>;
   }

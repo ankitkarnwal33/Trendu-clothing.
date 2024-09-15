@@ -5,7 +5,7 @@ import { FaFilter } from "react-icons/fa";
 import styles from "./Filter.module.scss";
 import { CiCircleCheck } from "react-icons/ci";
 import { useSearchParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { FormEvent, ReactNode, useState } from "react";
 
 type PriceTuple = [string, string];
 
@@ -25,7 +25,12 @@ const colors = [
 const sizes: string[] = ["XXS", "XS", "S", "M", "L", "XL", "XXL", "3XL", "4XL"];
 const listItems: string[] = ["t-shirts", "shorts", "shirts", "hoodie", "jeans"];
 
-export default function Filter({ active, handleActive }) {
+interface FilterProps {
+  active: boolean;
+  handleActive(active: boolean): void;
+}
+
+export default function Filter({ active, handleActive }: FilterProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
   // Get active filter values from the URL
