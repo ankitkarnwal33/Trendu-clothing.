@@ -1,18 +1,18 @@
 "use client";
 import { useSearchParams } from "next/navigation";
-import filterCards, { filterByType } from "@/lib/filterCards";
+import filterCards, { CardObj, filterByType } from "@/lib/filterCards";
 import CardProduct from "./smallComponents/CardProduct";
 import { useEffect, useState } from "react";
 import CardSkeleton from "@/skeleton/CardSkeleton";
 
 export default function Products({ cards }) {
   const searchParams = useSearchParams();
-  const [loading, setLoading] = useState(true);
-  let activePrice;
-  let activeColor;
-  let activeSize;
-  let activeType;
-  let filterdCards = cards;
+  const [loading, setLoading] = useState<boolean>(true);
+  let activePrice: string;
+  let activeColor: string;
+  let activeSize: string;
+  let activeType: string;
+  let filterdCards: CardObj[] = cards;
   useEffect(() => {
     if (cards) setLoading(false);
   }, [cards]);

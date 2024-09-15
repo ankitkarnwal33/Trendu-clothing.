@@ -3,10 +3,11 @@ import styles from "./page.module.scss";
 import connectDB from "@/lib/connectDB";
 import { Item } from "@/models/product/item";
 import PlainObj from "@/lib/PlainObject";
+import { CardObj } from "@/lib/filterCards";
 
 export default async function Casual() {
-  let products: Object[];
-  let cards: Object[];
+  let products: CardObj[];
+  let cards: CardObj[];
   try {
     await connectDB();
     products = await Item.find({});

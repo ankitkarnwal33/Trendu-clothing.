@@ -1,12 +1,18 @@
 "use client";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import Star from "@/components/smallComponents/Star";
 import styles from "./Testimonials.module.scss";
 function Testimonials() {
-  const [tracker, setTracker] = useState(0);
+  const [tracker, setTracker] = useState<number>(0);
   const [transformCard, setTransformCard] = useState(0);
+  interface Review {
+    rating: number;
+    owner: string;
+    isVerified: boolean;
+    review: string;
+  }
   //Mock data
-  const reviews = [
+  const reviews: Review[] = [
     {
       rating: 5,
       owner: "Sarah Gill",
@@ -155,9 +161,8 @@ function Testimonials() {
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
   ];
-  const { length } = reviews;
 
-  function handleScrollPrev(event) {
+  function handleScrollPrev(event: FormEvent) {
     if (tracker > 0) {
       setTransformCard((value) => value + 110);
       setTracker((v) => v - 1);
@@ -165,7 +170,7 @@ function Testimonials() {
       setTransformCard((value) => value * 0);
     }
   }
-  function handleScrollNext(event) {
+  function handleScrollNext(event: FormEvent) {
     if (tracker < length - 2) {
       setTransformCard((v) => v - 110);
       setTracker((v) => v + 1);
