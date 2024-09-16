@@ -17,7 +17,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { User } from "@/app/page";
 function Navbar({ user }: { user: User }) {
-  console.log(user);
   const path = usePathname();
   const [icons, setHideIcons] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);

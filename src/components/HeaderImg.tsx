@@ -1,18 +1,18 @@
 "use client";
 import styles from "./Header.module.scss";
-import MainImage from "@/../../public/img/MainImg.png";
+import MainImage from "./../../public/img/MainImg.png";
 import SkeletonImg from "@/skeleton/SkeletonImg";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
 function HeaderImg() {
   const [loading, setLoading] = useState<boolean>(true);
-  useEffect(() => {
-    const id = setTimeout(() => {
-      setLoading(false);
-    }, 3000);
-    return clearTimeout(id);
-  }, [setLoading]);
+
+  const id = setTimeout(() => {
+    setLoading(false);
+    clearTimeout(id);
+  }, 3000);
+
   return (
     <div className={styles.container__header__picture}>
       {loading ? (
