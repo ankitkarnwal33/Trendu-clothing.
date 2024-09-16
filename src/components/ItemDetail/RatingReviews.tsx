@@ -6,18 +6,17 @@ import FAQs from "./FAQs";
 import Specifications from "./Specifications";
 import { useSearchParams } from "next/navigation";
 
-interface RatingReviewsProps {
-  itemId: string;
-}
-function RatingReviews({ itemId }: RatingReviewsProps) {
+function RatingReviews({ itemId }: { itemId: string }) {
+  //Rating and reviews should be fetched for current item initially. Implement it later.
+
   const searchParams = useSearchParams();
-  const activeLink: string = searchParams.get("page");
+  const activeLink: string | null = searchParams.get("page");
   return (
     <>
       <Links />
       {activeLink === "Rating & Reviews" && (
         <>
-          <ReviewsHeader />
+          <ReviewsHeader itemId={itemId} />
           <Reviews />
         </>
       )}

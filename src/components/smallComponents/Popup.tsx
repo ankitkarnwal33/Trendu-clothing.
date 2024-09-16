@@ -5,7 +5,7 @@ interface PopupType {
   error?: string;
 }
 function Popup({ type = "failed", name = "", error = "" }: PopupType) {
-  let classNames = `${styles.show} ${
+  const classNames: string = `${styles.show} ${
     type === "success" || type === "signup" ? styles.success : styles.error
   }`;
 

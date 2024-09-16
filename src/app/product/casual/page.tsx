@@ -13,7 +13,7 @@ export default async function Casual() {
     products = await Item.find({});
     cards = PlainObj(products);
   } catch (error) {
-    return <h1>{JSON.stringify(error.message)}</h1>;
+    return <h1>This is the error</h1>;
   }
   return (
     <div className={styles.container}>

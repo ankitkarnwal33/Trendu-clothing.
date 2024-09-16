@@ -1,10 +1,26 @@
 import styles from "./ReviewsHeader.module.scss";
 import { IoFilter } from "react-icons/io5";
 import { IoIosArrowDown } from "react-icons/io";
+import { useState } from "react";
+import CreateReview from "./CreateReview";
 
-function ReviewsHeader() {
+function ReviewsHeader({ itemId }: { itemId: string }) {
+  const [active, setActive] = useState<boolean>(false);
+  function handleCreateReview() {
+    setActive(!active);
+  }
+  function handleCloseRating() {
+    setActive(false);
+  }
   return (
     <div className={styles.header}>
+      {active && (
+        <CreateReview
+          onClick={handleCreateReview}
+          close={handleCloseRating}
+          itemId={itemId}
+        />
+      )}
       <p className={styles.header__typo}>
         <span>All Reviews</span>
         <span id={styles.reviews}>(500)</span>
@@ -17,7 +33,7 @@ function ReviewsHeader() {
           <span>Latest</span>
           <IoIosArrowDown />
         </button>
-        <button>Write a Review</button>
+        <button onClick={handleCreateReview}>Write a Review</button>
       </p>
     </div>
   );

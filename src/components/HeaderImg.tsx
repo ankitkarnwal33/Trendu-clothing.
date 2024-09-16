@@ -11,7 +11,7 @@ function HeaderImg() {
   const id = setTimeout(() => {
     setLoading(false);
     clearTimeout(id);
-  }, 3000);
+  }, 1000);
 
   return (
     <div className={styles.container__header__picture}>

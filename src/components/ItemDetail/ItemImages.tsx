@@ -13,7 +13,7 @@ function ItemImages({ item }: ItemImagesProps) {
   type ImagesTuple = [string, string, string];
   const images: ImagesTuple = ["image1", "image2", "image3"];
   const searchParams = useSearchParams();
-  const activeImage: string = searchParams.get("photo");
+  const activeImage: string = searchParams.get("photo") || "image1";
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(true);
   useEffect(() => {

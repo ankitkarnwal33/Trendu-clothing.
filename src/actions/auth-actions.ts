@@ -5,12 +5,12 @@ import User from "@/models/user";
 import jwt from "jsonwebtoken";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
-import { NextRequest, NextResponse } from "next/server";
 
 type Payload = {
   id: string;
   name: string;
   email: string;
+  isVerified: boolean;
   exp?: Date;
   iat?: Date;
 };
@@ -62,7 +62,7 @@ export async function signUp(formData: FormData): Promise<Result> {
       message: "Name should be at least 2 characters long.",
     };
   }
-  let num = number.toString().length;
+  const num = number.toString().length;
   if (num < 10 || num > 10) {
     return {
       status: "failed",
@@ -167,6 +167,7 @@ export async function login(formData: FormData): Promise<Result> {
         id: user._id,
         name: user.name,
         email: user.email,
+        isVerified: user.isVerified,
       });
       if (token === null) {
         //Token is not generated
@@ -204,7 +205,7 @@ export async function initializeSession() {
   globalCookie = cookieStore.get("session")?.value.toString();
 }
 
-export async function getSessionDetails(): Promise<null | Payload> {
+export async function getSessionDetails(): Promise<Payload | null> {
   if (!globalCookie) return null;
   const result = verifyToken(globalCookie);
   return result;

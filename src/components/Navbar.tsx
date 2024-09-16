@@ -10,13 +10,13 @@ import { FaUserLarge } from "react-icons/fa6";
 import { IoMdCart } from "react-icons/io";
 import { FormEvent, useEffect, useRef, useState } from "react";
 import { FaBars } from "react-icons/fa6";
-import { RxCross2 } from "react-icons/rx";
 import { TbLogout2 } from "react-icons/tb";
 import { logout } from "@/actions/auth-actions";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { User } from "@/app/page";
-function Navbar({ user }: { user: User }) {
+import Cross from "./smallComponents/Cross";
+function Navbar({ user }: { user: User | null }) {
   const path = usePathname();
   const [icons, setHideIcons] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -31,10 +31,10 @@ function Navbar({ user }: { user: User }) {
   function toggleIcons(): void {
     setHideIcons(true);
   }
-
   function toggleSidebar(): void {
     setIsOpen(!isOpen);
   }
+
   function handleFormSubmit(event: FormEvent): void {
     event.preventDefault();
     setHideIcons(false);
@@ -118,10 +118,7 @@ function Navbar({ user }: { user: User }) {
                 onClick={toggleSidebar}
               />
             ) : (
-              <RxCross2
-                className={styles.navbar__icons__Cross}
-                onClick={toggleSidebar}
-              />
+              <Cross onClick={toggleSidebar} />
             )}
             <Link href={"/cart"}>
               <IoMdCart />

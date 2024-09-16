@@ -1,12 +1,9 @@
+"use client";
 import styles from "./../Footer.module.scss";
 import Link from "next/link";
 
 //Social svg imports to be modified later.
 
-import Github from "./../../../public/img/social/Github.svg";
-
-import Instagram from "./../../../public/img/social/Instagram.svg";
-import Twitter from "./../../../public/img/social/Twitter.svg";
 import Facebook from "./Facebook";
 
 function Social() {
@@ -14,7 +11,8 @@ function Social() {
     <div className={styles.social__container}>
       <Link href="/" target={"_blank"}>
         <div className={styles.social__container__box}>
-          <Twitter className={styles.social__icons} />
+          {/* <Twitter className={styles.social__icons} /> */}
+          <img src="/img/social/Twitter.svg" alt="Twitter" />
         </div>
       </Link>
       <Facebook />
@@ -24,7 +22,8 @@ function Social() {
         rel="noopener noreferrer"
       >
         <div className={styles.social__container__box}>
-          <Instagram className={styles.social__icons} />
+          {/* <Instagram className={styles.social__icons} /> */}
+          <img src="/img/social/Instagram.svg" alt="Instagram" />
         </div>
       </Link>
       <Link
@@ -33,7 +32,7 @@ function Social() {
         rel="noopener noreferrer"
       >
         <div className={styles.social__container__box}>
-          <Github className={styles.social__icons} />
+          <img src="/img/social/Github.svg" alt="Github" />
         </div>
       </Link>
     </div>

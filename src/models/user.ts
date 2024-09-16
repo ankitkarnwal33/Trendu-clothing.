@@ -20,6 +20,11 @@ const userSchema = new mongoose.Schema({
       "Please add a valid email address",
     ],
   },
+  isVerified: {
+    type: Boolean,
+    default: false,
+    required: true,
+  },
   password: {
     type: String,
     required: [true, "Please enter a valid password."],

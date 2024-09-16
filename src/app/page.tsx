@@ -1,4 +1,3 @@
-"use server";
 import { getSessionDetails, initializeSession } from "@/actions/auth-actions";
 import Arrivals from "@/components/Arrivals";
 import Brands from "@/components/Brands";
@@ -13,6 +12,7 @@ import TopSelling from "@/components/TopSelling";
 
 export interface User {
   email: string;
+  isVerified: boolean;
   exp?: Date;
   iat?: Date;
   id: string;
@@ -20,7 +20,7 @@ export interface User {
 }
 export default async function Home() {
   initializeSession();
-  const user: User = await getSessionDetails();
+  const user: User | null = await getSessionDetails();
   return (
     <>
       <Navbar user={user} />

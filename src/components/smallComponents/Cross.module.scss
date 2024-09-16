@@ -1,0 +1,13 @@
+@import "../../SASS/__mixins";
+@import "../../SASS/__variables";
+.cross {
+  position: absolute;
+  top: 2.4rem;
+  right: 2rem;
+  z-index: 3;
+  font-size: 1.9rem;
+  color: $color-black;
+  @media (max-width: 720px) {
+    font-size: 1.6rem;
+  }
+}
