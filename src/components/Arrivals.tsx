@@ -11,7 +11,7 @@ export default async function Arrivals() {
   const cards: CardObj[] = JSON.parse(JSON.stringify(newArrivals));
   return (
     <section className={styles.arrivals}>
-      <ArrivalAndBestSelling toPath={"/allArrivals"} cards={cards}>
+      <ArrivalAndBestSelling toPath={"/product/casual"} cards={cards}>
         New Arrivals
       </ArrivalAndBestSelling>
     </section>
