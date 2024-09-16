@@ -14,7 +14,7 @@ interface CreatereviewProps {
 }
 export interface ReviewType {
   item: string;
-  reviewContent: string;
+  review: string;
   rating: number;
   isVerified: boolean;
   user: string;
@@ -50,17 +50,15 @@ export default function CreateReview({
       }, 2000);
     } else {
       setError("");
-      const review = {
+      const reviewData = {
         item: itemId,
-        reviewContent,
+        review: reviewContent,
         rating,
         isVerified: user.isVerified,
         user: user.name,
       };
-      const isSubmitted = await newReview(review);
-      let message: string = "";
+      const isSubmitted = await newReview(reviewData);
       if (isSubmitted) {
-        message = "Review has been added great !";
         close();
       } else {
         setError("Can't post your review. Please try again.");

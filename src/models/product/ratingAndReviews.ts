@@ -5,6 +5,7 @@ const ReviewSchema = new Schema(
     item: {
       type: Schema.Types.ObjectId,
       ref: "item",
+      required: true,
     },
     rating: {
       type: Number,
@@ -20,6 +21,11 @@ const ReviewSchema = new Schema(
       type: String,
       maxlength: 500,
       minlength: 50,
+      required: true,
+    },
+    isVerified: {
+      type: Boolean,
+      required: true,
     },
   },
   { timestamps: true }
