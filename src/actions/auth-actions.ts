@@ -47,7 +47,7 @@ function verifyToken(token: string): Payload | null {
   }
 }
 
-export async function signUp(formData: FormData): Promise<Result | undefined> {
+export async function signUp(formData: FormData): Promise<Result> {
   try {
     await connectDB();
   } catch (error) {
@@ -131,9 +131,13 @@ export async function signUp(formData: FormData): Promise<Result | undefined> {
       };
     }
   }
+  return {
+    status: "failed",
+    message: "Server error! Try after some time.",
+  };
 }
 
-export async function login(formData: FormData): Promise<Result | void> {
+export async function login(formData: FormData): Promise<Result> {
   const email: string = formData.get("email")?.toString() || "";
   const password: string = formData.get("password")?.toString() || "";
   //Edge cases
@@ -206,6 +210,10 @@ export async function login(formData: FormData): Promise<Result | void> {
       message: "Some error occured. Please try again later.",
     };
   }
+  return {
+    status: "failed",
+    message: "Something went wrong.Try again.",
+  };
 }
 export async function logout(): Promise<never> {
   cookies().set("session", "", { expires: new Date(0) });

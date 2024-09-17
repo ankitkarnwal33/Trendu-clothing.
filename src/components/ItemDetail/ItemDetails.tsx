@@ -7,13 +7,13 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { CiCircleCheck } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import { CardObj } from "@/lib/filterCards";
-import { StaticImageData } from "next/image";
 export interface CartItem {
   id: string;
   title: string | undefined;
   quantity: number;
   discount: number;
-  image: StaticImageData;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  image: any;
   color: string | null;
   size: string | null;
   price: number;

@@ -12,7 +12,7 @@ import SkeletonMain from "@/skeleton/SkeletonMain";
 export default function AuthForm() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [name, setName] = useState<string>("");
   async function handleSubmit(event: FormEvent) {
@@ -21,14 +21,14 @@ export default function AuthForm() {
     const formData = new FormData(event.currentTarget as HTMLFormElement);
     const response: Result = await signUp(formData);
     if (response?.status === "failed") {
-      setError(response.message);
+      setError(response.message || "");
       setLoading(false);
       setTimeout(() => {
-        setError(null);
+        setError("");
       }, 4000);
     } else if (response?.status === "success") {
-      setName(response.data.name);
-      setError(null);
+      setName(response.data?.name || "");
+      setError("");
       setLoading(false);
       setTimeout(() => {
         router.push("/login");

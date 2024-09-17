@@ -9,7 +9,7 @@ import { BsGearFill } from "react-icons/bs";
 import SkeletonMain from "@/skeleton/SkeletonMain";
 import Popup from "./smallComponents/Popup";
 export default function AuthFormLogin() {
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [loggedIn, setLoggedIn] = useState<boolean>(false);
@@ -23,15 +23,15 @@ export default function AuthFormLogin() {
       setLoading(true);
       const response: Result = await login(formData);
       if (response?.status === "failed") {
-        setError(response.message);
+        setError(response.message || "");
         setLoading(false);
         setTimeout(() => {
-          setError(null);
+          setError("");
         }, 5000);
       } else if (response?.status === "success") {
-        setName(response.data.name);
+        setName(response.data?.name || "");
         setLoggedIn(true);
-        setError(null);
+        setError("");
         setLoading(false);
         setTimeout(() => {
           return router.push("/");

@@ -3,11 +3,26 @@
 import { useRouter } from "next/navigation";
 import Star from "./Star";
 import styles from "./card.module.scss";
-import { CardObj } from "@/lib/filterCards";
-interface CardProps {
-  card: CardObj;
+
+interface CardObj {
+  __v: number;
+  _id: string;
+  brand: string;
+  colors: string[];
+  createdAt: Date;
+  description: string;
+  discount: number;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  image: any;
+  price: number;
+  rating: number;
+  sizes: string[];
+  title: string;
+  type: string;
+  updatedAt: string;
 }
-export default function Card({ card }: CardProps) {
+
+export default function Card({ card }: { card: CardObj }) {
   const router = useRouter();
   const handleClick = (id: string): void => {
     router.push(`/product/item?page=Rating+%26+Reviews&id=${id}`);
@@ -21,7 +36,7 @@ export default function Card({ card }: CardProps) {
       onClick={() => handleClick(card._id)}
     >
       <img
-        src={card.image}
+        src={`${card.image}`}
         alt={card.title}
         className={styles.arrivals__slider__child__card__img}
       />

@@ -1,5 +1,3 @@
-import { StaticImageData } from "next/image";
-
 export interface CardObj {
   __v: number;
   _id: string;
@@ -8,7 +6,8 @@ export interface CardObj {
   createdAt: Date;
   description: string;
   discount: number;
-  image: StaticImageData;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  image: any;
   price: number;
   rating: number;
   sizes: string[];
