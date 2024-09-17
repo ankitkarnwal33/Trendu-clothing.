@@ -23,18 +23,38 @@ export interface Review {
 
 function RatingReviews({ itemId }: { itemId: string }) {
   const [reviews, setReviews] = useState<Review[] | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   unstable_noStore();
   useEffect(() => {
+    let timerId: number | NodeJS.Timeout;
     async function fetchReviews() {
+      setLoading(true);
       if (itemId !== null) {
-        const res = await fetch(`/api/reviews/${itemId}`);
-        if (!res.ok) setError("Can't get reviews at this moment.");
-        const data = await res.json();
-        setReviews(JSON.parse(JSON.stringify(data)));
+        try {
+          const res = await fetch(`/api/reviews/${itemId}`);
+          if (!res.ok) {
+            setLoading(false);
+            return setError("Can't get reviews at this moment.");
+          }
+          const data = await res.json();
+          setReviews(JSON.parse(JSON.stringify(data)));
+          timerId = setTimeout(() => {
+            setLoading(false);
+          }, 3000);
+        } catch (error) {
+          if (error instanceof Error) {
+            if (error.message) {
+              setError(error.message);
+            }
+          }
+        }
       }
     }
     fetchReviews();
+    return () => {
+      clearTimeout(timerId);
+    };
   }, [itemId]);
   const searchParams = useSearchParams();
   const activeLink: string | null = searchParams.get("page");
@@ -44,12 +64,13 @@ function RatingReviews({ itemId }: { itemId: string }) {
       <Links />
       {activeLink === "Rating & Reviews" && (
         <ReviewsContext.Provider value={reviews || null}>
-          <ReviewsHeader itemId={itemId} />
-          {(error.length > 0 && (
+          {!loading && error.length > 0 && <h1>{error}</h1>}
+          {error.length === 0 && (
             <>
-              <h1>{error}</h1>
+              <ReviewsHeader itemId={itemId} />
+              <Reviews loading={loading} />
             </>
-          )) || <Reviews />}
+          )}
         </ReviewsContext.Provider>
       )}
       {activeLink === "Product Details" && <Specifications />}

@@ -1,0 +1,73 @@
+@import "../../../SASS/__mixins";
+@import "../../../SASS/__variables";
+
+.review {
+  width: 100%;
+  border: $border-light-1;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  &__rating {
+    display: flex;
+    justify-content: space-between;
+    &_1 {
+      @include mixinMain(30%, 2.3rem, $color-grey-light);
+    }
+    &_1::after {
+      @include mixinAfter($color-black);
+    }
+    &_2 {
+      @include mixinMain(8%, 1rem, $color-grey-light);
+    }
+    &_2::after {
+      @include mixinAfter($color-black);
+    }
+  }
+  &__user {
+    display: flex;
+    gap: 3rem;
+    &_1 {
+      @include mixinMain(40%, 2.3rem, $color-grey-light);
+    }
+    &_1::after {
+      @include mixinAfter($color-black);
+    }
+    &_2 {
+      @include mixinMain(8%, 2.4rem, $color-grey-light);
+    }
+    &_2::after {
+      @include mixinAfter($color-black);
+    }
+  }
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    &_1 {
+      @include mixinMain(100%, 1.5rem, $color-grey-light);
+    }
+    &_1::after {
+      @include mixinAfter($color-black);
+    }
+    &_2 {
+      @include mixinMain(100%, 1.5rem, $color-grey-light);
+    }
+    &_2::after {
+      @include mixinAfter($color-black);
+    }
+    &_3 {
+      @include mixinMain(80%, 1.5rem, $color-grey-light);
+    }
+    &_3::after {
+      @include mixinAfter($color-black);
+    }
+  }
+  &__date {
+    @include mixinMain(50%, 1.5rem, $color-grey-light);
+  }
+  &__date::after {
+    @include mixinAfter($color-black);
+  }
+}

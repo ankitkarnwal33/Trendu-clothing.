@@ -26,7 +26,7 @@ function ReviewsHeader({ itemId }: { itemId: string }) {
       )}
       <p className={styles.header__typo}>
         <span>All Reviews</span>
-        <span id={styles.reviews}>( {totalReviews} )</span>
+        <span id={styles.reviews}>({totalReviews})</span>
       </p>
       <p className={styles.header__buttons}>
         <span>
