@@ -4,9 +4,9 @@ import Versace from "@/../../public/Vectors/Versace.png";
 import Gucci from "@/../../public/Vectors/Gucci.png";
 import Calvin from "@/../../public/Vectors/Calvin.png";
 import Zara from "@/../../public/Vectors/Zara.png";
-import Image from "next/image";
+import Image, { StaticImageData } from "next/image";
 type Brands = {
-  image: any;
+  image: StaticImageData;
   alt: string;
 };
 const brands: Brands[] = [

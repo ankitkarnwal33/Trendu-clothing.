@@ -1,5 +1,5 @@
 "use client";
-import { FormEvent, useState } from "react";
+import { useState } from "react";
 import Star from "@/components/smallComponents/Star";
 import styles from "./Testimonials.module.scss";
 function Testimonials() {
@@ -162,7 +162,7 @@ function Testimonials() {
     },
   ];
 
-  function handleScrollPrev(event: FormEvent) {
+  function handleScrollPrev() {
     if (tracker > 0) {
       setTransformCard((value) => value + 110);
       setTracker((v) => v - 1);
@@ -170,7 +170,7 @@ function Testimonials() {
       setTransformCard((value) => value * 0);
     }
   }
-  function handleScrollNext(event: FormEvent) {
+  function handleScrollNext() {
     if (tracker < length - 2) {
       setTransformCard((v) => v - 110);
       setTracker((v) => v + 1);

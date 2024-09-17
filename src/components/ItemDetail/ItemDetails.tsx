@@ -7,19 +7,20 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { CiCircleCheck } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import { CardObj } from "@/lib/filterCards";
+import { StaticImageData } from "next/image";
 export interface CartItem {
-  id: string | undefined;
+  id: string;
   title: string | undefined;
-  quantity: number | null;
-  discount: number | undefined;
-  image: string | undefined;
+  quantity: number;
+  discount: number;
+  image: StaticImageData;
   color: string | null;
   size: string | null;
-  price: number | null;
+  price: number;
 }
 
 interface ItemDetaisProps {
-  item: CardObj | null;
+  item: CardObj;
 }
 
 function ItemDetails({ item }: ItemDetaisProps) {
@@ -77,7 +78,7 @@ function ItemDetails({ item }: ItemDetaisProps) {
       title: item?.title,
       quantity: quantity,
       discount: item?.discount,
-      image: item?.image,
+      image: item.image,
       color: activeColor,
       size: activeSize,
       price:

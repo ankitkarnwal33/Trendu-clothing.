@@ -1,7 +1,3 @@
-interface StarProps {
-  rating: number;
-}
-
 export default function Star({ rating }: { rating: number }) {
   return (
     <>

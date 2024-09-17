@@ -9,25 +9,19 @@ export default function Products({ cards }: { cards: CardObj[] }) {
   const searchParams = useSearchParams();
   const [loading, setLoading] = useState<boolean>(true);
   let activePrice: string;
-  let activeColor: string;
-  let activeSize: string;
+
   let activeType: string;
   let filterdCards: CardObj[] = cards;
   useEffect(() => {
     if (cards) setLoading(false);
   }, [cards]);
   if (searchParams.has("price")) {
-    activePrice = searchParams.get("price").toString();
+    activePrice = searchParams.get("price")?.toString() || "";
     filterdCards = filterCards(cards, activePrice);
   }
-  if (searchParams.has("color")) {
-    activeColor = searchParams.get("color").toString();
-  }
-  if (searchParams.has("size")) {
-    activeSize = searchParams.get("size").toString();
-  }
+
   if (searchParams.has("type")) {
-    activeType = searchParams.get("type").toString();
+    activeType = searchParams.get("type")?.toString() || "";
     filterdCards = filterByType(filterdCards, activeType);
   }
   return (

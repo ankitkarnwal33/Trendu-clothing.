@@ -1,3 +1,5 @@
+import { StaticImageData } from "next/image";
+
 export interface CardObj {
   __v: number;
   _id: string;
@@ -6,7 +8,7 @@ export interface CardObj {
   createdAt: Date;
   description: string;
   discount: number;
-  image: string;
+  image: StaticImageData;
   price: number;
   rating: number;
   sizes: string[];
@@ -24,14 +26,14 @@ export default function FilterPrice(
     return cards;
   }
   if (filter === "Low to High") {
-    newCards = newCards.sort((a: any, b: any) => +a.price - +b.price);
+    newCards = newCards.sort((a: CardObj, b: CardObj) => +a.price - +b.price);
   } else {
-    newCards = newCards.sort((a: any, b: any) => +b.price - +a.price);
+    newCards = newCards.sort((a: CardObj, b: CardObj) => +b.price - +a.price);
   }
   return newCards;
 }
 
 export function filterByType(cards: CardObj[], filter: string): CardObj[] {
   if (typeof filter === "undefined") return cards;
-  return cards.filter((card: any) => card.type === filter);
+  return cards.filter((card: CardObj) => card.type === filter);
 }

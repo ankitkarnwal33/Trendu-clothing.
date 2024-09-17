@@ -1,4 +1,4 @@
-import { Key, ReactNode } from "react";
+import { ReactNode } from "react";
 import styles from "./ArrivalAndBestSelling.module.scss";
 import Button from "./Button";
 import Card from "./Card";

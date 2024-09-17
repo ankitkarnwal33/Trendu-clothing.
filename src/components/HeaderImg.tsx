@@ -3,7 +3,7 @@ import styles from "./Header.module.scss";
 import MainImage from "./../../public/img/MainImg.png";
 import SkeletonImg from "@/skeleton/SkeletonImg";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 function HeaderImg() {
   const [loading, setLoading] = useState<boolean>(true);

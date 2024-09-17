@@ -1,6 +1,5 @@
 import Link from "next/link";
 import styles from "./button.module.scss";
-import { ReactNode } from "react";
 interface PropsTypes {
   toPath: string;
   content?: string;

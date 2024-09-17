@@ -3,7 +3,7 @@ import { useEffect, useRef } from "react";
 import styles from "./../Footer.module.scss";
 
 function Facebook() {
-  const facebookRef = useRef<any>(null);
+  const facebookRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (facebookRef.current) {

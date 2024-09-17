@@ -5,7 +5,7 @@ import { FaFilter } from "react-icons/fa";
 import styles from "./Filter.module.scss";
 import { CiCircleCheck } from "react-icons/ci";
 import { useSearchParams, useRouter } from "next/navigation";
-import { FormEvent, ReactNode, useState } from "react";
+import { useState } from "react";
 
 type PriceTuple = [string, string];
 
@@ -34,10 +34,10 @@ export default function Filter({ active, handleActive }: FilterProps) {
   const searchParams = useSearchParams();
   const router = useRouter();
   // Get active filter values from the URL
-  const activePrice: string = searchParams.get("price");
-  const activeColor: string = searchParams.get("color");
-  const activeSize: string = searchParams.get("size");
-  const activeType: string = searchParams.get("type");
+  const activePrice: string = searchParams.get("price")?.toString() || "";
+  const activeColor: string = searchParams.get("color")?.toString() || "";
+  const activeSize: string = searchParams.get("size")?.toString() || "";
+  const activeType: string = searchParams.get("type")?.toString() || "";
 
   const [priceFilterBar, setPriceFilterBar] = useState<boolean>(false);
   const [activeColorBar, setActiveColorsBar] = useState<boolean>(false);
@@ -74,13 +74,13 @@ export default function Filter({ active, handleActive }: FilterProps) {
           )}
         </div>
         <ul className={styles.filter__list}>
-          {listItems.map((item, index) => (
+          {listItems.map((item: string, index) => (
             <li
               key={index}
               onClick={() => updateQueryParam("type", item)}
               className={`${activeType === item ? styles.active : ""}`}
             >
-              <p>{item.at(0).toUpperCase() + item.slice(1)}</p>
+              <p>{item.at(0)?.toUpperCase() + item.slice(1)}</p>
               <RxCaretRight />
             </li>
           ))}

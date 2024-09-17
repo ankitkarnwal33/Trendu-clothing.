@@ -9,12 +9,19 @@ import Button from "./smallComponents/Button";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
 import CartSkeleton from "@/skeleton/CartSkeleton";
+import { CartItem } from "./ItemDetail/ItemDetails";
 
-function reducer(state, action) {
+interface Action {
+  type: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  payload: any;
+}
+
+function reducer(state: CartItem[], action: Action) {
   let newState;
   switch (action.type) {
     case "inc":
-      newState = state.map((item) =>
+      newState = state.map((item: CartItem) =>
         item.id === action.payload.id && item.quantity < 10
           ? { ...item, quantity: item.quantity + action.payload.val }
           : item
@@ -28,10 +35,10 @@ function reducer(state, action) {
       );
       break;
     case "del":
-      newState = state.filter((item) => item.id !== action.payload);
+      newState = state.filter((item) => item.id !== action.payload.id);
       break;
     case "set":
-      newState = action.payload;
+      newState = action.payload.data; // Fix: ensure payload.data is used
       break;
     default:
       return state;
@@ -41,21 +48,26 @@ function reducer(state, action) {
   }
   return newState;
 }
+
 function Cart() {
   const [state, dispatch] = useReducer(reducer, []);
   const [loading, setLoading] = useState<boolean>(true);
+
   useEffect(() => {
     const localCart = localStorage.getItem("cart");
     setTimeout(() => {
       if (localCart) {
         dispatch({
           type: "set",
-          payload: JSON.parse(localCart),
+          payload: {
+            data: JSON.parse(localCart), // Fix: match reducer logic
+          },
         });
       }
       setLoading(false);
     }, 500);
   }, []);
+
   function handleMinus(id: string) {
     dispatch({
       type: "dec",
@@ -65,6 +77,7 @@ function Cart() {
       },
     });
   }
+
   function handlePlus(id: string) {
     dispatch({
       type: "inc",
@@ -74,22 +87,30 @@ function Cart() {
       },
     });
   }
+
   function handleDeleteCartItem(id: string) {
     if (state.length > 0) {
       dispatch({
         type: "del",
-        payload: id,
+        payload: { id },
       });
     }
   }
-  let length: number = state.length;
-  const totalPrice: number = state.reduce((accumulator, item) => {
-    return accumulator + item.quantity * item.price;
-  }, 0);
-  const totalSaving: number = state.reduce((accumulator, item) => {
-    return accumulator + (item.discount * item.price * item.quantity) / 100;
-  }, 0);
-  let deliveryCharge: number = totalPrice >= 500 ? 0 : 49;
+
+  const length: number = state.length;
+  const totalPrice: number = state.reduce(
+    (accumulator: number, item: CartItem) => {
+      return accumulator + item.quantity * item.price;
+    },
+    0
+  );
+  const totalSaving: number = state.reduce(
+    (accumulator: number, item: CartItem) => {
+      return accumulator + (item.discount * item.price * item.quantity) / 100;
+    },
+    0
+  );
+  const deliveryCharge: number = totalPrice >= 500 ? 0 : 49;
 
   return (
     <>
@@ -107,7 +128,7 @@ function Cart() {
           <h1 id={styles.heading}>Your cart</h1>
           <div className={styles.container__boxes}>
             <div className={styles.container__boxes__items}>
-              {state.map((item) => (
+              {state.map((item: CartItem) => (
                 <div
                   className={styles.container__boxes__items__item}
                   key={item.id}
@@ -116,7 +137,7 @@ function Cart() {
                     src={item.image}
                     width={120}
                     height={120}
-                    alt={item.title}
+                    alt={item.title || ""}
                   />
                   <div className={styles.item__details}>
                     <div className={styles.item__details__title}>
@@ -128,7 +149,7 @@ function Cart() {
                         Color: <span>{item.color}</span>
                       </p>
                       <p>
-                        Size: <span> {item.size}</span>
+                        Size: <span>{item.size}</span>
                       </p>
                     </div>
                     <div className={styles.item__details__final}>
