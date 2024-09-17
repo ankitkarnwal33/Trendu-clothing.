@@ -30,5 +30,5 @@ const ReviewSchema = new Schema(
   },
   { timestamps: true }
 );
-const Review = models.Review || model("Review", ReviewSchema);
+const Review = models?.Review || model("Review", ReviewSchema);
 export default Review;

@@ -3,7 +3,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(38rem, 1fr));
   gap: 2rem;
-  align-items: center;
+  align-items: flex-start;
   @media (max-width: 825px) {
     grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
     gap: 2rem;

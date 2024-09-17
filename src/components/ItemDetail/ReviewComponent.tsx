@@ -1,5 +1,5 @@
 import Star from "../smallComponents/Star";
-import { Review } from "./Details";
+import { Review } from "./RatingReviews";
 import styles from "./Review.module.scss";
 import { BsThreeDots } from "react-icons/bs";
 function ReviewComponent({ review }: { review: Review }) {

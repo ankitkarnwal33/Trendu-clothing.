@@ -1,4 +1,4 @@
-import { Review as ReviewType } from "@/components/ItemDetail/Details";
+import { Review as ReviewType } from "@/components/ItemDetail/RatingReviews";
 import connectDB from "@/lib/connectDB";
 import Review from "@/models/product/ratingAndReviews";
 
