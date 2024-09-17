@@ -1,12 +1,11 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { useEffect, useState } from "react";
 import styles from "./ItemImages.module.scss";
 import { useSearchParams, useRouter } from "next/navigation";
 import { CardObj } from "@/lib/filterCards";
 
 interface ItemImagesProps {
-  item: CardObj;
+  item: CardObj | null;
 }
 
 function ItemImages({ item }: ItemImagesProps) {
@@ -15,10 +14,7 @@ function ItemImages({ item }: ItemImagesProps) {
   const searchParams = useSearchParams();
   const activeImage: string = searchParams.get("photo") || "image1";
   const router = useRouter();
-  const [loading, setLoading] = useState<boolean>(true);
-  useEffect(() => {
-    if (!item) setLoading(false);
-  }, [item]);
+
   function updateQueryParams(key: string, value: string) {
     const params = new URLSearchParams(searchParams.toString());
     if (params.has(key, value)) {
@@ -43,7 +39,10 @@ function ItemImages({ item }: ItemImagesProps) {
                 ? styles.active
                 : ""
             } `}
-            onClick={() => updateQueryParams("photo", images.at(index))}
+            onClick={() => {
+              const textLink: string = images.at(index) || "";
+              updateQueryParams("photo", textLink);
+            }}
           >
             <img src={`${item?.image}`} alt="Image" />
           </div>
@@ -51,7 +50,7 @@ function ItemImages({ item }: ItemImagesProps) {
       </div>
       <div className={styles.images__main}>
         <img
-          src={`${activeImage ? item.image : item.image}`}
+          src={`${activeImage ? item?.image : item?.image}`}
           alt="Image Main"
         />
       </div>

@@ -25,23 +25,29 @@ export type Result = {
 let globalCookie: string | null;
 
 //Function for generate tokens.
-const secret: string = process.env.SECRET_KEY;
-function generateToken(payload: Payload): string | null {
+const secret: string = process.env.SECRET_KEY || "";
+function generateToken(payload: Payload): string {
   const token = jwt.sign(payload, secret, {
     expiresIn: "7d",
     algorithm: "HS256",
   });
   if (token) return token;
-  return null;
+  return "";
 }
-
-function verifyToken(token: string): any | null {
+function verifyToken(token: string): Payload | null {
   if (!token) return null;
-  const payload = jwt.verify(token, secret, { algorithms: ["HS256"] });
-  return payload;
+  try {
+    const payload = jwt.verify(token, secret, {
+      algorithms: ["HS256"],
+    }) as Payload;
+    return payload;
+  } catch (error) {
+    console.log("Token verification failed");
+    return null;
+  }
 }
 
-export async function signUp(formData: FormData): Promise<Result> {
+export async function signUp(formData: FormData): Promise<Result | undefined> {
   try {
     await connectDB();
   } catch (error) {
@@ -50,10 +56,10 @@ export async function signUp(formData: FormData): Promise<Result> {
       message: "Some error occured 🥲. Please try again later.",
     };
   }
-  const email: string = formData.get("email").toString();
-  const name: string = formData.get("name").toString();
-  const number: number = +formData.get("number").toString();
-  const password: string = formData.get("password").toString();
+  const email: string = formData.get("email")?.toString() || "";
+  const name: string = formData.get("name")?.toString() || "";
+  const number: number = parseFloat(formData.get("number")?.toString() || "");
+  const password: string = formData.get("password")?.toString() || "";
   //Edge cases
 
   if (name.length < 2) {
@@ -98,19 +104,25 @@ export async function signUp(formData: FormData): Promise<Result> {
       },
     };
   } catch (error) {
-    if (error.code === 11000) {
+    if (error instanceof Error) {
       //Duplicate id found error code from mongodb
-      if (error.message.includes("email")) {
-        return {
-          status: "failed",
-          message: `Email ${email} already exists.`,
-        };
+      interface MongoError extends Error {
+        code: number;
       }
-      if (error.message.includes("number")) {
-        return {
-          status: "failed",
-          message: `Number ${number} already exists.`,
-        };
+      const mongoError = error as MongoError;
+      if (mongoError.code === 11000) {
+        if (error.message.includes("email")) {
+          return {
+            status: "failed",
+            message: `Email ${email} already exists.`,
+          };
+        }
+        if (mongoError.message.includes("number")) {
+          return {
+            status: "failed",
+            message: `Number ${number} already exists.`,
+          };
+        }
       }
     } else {
       return {
@@ -121,9 +133,9 @@ export async function signUp(formData: FormData): Promise<Result> {
   }
 }
 
-export async function login(formData: FormData): Promise<Result> {
-  const email: string = formData.get("email").toString();
-  const password: string = formData.get("password").toString();
+export async function login(formData: FormData): Promise<Result | void> {
+  const email: string = formData.get("email")?.toString() || "";
+  const password: string = formData.get("password")?.toString() || "";
   //Edge cases
   if (password.trim().length < 8) {
     return {
@@ -141,7 +153,7 @@ export async function login(formData: FormData): Promise<Result> {
     await connectDB().catch((err): never => {
       throw new Error(err.message);
     });
-    let user = await User.findOne({ email });
+    const user = await User.findOne({ email });
     if (user === null) {
       return {
         status: "failed",
@@ -202,7 +214,7 @@ export async function logout(): Promise<never> {
 
 export async function initializeSession() {
   const cookieStore = cookies();
-  globalCookie = cookieStore.get("session")?.value.toString();
+  globalCookie = cookieStore.get("session")?.value.toString() || "";
 }
 
 export async function getSessionDetails(): Promise<Payload | null> {

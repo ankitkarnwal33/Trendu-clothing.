@@ -1,3 +1,4 @@
+import { ReactNode } from "react";
 import "./globals.scss";
 
 export const metadata = {
@@ -10,7 +11,7 @@ export const metadata = {
   link: `href="https://fonts.cdnfonts.com/css/satoshi?styles=135009,135004,135005,135006,135007,135008,135002,135003,135000,135001" rel="stylesheet"`,
 };
 
-export default function RootLayout({ children }) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
       <body className="light_mode container">{children}</body>

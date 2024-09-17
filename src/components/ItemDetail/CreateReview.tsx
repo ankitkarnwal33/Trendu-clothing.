@@ -30,6 +30,7 @@ export default function CreateReview({
   const ratingRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
   const ratingArray: [number, number, number, number, number] = [1, 2, 3, 4, 5];
+
   async function handleSubmit(e: FormEvent) {
     e.preventDefault();
     if (rating <= 0) {
@@ -67,9 +68,9 @@ export default function CreateReview({
   }
   function handleRating(r: number) {
     setRating(r);
-    const elements: HTMLElement[] = Array.from(
+    const elements = Array.from(
       ratingRef.current?.childNodes || []
-    );
+    ) as HTMLElement[];
 
     elements.forEach((el) => {
       el.classList.remove(styles.permanent);
@@ -87,7 +88,7 @@ export default function CreateReview({
   function handleRatingStyleAdd(value: number) {
     const elements: HTMLElement[] = Array.from(
       ratingRef.current?.childNodes || []
-    );
+    ) as HTMLElement[];
     elements.forEach((el, index) => {
       if (index < value) {
         el.classList.add(styles.active);
@@ -97,7 +98,7 @@ export default function CreateReview({
   function handleRatingStyleRem() {
     const elements: HTMLElement[] = Array.from(
       ratingRef.current?.childNodes || []
-    );
+    ) as HTMLElement[];
     elements.forEach((el) => {
       el.classList.remove(styles.active);
     });

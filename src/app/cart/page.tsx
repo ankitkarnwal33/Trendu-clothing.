@@ -4,12 +4,14 @@ import Navbar from "@/components/Navbar";
 import Newslater from "@/components/Newslater";
 import Footer from "@/components/Footer";
 import { getSessionDetails, initializeSession } from "@/actions/auth-actions";
+import { User } from "../page";
 export const metadata = {
   title: "cart",
 };
-function page() {
+
+async function page() {
   initializeSession();
-  const user = getSessionDetails();
+  const user: User | null = (await getSessionDetails()) || null;
   return (
     <>
       <Navbar user={user} />

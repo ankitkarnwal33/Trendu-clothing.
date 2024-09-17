@@ -8,29 +8,29 @@ import { CiCircleCheck } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import { CardObj } from "@/lib/filterCards";
 export interface CartItem {
-  id: string;
-  title: string;
-  quantity: number;
-  discount: number;
-  image: string;
-  color: string;
-  size: string;
-  price: number;
+  id: string | undefined;
+  title: string | undefined;
+  quantity: number | null;
+  discount: number | undefined;
+  image: string | undefined;
+  color: string | null;
+  size: string | null;
+  price: number | null;
 }
 
 interface ItemDetaisProps {
-  item: CardObj;
+  item: CardObj | null;
 }
 
 function ItemDetails({ item }: ItemDetaisProps) {
-  const rating: number = +item?.rating.toFixed(0);
+  const rating: number = parseFloat(item?.rating.toFixed(0) || "");
   const searchParams = useSearchParams();
   const router = useRouter();
   const [loading, setLoading] = useState<boolean>(true);
   const [quantity, setQuantity] = useState<number>(1);
   const [error, setError] = useState<null | string>(null);
-  const activeColor: string = searchParams.get("color");
-  const activeSize: string = searchParams.get("size");
+  const activeColor: string = searchParams.get("color")?.toString() || "";
+  const activeSize: string = searchParams.get("size")?.toString() || "";
   useEffect(() => {
     if (item) {
       setLoading(false);
@@ -72,18 +72,19 @@ function ItemDetails({ item }: ItemDetaisProps) {
     }
 
     setError(null);
-    const cartItem = {
-      id: item._id,
-      title: item.title,
+    const cartItem: CartItem = {
+      id: item?._id,
+      title: item?.title,
       quantity: quantity,
-      discount: item.discount,
-      image: item.image,
+      discount: item?.discount,
+      image: item?.image,
       color: activeColor,
       size: activeSize,
-      price: +(item.price - (item.price * item.discount) / 100).toFixed(0),
+      price:
+        item && +(item?.price - (item?.price * item.discount) / 100).toFixed(0),
     };
 
-    const existingCart: string = localStorage.getItem("cart");
+    const existingCart: string = localStorage.getItem("cart") || "";
     const itemsArray: CartItem[] = existingCart ? JSON.parse(existingCart) : [];
 
     const index: number = itemsArray.findIndex((i) => i.id === cartItem.id);
@@ -98,8 +99,8 @@ function ItemDetails({ item }: ItemDetaisProps) {
   return (
     <div className={styles.container}>
       <div className={styles.container__header}>
-        <h3>{item.brand}</h3>
-        <h4 className={styles.container__header__heading}>{item.title}</h4>
+        <h3>{item?.brand}</h3>
+        <h4 className={styles.container__header__heading}>{item?.title}</h4>
         <div className={styles.container__header__rating}>
           <p>
             <Star rating={rating} />
@@ -108,24 +109,29 @@ function ItemDetails({ item }: ItemDetaisProps) {
         </div>
         <div className={styles.container__prices}>
           <p className={styles.container__prices__net}>
-            ₹{(item.price - (item.price * item.discount) / 100).toFixed(0)}
+            ₹
+            {item &&
+              (item.price - (item.price * item.discount) / 100).toFixed(0)}
           </p>
-          <p className={styles.container__prices__total}>₹{item.price}</p>
-          <span>-{item.discount}%</span>
+          <p className={styles.container__prices__total}>₹{item?.price}</p>
+          <span>-{item?.discount}%</span>
         </div>
-        <p className={styles.container__description}>{item.description}</p>
+        <p className={styles.container__description}>{item?.description}</p>
       </div>
       <div className={styles.container__colors}>
         <p className={styles.container__colors__heading}>Select Colors</p>
         <div className={styles.container__colors__all}>
-          {item.colors.map((_, index) => (
+          {item?.colors.map((_, index) => (
             <span
               key={index}
-              onClick={() => updateQueryParams("color", item.colors.at(index))}
+              onClick={() => {
+                const colorText = item?.colors.at(index) || "";
+                updateQueryParams("color", colorText);
+              }}
               className={styles.container__colors__all__color}
-              style={{ background: `${item.colors.at(index)}` }}
+              style={{ background: `${item?.colors.at(index)}` }}
             >
-              {activeColor === item.colors.at(index) && <CiCircleCheck />}
+              {activeColor === item?.colors.at(index) && <CiCircleCheck />}
             </span>
           ))}
         </div>
@@ -133,13 +139,16 @@ function ItemDetails({ item }: ItemDetaisProps) {
       <div className={styles.container__sizes}>
         <p className={styles.container__sizes__heading}>Choose Size</p>
         <div className={styles.container__sizes__all}>
-          {item.sizes.map((size: string, index: number) => (
+          {item?.sizes.map((size: string, index: number) => (
             <span
               key={size}
               className={`${
-                activeSize === item.sizes.at(index) ? styles.active : ""
+                activeSize === item?.sizes.at(index) ? styles.active : ""
               }`}
-              onClick={() => updateQueryParams("size", item.sizes.at(index))}
+              onClick={() => {
+                const sizeText: string = item?.sizes.at(index) || "";
+                updateQueryParams("size", sizeText);
+              }}
             >
               {size}
             </span>

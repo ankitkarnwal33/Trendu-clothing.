@@ -1,13 +1,14 @@
+import { Review } from "./Details";
+import ReviewComponent from "./ReviewComponent";
 import styles from "./Reviews.module.scss";
-import Review from "./Review";
 
-function Reviews() {
+export default function Reviews({ reviews }: { reviews: Review[] | null }) {
   return (
     <div className={styles.reviews}>
-      <Review />
-      <Review />
+      {reviews !== null &&
+        reviews.map((review: Review, index: number) => (
+          <ReviewComponent review={review} key={index} />
+        ))}
     </div>
   );
 }
-
-export default Reviews;

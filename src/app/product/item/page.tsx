@@ -7,7 +7,7 @@ import { Item } from "@/models/product/item";
 export default async function Product({
   searchParams,
 }: {
-  searchParams: Record<string, string | string[] | undefined>;
+  searchParams: Record<string, string>;
 }) {
   const itemId = searchParams.id;
   let Product: CardObj | null;

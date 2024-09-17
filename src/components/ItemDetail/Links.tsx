@@ -3,11 +3,14 @@ import Link from "next/link";
 import styles from "./Link.module.scss";
 import { useRouter, useSearchParams } from "next/navigation";
 function Links() {
-  type listTuple = [string, string, string];
-  const list: listTuple = ["Product Details", "Rating & Reviews", "FAQs"];
+  const list: [string, string, string] = [
+    "Product Details",
+    "Rating & Reviews",
+    "FAQs",
+  ];
   const searchParams = useSearchParams();
   const router = useRouter();
-  const activeLink: string = searchParams.get("page");
+  const activeLink: string | null = searchParams.get("page");
 
   function updateQueryParams(key: string, value: string): void {
     const params = new URLSearchParams(searchParams.toString());
@@ -22,7 +25,7 @@ function Links() {
   }
   return (
     <ul className={styles.list}>
-      {list.map((_, index) => (
+      {list.map((_, index: number) => (
         <li
           key={index}
           className={list.at(index) === activeLink ? styles.active : ""}
@@ -31,7 +34,8 @@ function Links() {
             href={"#"}
             onClick={(e) => {
               e.preventDefault();
-              return updateQueryParams("page", list.at(index));
+              const linkText = list.at(index) ?? "";
+              return updateQueryParams("page", linkText);
             }}
           >
             {list.at(index)}

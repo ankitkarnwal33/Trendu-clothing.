@@ -4,7 +4,13 @@ import { IoIosArrowDown } from "react-icons/io";
 import { useState } from "react";
 import CreateReview from "./CreateReview";
 
-function ReviewsHeader({ itemId }: { itemId: string }) {
+function ReviewsHeader({
+  itemId,
+  totalReviews,
+}: {
+  itemId: string;
+  totalReviews: number | undefined;
+}) {
   const [active, setActive] = useState<boolean>(false);
   function handleCreateReview() {
     setActive(!active);
@@ -23,7 +29,7 @@ function ReviewsHeader({ itemId }: { itemId: string }) {
       )}
       <p className={styles.header__typo}>
         <span>All Reviews</span>
-        <span id={styles.reviews}>(500)</span>
+        <span id={styles.reviews}>({totalReviews})</span>
       </p>
       <p className={styles.header__buttons}>
         <span>
