@@ -1,7 +1,4 @@
-import {
-  PlaceholderValue,
-  OnLoadingComplete,
-} from "next/dist/shared/lib/get-img-props";
+import { PlaceholderValue } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
 import {
   JSX,
@@ -21,20 +18,11 @@ export default function NextImage(
       width?: number | `${number}` | undefined;
       height?: number | `${number}` | undefined;
       fill?: boolean | undefined;
-      loader?: import("next/image").ImageLoader | undefined;
       quality?: number | `${number}` | undefined;
       priority?: boolean | undefined;
-      loading?: "eager" | "lazy" | undefined;
       placeholder?: PlaceholderValue | undefined;
-      blurDataURL?: string | undefined;
-      unoptimized?: boolean | undefined;
-      overrideSrc?: string | undefined;
-      onLoadingComplete?: OnLoadingComplete | undefined;
-      layout?: string | undefined;
+
       objectFit?: string | undefined;
-      objectPosition?: string | undefined;
-      lazyBoundary?: string | undefined;
-      lazyRoot?: string | undefined;
     } & RefAttributes<HTMLImageElement | null>
 ) {
   return <Image {...props} alt="something" />;

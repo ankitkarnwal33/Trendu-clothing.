@@ -47,7 +47,7 @@ export default function AuthFormLogin() {
     <form className={styles.form} onSubmit={handleSubmit}>
       {loading && <SkeletonMain height={40} radius={0.5} />}
       {!loading && loggedIn && <Popup type={"success"} name={name} />}
-      {!loading && !loggedIn && error !== null && <Popup error={error} />}
+      {!loading && !loggedIn && error !== "" && <Popup error={error} />}
       <div className={styles.form__icon}>
         <FaLock />
       </div>

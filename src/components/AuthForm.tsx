@@ -43,10 +43,10 @@ export default function AuthForm() {
   return (
     <form className={styles.form} onSubmit={handleSubmit}>
       {loading && <SkeletonMain height={30} radius={0.5} />}
-      {!loading && error === null && name !== "" && (
+      {!loading && error === "" && name !== "" && (
         <Popup type="signup" name={name} />
       )}
-      {!loading && error !== null && <Popup type="failed" error={error} />}
+      {!loading && error !== "" && <Popup type="failed" error={error} />}
       <div className={styles.form__icon}>
         <FaLock />
       </div>

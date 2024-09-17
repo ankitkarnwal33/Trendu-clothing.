@@ -27,7 +27,9 @@ function ReviewComponent({ review }: { review: Review }) {
         )}
       </div>
       <p className={styles.review__content}>&quot;{review.review}&quot;</p>
-      <span className={styles.review__date}>this is the date</span>
+      <span className={styles.review__date}>
+        Posted at : {review.createdAt.trim().slice(0, 10)}
+      </span>
     </div>
   );
 }
