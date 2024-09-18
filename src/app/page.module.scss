@@ -9,7 +9,7 @@
     @include heading(2.5rem, $color-black, 800);
     code {
       font-size: 2rem;
-      color: $color-yellow;
+      color: var(--primary-color);
       font-weight: 500;
     }
   }

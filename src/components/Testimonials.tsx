@@ -22,140 +22,112 @@ function Testimonials() {
     },
     {
       rating: 4,
-      owner: "Ankit Karnwal",
+      owner: "Peter Parker",
       isVerified: true,
       review:
         "As someone who's always on the lookout for unique fashion pieces, I'm thrilled to have stumbled upon Shop.co. The selection of clothes is not only diverse but also on-point with the latest trends. ",
     },
     {
       rating: 1,
-      owner: "Anuj Karnwal",
+      owner: "Jonathon",
       isVerified: true,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
     {
       rating: 5,
-      owner: "Yogesh",
+      owner: "Tony Stark",
       isVerified: true,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
     {
       rating: 3,
-      owner: "Raj Kumar",
+      owner: "Thor",
       isVerified: true,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
     {
       rating: 2,
-      owner: "Akshay Kumar",
+      owner: "Loki",
       isVerified: true,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
     {
       rating: 4,
-      owner: "Minakshi",
+      owner: "Dr. Banner",
       isVerified: true,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
     {
       rating: 5,
-      owner: "Arti",
+      owner: "Natasha",
       isVerified: true,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
     {
       rating: 4,
-      owner: "Kusum Devi",
+      owner: "Steive",
       isVerified: true,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
     {
       rating: 3,
-      owner: "Deepak",
+      owner: "Thsanos",
       isVerified: false,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
     {
       rating: 2,
-      owner: "Ketan Kumar Karnwal",
+      owner: "Rocket",
       isVerified: true,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
     {
       rating: 4,
-      owner: "Priyanka",
+      owner: "Dr Strange",
       isVerified: true,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
     {
       rating: 5,
-      owner: "Anjali Devi",
+      owner: "Wonder Women",
       isVerified: false,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
     {
       rating: 5,
-      owner: "Sarvesh Kumar",
+      owner: "Spider Man",
       isVerified: true,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
     {
       rating: 5,
-      owner: "Vishal Kumar",
+      owner: "Buchar",
       isVerified: true,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
     {
       rating: 5,
-      owner: "Vansh Kumar",
+      owner: "Gerault",
       isVerified: true,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
     },
     {
       rating: 5,
-      owner: "Sheetal",
-      isVerified: true,
-      review:
-        "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
-    },
-    {
-      rating: 5,
-      owner: "Rekha Devi",
-      isVerified: true,
-      review:
-        "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
-    },
-    {
-      rating: 5,
-      owner: "Gungun Gupta",
-      isVerified: true,
-      review:
-        "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
-    },
-    {
-      rating: 5,
-      owner: "Akhilesh Kumar",
-      isVerified: false,
-      review:
-        "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
-    },
-    {
-      rating: 5,
-      owner: "Sarah",
+      owner: "Venom",
       isVerified: true,
       review:
         "Finding clothes that align with my personal style used to be a challenge until I discovered Shop.co. The range of options they offer is truly remarkable, catering to a variety of tastes and occasions.",
@@ -171,7 +143,7 @@ function Testimonials() {
     }
   }
   function handleScrollNext() {
-    if (tracker < length - 2) {
+    if (tracker < reviews.length - 2) {
       setTransformCard((v) => v - 110);
       setTracker((v) => v + 1);
     } else {

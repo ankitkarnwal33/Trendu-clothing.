@@ -32,7 +32,7 @@ function Header() {
         designed to bring out your individuality and cater to your sense of
         style.
       </p>
-      <Link href={"/dashboard"}>Shop Now</Link>
+      <Link href={"/product/casual"}>Shop Now</Link>
       <div className={styles.stats}>
         {headerData.map((data) => (
           <div className={data.className} key={data.count}>

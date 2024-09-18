@@ -1,15 +1,11 @@
-"use client";
-import { usePathname } from "next/navigation";
-import styles from "./page.module.scss";
-function NotFound() {
-  const path = usePathname();
+import Link from "next/link";
+
+export default function PageNotFound() {
   return (
-    <div className={styles.NotFound}>
-      <h1>
-        This page is under development: <code>{path}</code>
-      </h1>
+    <div>
+      <h1>404 - Page Not Found</h1>
+      <p>Sorry, the page you are looking for does not exist.</p>
+      <Link href="/">Go back home</Link>
     </div>
   );
 }
-
-export default NotFound;

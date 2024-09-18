@@ -26,7 +26,7 @@ function Navbar({ user }: { user: User | null }) {
     if (inputRef.current) {
       inputRef.current.focus();
     }
-  });
+  }, []);
 
   function toggleIcons(): void {
     setHideIcons(true);
@@ -120,6 +120,7 @@ function Navbar({ user }: { user: User | null }) {
             ) : (
               <Cross onClick={toggleSidebar} />
             )}
+
             <Link href={"/cart"}>
               <IoMdCart />
             </Link>

@@ -16,18 +16,9 @@ html {
 
 body {
   line-height: 1.6;
-
   font-family: "Satoshi", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
-
-.light_mode {
-  background: $color-white;
-}
-.dark_mode {
-  //To be implemented
-  background-color: rgb(33, 33, 33);
 }
 
 .container {
