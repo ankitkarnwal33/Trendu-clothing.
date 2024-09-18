@@ -1,0 +1,253 @@
+@import "../../../SASS/__mixins";
+@import "../../../SASS/__variables";
+.container {
+  grid-column: full-start / full-end;
+  padding: 2rem 6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+  width: 100%;
+  @media (max-width: 900px) {
+    padding: 2rem 3rem;
+  }
+  @media (max-width: 720px) {
+    margin: auto;
+    padding: 2rem 2rem;
+  }
+  @media (max-width: 620px) {
+    padding: 2rem 1rem;
+  }
+
+  .parent {
+    @include flexrow(3rem, unset);
+    width: 100%;
+    &_1 {
+      width: 100%;
+      @include flexrow(2rem, flex-start);
+      justify-content: flex-start;
+      //   padding: 1rem;
+      @media (max-width: 700px) {
+        flex-direction: column;
+        align-items: center;
+      }
+      &_image {
+        border-radius: 2rem;
+        @include flexrow(1rem, unset);
+        @media (max-width: 430px) {
+          flex-direction: column-reverse;
+          align-items: center;
+        }
+        &_sm {
+          @include flexcol(1rem, center);
+          @media (max-width: 430px) {
+            flex-direction: row;
+          }
+          &_1 {
+            @include mixinMain(10vw, 10vw, $color-grey-light);
+            border-radius: 1rem;
+            border: $border-main;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+              font-size: 2.5rem;
+            }
+          }
+          &_1::after {
+            @include mixinAfter($color-black);
+          }
+          &_2 {
+            @include mixinMain(10vw, 10vw, $color-grey-light);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+              font-size: 2.5rem;
+            }
+          }
+          &_2::after {
+            @include mixinAfter($color-black);
+          }
+          &_3 {
+            @include mixinMain(10vw, 10vw, $color-grey-light);
+            border-radius: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            svg {
+              font-size: 2.5rem;
+            }
+          }
+          &_3::after {
+            @include mixinAfter($color-black);
+          }
+          @media (max-width: 700px) {
+            &_1,
+            &_2,
+            &_3 {
+              width: 15vw;
+              height: 15vw;
+            }
+          }
+          @media (max-width: 540px) {
+            &_1,
+            &_2,
+            &_3 {
+              width: 20vw;
+              height: 20vw;
+            }
+          }
+          @media (max-width: 430px) {
+            &_1,
+            &_2,
+            &_3 {
+              width: 25vw;
+              height: 25vw;
+            }
+          }
+        }
+        &_big {
+          @include mixinMain(30vw, auto, $color-grey-light);
+          border-radius: 2rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          svg {
+            font-size: 4rem;
+          }
+        }
+        &_big::after {
+          @include mixinAfter($color-black);
+          filter: blur(300px);
+        }
+        @media (max-width: 700px) {
+          &_big {
+            width: 50vw;
+          }
+        }
+
+        @media (max-width: 540px) {
+          &_big {
+            width: 60vw;
+          }
+        }
+        @media (max-width: 430px) {
+          &_big {
+            width: 78vw;
+            height: 76vw;
+          }
+        }
+      }
+      &_price {
+        border-radius: 2rem;
+        width: 100%;
+        @include flexcol(1.5rem, unset);
+        &_1 {
+          @include mixinMain(20%, 2rem, $color-grey-light);
+        }
+        @media (max-width: 700px) {
+          gap: 1rem;
+        }
+        &_1::after {
+          @include mixinAfter($color-black);
+        }
+        &_2 {
+          @include mixinMain(80%, 3.2rem, $color-grey-light);
+        }
+        &_2::after {
+          @include mixinAfter($color-black);
+        }
+        &_3 {
+          @include mixinMain(25%, 2rem, $color-grey-light);
+        }
+        &_3::after {
+          @include mixinAfter($color-black);
+        }
+        &_4 {
+          @include mixinMain(35%, 3rem, $color-grey-light);
+        }
+        &_4::after {
+          @include mixinAfter($color-black);
+        }
+        &_5 {
+          @include flexcol(0.65rem, unset);
+          span {
+            @include mixinMain(100%, 1.3rem, $color-grey-light);
+          }
+          span ::after {
+            @include mixinAfter($color-black);
+          }
+        }
+        &_6 {
+          border-top: $border-light-1;
+          border-bottom: $border-light-1;
+          padding: 1rem 0;
+          @include flexrow(2rem, center);
+          justify-content: space-between;
+          &_1 {
+            @include mixinMain(30%, 2.5rem, $color-grey-light);
+          }
+          &_1::after {
+            @include mixinAfter($color-black);
+          }
+          &_2 {
+            @include mixinMain(50%, 3.3rem, $color-grey-light);
+          }
+          &_2::after {
+            @include mixinAfter($color-black);
+          }
+        }
+        &_7 {
+          border-bottom: $border-light-1;
+          padding: 0rem 0rem 1rem 0rem;
+          @include flexrow(2rem, center);
+          justify-content: space-between;
+          &_1 {
+            @include mixinMain(30%, 2.5rem, $color-grey-light);
+          }
+          &_1::after {
+            @include mixinAfter($color-black);
+          }
+          &_2 {
+            @include mixinMain(50%, 3.3rem, $color-grey-light);
+          }
+          &_2::after {
+            @include mixinAfter($color-black);
+          }
+        }
+        &_8 {
+          @include flexrow(2rem, center);
+          justify-content: space-between;
+          &_1 {
+            @include mixinMain(25%, 4rem, $color-grey-light);
+          }
+          &_1::after {
+            @include mixinAfter($color-black);
+          }
+          &_2 {
+            @include mixinMain(70%, 4rem, $color-grey-light);
+          }
+          &_2::after {
+            @include mixinAfter($color-black);
+          }
+        }
+      }
+    }
+  }
+  .second {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(38rem, 1fr));
+    gap: 2rem;
+    align-items: flex-start;
+    @media (max-width: 825px) {
+      grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+      gap: 2rem;
+    }
+    @media (max-width: 625px) {
+      grid-template-columns: repeat(auto-fit, minmax(30rem, 1fr));
+      gap: 2rem;
+    }
+  }
+}

@@ -18,15 +18,17 @@ export default async function Product({
     item = JSON.parse(JSON.stringify(Product));
   } catch (error) {}
   return (
-    <section className={styles.container}>
-      {!item ? (
-        <h1>Item is not available at this moment please thy later.</h1>
-      ) : (
-        <>
-          <ItemComp item={item} />
-          <Details itemId={itemId} />
-        </>
-      )}
-    </section>
+    <>
+      <section className={styles.container}>
+        {!item ? (
+          <h1>Item is not available at this moment please thy later.</h1>
+        ) : (
+          <>
+            <ItemComp item={item} />
+            <Details itemId={itemId} />
+          </>
+        )}
+      </section>
+    </>
   );
 }

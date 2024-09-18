@@ -7,6 +7,7 @@ import { useSearchParams, useRouter } from "next/navigation";
 import { CiCircleCheck } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import { CardObj } from "@/lib/filterCards";
+import ItemDetailsSkeleton from "@/skeleton/ItemDetailsSkeleton";
 export interface CartItem {
   id: string;
   title: string | undefined;
@@ -57,10 +58,6 @@ function ItemDetails({ item }: ItemDetaisProps) {
 
     router.push(`?${params.toString()}`, { scroll: false });
   }
-  if (loading) {
-    ///To be implemented later .
-    return <h1>Loading</h1>;
-  }
 
   function handleSubmit() {
     if (activeColor === null) {
@@ -99,79 +96,85 @@ function ItemDetails({ item }: ItemDetaisProps) {
   }
   return (
     <div className={styles.container}>
-      <div className={styles.container__header}>
-        <h3>{item?.brand}</h3>
-        <h4 className={styles.container__header__heading}>{item?.title}</h4>
-        <div className={styles.container__header__rating}>
-          <p>
-            <Star rating={rating} />
-          </p>
-          <span>{rating}/</span>
-        </div>
-        <div className={styles.container__prices}>
-          <p className={styles.container__prices__net}>
-            ₹
-            {item &&
-              (item.price - (item.price * item.discount) / 100).toFixed(0)}
-          </p>
-          <p className={styles.container__prices__total}>₹{item?.price}</p>
-          <span>-{item?.discount}%</span>
-        </div>
-        <p className={styles.container__description}>{item?.description}</p>
-      </div>
-      <div className={styles.container__colors}>
-        <p className={styles.container__colors__heading}>Select Colors</p>
-        <div className={styles.container__colors__all}>
-          {item?.colors.map((_, index) => (
-            <span
-              key={index}
-              onClick={() => {
-                const colorText = item?.colors.at(index) || "";
-                updateQueryParams("color", colorText);
-              }}
-              className={styles.container__colors__all__color}
-              style={{ background: `${item?.colors.at(index)}` }}
-            >
-              {activeColor === item?.colors.at(index) && <CiCircleCheck />}
+      {(loading && <ItemDetailsSkeleton />) || (
+        <>
+          <div className={styles.container__header}>
+            <h3>{item?.brand}</h3>
+            <h4 className={styles.container__header__heading}>{item?.title}</h4>
+            <div className={styles.container__header__rating}>
+              <p>
+                <Star rating={rating} />
+              </p>
+              <span>{rating}/</span>
+            </div>
+            <div className={styles.container__prices}>
+              <p className={styles.container__prices__net}>
+                ₹
+                {item &&
+                  (item.price - (item.price * item.discount) / 100).toFixed(0)}
+              </p>
+              <p className={styles.container__prices__total}>₹{item?.price}</p>
+              <span>-{item?.discount}%</span>
+            </div>
+            <p className={styles.container__description}>{item?.description}</p>
+          </div>
+          <div className={styles.container__colors}>
+            <p className={styles.container__colors__heading}>Select Colors</p>
+            <div className={styles.container__colors__all}>
+              {item?.colors.map((_, index) => (
+                <span
+                  key={index}
+                  onClick={() => {
+                    const colorText = item?.colors.at(index) || "";
+                    updateQueryParams("color", colorText);
+                  }}
+                  className={styles.container__colors__all__color}
+                  style={{ background: `${item?.colors.at(index)}` }}
+                >
+                  {activeColor === item?.colors.at(index) && <CiCircleCheck />}
+                </span>
+              ))}
+            </div>
+          </div>
+          <div className={styles.container__sizes}>
+            <p className={styles.container__sizes__heading}>Choose Size</p>
+            <div className={styles.container__sizes__all}>
+              {item?.sizes.map((size: string, index: number) => (
+                <span
+                  key={size}
+                  className={`${
+                    activeSize === item?.sizes.at(index) ? styles.active : ""
+                  }`}
+                  onClick={() => {
+                    const sizeText: string = item?.sizes.at(index) || "";
+                    updateQueryParams("size", sizeText);
+                  }}
+                >
+                  {size}
+                </span>
+              ))}
+            </div>
+          </div>
+          {error !== null && Object.keys(error).length > 0 && (
+            <span className={styles.error}>
+              {error !== null && <p>{error}</p>}
             </span>
-          ))}
-        </div>
-      </div>
-      <div className={styles.container__sizes}>
-        <p className={styles.container__sizes__heading}>Choose Size</p>
-        <div className={styles.container__sizes__all}>
-          {item?.sizes.map((size: string, index: number) => (
-            <span
-              key={size}
-              className={`${
-                activeSize === item?.sizes.at(index) ? styles.active : ""
-              }`}
-              onClick={() => {
-                const sizeText: string = item?.sizes.at(index) || "";
-                updateQueryParams("size", sizeText);
-              }}
-            >
-              {size}
+          )}
+          <div className={styles.container__buttons}>
+            <span className={styles.container__buttons__control}>
+              <HiMinus onClick={() => handleMinus()} />
+              <p>{quantity}</p>
+              <GoPlus onClick={() => handlePlus()} />
             </span>
-          ))}
-        </div>
-      </div>
-      {error !== null && Object.keys(error).length > 0 && (
-        <span className={styles.error}>{error !== null && <p>{error}</p>}</span>
+            <button
+              className={styles.container__buttons__btn}
+              onClick={handleSubmit}
+            >
+              Add To Cart
+            </button>
+          </div>
+        </>
       )}
-      <div className={styles.container__buttons}>
-        <span className={styles.container__buttons__control}>
-          <HiMinus onClick={() => handleMinus()} />
-          <p>{quantity}</p>
-          <GoPlus onClick={() => handlePlus()} />
-        </span>
-        <button
-          className={styles.container__buttons__btn}
-          onClick={handleSubmit}
-        >
-          Add To Cart
-        </button>
-      </div>
     </div>
   );
 }
