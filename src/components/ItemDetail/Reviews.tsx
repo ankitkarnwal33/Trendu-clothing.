@@ -1,12 +1,11 @@
-import { useContext } from "react";
 import { Review } from "./RatingReviews";
 import ReviewComponent from "./ReviewComponent";
 import styles from "./Reviews.module.scss";
-import ReviewsContext from "@/context/Reviews/reviewContex";
+import { useReviews } from "@/context/Reviews/reviewContex";
 import ReviewSkeleton from "./skeleton/ReviewSkeleton";
 
-export default function Reviews({ loading }: { loading: boolean }) {
-  const reviews = useContext(ReviewsContext);
+export default function Reviews() {
+  const { reviews, loading } = useReviews();
   return (
     <div className={styles.reviews}>
       {(loading && (

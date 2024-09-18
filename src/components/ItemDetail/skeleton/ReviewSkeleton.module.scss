@@ -35,7 +35,7 @@
       @include mixinAfter($color-black);
     }
     &_2 {
-      @include mixinMain(8%, 2.4rem, $color-grey-light);
+      @include mixinMain(5%, 2.4rem, $color-grey-light);
     }
     &_2::after {
       @include mixinAfter($color-black);

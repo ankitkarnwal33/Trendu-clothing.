@@ -1,11 +1,10 @@
-"use client";
 import Links from "./Links";
 import ReviewsHeader from "./ReviewsHeader";
 import Reviews from "./Reviews";
 import FAQs from "./FAQs";
 import Specifications from "./Specifications";
 import { useSearchParams } from "next/navigation";
-import ReviewsContext from "@/context/Reviews/reviewContex";
+import { useReviews } from "@/context/Reviews/reviewContex";
 import { useEffect, useState } from "react";
 import { unstable_noStore } from "next/cache";
 
@@ -22,13 +21,14 @@ export interface Review {
 }
 
 function RatingReviews({ itemId }: { itemId: string }) {
-  const [reviews, setReviews] = useState<Review[] | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string>("");
   unstable_noStore();
+  const { setReviews, loading, setLoading, setItemId } = useReviews();
+  setItemId(itemId);
   useEffect(() => {
-    let timerId: number | NodeJS.Timeout;
+    let isMounted = true;
     async function fetchReviews() {
+      isMounted = true;
       setLoading(true);
       if (itemId !== null) {
         try {
@@ -37,15 +37,17 @@ function RatingReviews({ itemId }: { itemId: string }) {
             setLoading(false);
             return setError("Can't get reviews at this moment.");
           }
-          const data = await res.json();
-          setReviews(JSON.parse(JSON.stringify(data)));
-          timerId = setTimeout(() => {
+          if (isMounted) {
+            const data = await res.json();
+            setReviews(JSON.parse(JSON.stringify(data)));
             setLoading(false);
-          }, 3000);
+          }
         } catch (error) {
-          if (error instanceof Error) {
-            if (error.message) {
-              setError(error.message);
+          if (isMounted) {
+            if (error instanceof Error) {
+              if (error.message) {
+                setError(error.message);
+              }
             }
           }
         }
@@ -53,9 +55,9 @@ function RatingReviews({ itemId }: { itemId: string }) {
     }
     fetchReviews();
     return () => {
-      clearTimeout(timerId);
+      isMounted = false;
     };
-  }, [itemId]);
+  }, [itemId, setReviews, setLoading]);
   const searchParams = useSearchParams();
   const activeLink: string | null = searchParams.get("page");
 
@@ -63,15 +65,15 @@ function RatingReviews({ itemId }: { itemId: string }) {
     <>
       <Links />
       {activeLink === "Rating & Reviews" && (
-        <ReviewsContext.Provider value={reviews || null}>
+        <>
           {!loading && error.length > 0 && <h1>{error}</h1>}
           {error.length === 0 && (
             <>
-              <ReviewsHeader itemId={itemId} />
-              <Reviews loading={loading} />
+              <ReviewsHeader />
+              <Reviews />
             </>
           )}
-        </ReviewsContext.Provider>
+        </>
       )}
       {activeLink === "Product Details" && <Specifications />}
       {activeLink === "FAQs" && <FAQs />}
