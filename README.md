@@ -1,6 +1,6 @@
-Trendu/
+## Trendu
 
-## Getting Started
+ Getting Started
 First, install the dependencies: 
 npm i
 or
