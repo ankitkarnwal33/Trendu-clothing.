@@ -79,7 +79,7 @@ function ItemDetails({ item }: ItemDetaisProps) {
       color: activeColor,
       size: activeSize,
       price:
-        item && +(item?.price - (item?.price * item.discount) / 100).toFixed(0),
+        item && +(item?.price - (item?.price * item.discount) / 100).toFixed(0), //should be a number
     };
 
     const existingCart: string = localStorage.getItem("cart") || "";
