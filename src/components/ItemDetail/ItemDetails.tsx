@@ -60,11 +60,11 @@ function ItemDetails({ item }: ItemDetaisProps) {
   }
 
   function handleSubmit() {
-    if (activeColor === null) {
+    if (activeColor.length === 0) {
       setError("Please choose a color.");
       return;
     }
-    if (activeSize === null) {
+    if (activeSize.length === 0) {
       setError("Please choose a size.");
       return;
     }
